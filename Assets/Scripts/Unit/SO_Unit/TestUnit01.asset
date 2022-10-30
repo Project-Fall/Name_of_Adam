@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d26f0710e75b8d4eab5d320d4650f6c, type: 3}
+  m_Name: TestUnit01
+  m_EditorClassIdentifier: 
+  unitName: TestUnit01
+  unitText: "\uD14C\uC2A4\uD2B8\uC6A9 \uC720\uB2DB \uB370\uC774\uD130\uC785\uB2C8\uB2E4."
+  skills:
+  - {fileID: 0}
+  - {fileID: 0}
+  atk: 10
+  def: 40
+  hp: 100
+  maxhp: 100
+  speed: 90
+  level: 1
+  growth_atk: 5
+  growth_def: 5
+  growth_hp: 5
+  growth_maxhp: 5
+  growth_speed: 5
+  character: {fileID: 0}
