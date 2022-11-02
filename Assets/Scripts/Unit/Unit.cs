@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Unit : MouseInteraction
+public class Unit : MonoBehaviour
 {
     [SerializeField] public UnitData unitData;
     [SerializeField] private bool _isTargeting;
@@ -11,17 +11,19 @@ public class Unit : MouseInteraction
     {
         if (_isTargeting)
         {
-            transform.position = InputManager.MousePosition;
+            transform.position = InputManager.MousePos;
         }
     }
 
-    public override void OnClick()
+    public void OnClick()
     {
         _isTargeting = true;
+        GetComponent<Collider2D>().enabled = false;
     }
 
-    public override void OffClick()
+    public void OffClick()
     {
         _isTargeting = false;
+        GetComponent<Collider2D>().enabled = true;
     }
 }

@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitData: {fileID: 0}
+  _isTargeting: 0
 --- !u!58 &8350074121688739433
 CircleCollider2D:
   m_ObjectHideFlags: 0
