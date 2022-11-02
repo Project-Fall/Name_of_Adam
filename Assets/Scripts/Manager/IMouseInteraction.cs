@@ -4,8 +4,8 @@ using UnityEngine;
 
 public interface IMouseInteraction
 {
-    public void OnClick();
-    public void OffClick();
-    public void OnHover();
-    public void OffHover();
+    public abstract void OnClick();
+    public abstract void OffClick();
+    public abstract void OnHover();
+    public abstract void OffHover();
 }

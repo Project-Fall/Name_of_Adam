@@ -7,23 +7,23 @@ using UnityEngine;
 /// </summary>
 public class MouseInteraction : MonoBehaviour, IMouseInteraction
 {
-    public void OffClick()
+    public virtual void OffClick()
     {
-        throw new System.NotImplementedException();
+        return;
     }
 
-    public void OffHover()
+    public virtual void OffHover()
     {
-        throw new System.NotImplementedException();
+        return;
     }
 
-    public void OnClick()
+    public virtual void OnClick()
     {
-        throw new System.NotImplementedException();
+        return;
     }
 
-    public void OnHover()
+    public virtual void OnHover()
     {
-        throw new System.NotImplementedException();
+        return;
     }
 }

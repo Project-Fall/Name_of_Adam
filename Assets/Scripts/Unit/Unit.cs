@@ -15,12 +15,12 @@ public class Unit : MouseInteraction
         }
     }
 
-    public void OnTarget()
+    public override void OnClick()
     {
         _isTargeting = true;
     }
 
-    public void OffTarget()
+    public override void OffClick()
     {
         _isTargeting = false;
     }
