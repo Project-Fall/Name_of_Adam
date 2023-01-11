@@ -5,30 +5,30 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Effect_Heal", menuName = "Scriptable Object/Effect_Heal", order = 4)]
 public class Effect_Heal : EffectSO
 {
-    [SerializeField] RangeSO range;    // ê³µê²© ë²”ìœ„
-    [SerializeField] float DMG;        // ë°ë¯¸ì§€ ë°°ìœ¨
+    [SerializeField] RangeSO range;    // °ø°İ ¹üÀ§
+    [SerializeField] float DMG;        // µ¥¹ÌÁö ¹èÀ²
 
-    // ê³µê²© ì‹¤í–‰
-    public override void Effect(BattleUnit caster)
+    // °ø°İ ½ÇÇà
+    public override void Effect(Character caster)
     {
-        float CharHeal = caster.BattleUnitSO.stat.ATK;
+        float CharHeal = caster.characterSO.stat.ATK;
 
-        List<List<Tile>> Tiles = GameManager.Instance.BattleMNG.BattleDataMNG.FieldMNG.TileArray;
+        Tile[,] Tiles = GameManager.Instance.BattleMNG.BattleField.TileArray;
 
         List<Vector2> RangeList = GetRange();
 
-        // ê³µê²© ë²”ìœ„ë¥¼ í–¥í•´ ê³µê²©
+        // °ø°İ ¹üÀ§¸¦ ÇâÇØ °ø°İ
         for (int i = 0; i < RangeList.Count; i++)
         {
-            int x = caster.UnitMove.LocX - (int)RangeList[i].x;
-            int y = caster.UnitMove.LocY - (int)RangeList[i].y;
+            int x = caster.LocX - (int)RangeList[i].x;
+            int y = caster.LocY - (int)RangeList[i].y;
 
-            // ê³µê²© ë²”ìœ„ê°€ í•„ë“œë¥¼ ë²—ì–´ë‚˜ì§€ ì•Šì€ ê²½ìš° ê³µê²©
+            // °ø°İ ¹üÀ§°¡ ÇÊµå¸¦ ¹ş¾î³ªÁö ¾ÊÀº °æ¿ì °ø°İ
             if (0 <= x && x < 8)
             {
                 if (0 <= y && y < 3)
                 {
-                    Tiles[y][x].OnHeal(caster);
+                    Tiles[y, x].OnHeal(caster);
                 }
             }
         }

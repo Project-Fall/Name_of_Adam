@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEditor;
 
 
-// RangeSOì˜ ì»¤ìŠ¤í…€ ì—ë””í„°
+// RangeSOÀÇ Ä¿½ºÅÒ ¿¡µğÅÍ
 [CustomEditor(typeof(RangeSO))]
 public class RangeEditor : Editor
 {
@@ -28,7 +28,7 @@ public class RangeEditor : Editor
 
         EditorGUILayout.Space();
         EditorGUILayout.Space();
-        EditorGUILayout.LabelField("ê³µê²© ë²”ìœ„");
+        EditorGUILayout.LabelField("°ø°İ ¹üÀ§");
 
         atkRange = _range.AttackRange;
 
@@ -66,7 +66,7 @@ public class RangeSO : ScriptableObject
 
     [SerializeField] [HideInInspector] public bool[] AttackRange = new bool[row * column];
 
-    // ê³µê²©ë²”ìœ„ë¥¼ ìºë¦­í„°ì˜ ìœ„ì¹˜ë¥¼ (0, 0)ìœ¼ë¡œ ê°„ì£¼í•˜ê³  ë¦¬ìŠ¤íŠ¸ë¡œ ë°˜í™˜
+    // °ø°İ¹üÀ§¸¦ Ä³¸¯ÅÍÀÇ À§Ä¡¸¦ (0, 0)À¸·Î °£ÁÖÇÏ°í ¸®½ºÆ®·Î ¹İÈ¯
     public List<Vector2> GetRange()
     {
         List<Vector2> RangeList = new List<Vector2>();

@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Skill_1
   m_EditorClassIdentifier: 
   EffectList:
-  - {fileID: 11400000, guid: 3cb1987f55484354dbc4eb0ec385d802, type: 2}
+  - {fileID: 11400000, guid: ba9570f40df6770418d11e36ed93e816, type: 2}

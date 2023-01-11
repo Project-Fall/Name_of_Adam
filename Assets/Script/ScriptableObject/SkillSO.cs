@@ -6,12 +6,12 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Skill", menuName = "Scriptable Object/Skill", order = 1)]
 public class SkillSO : ScriptableObject
 {
-    [SerializeField] public List<EffectSO> EffectList;
+    [SerializeField] List<EffectSO> EffectList;
 
-    // ì´í™íŠ¸ ë¦¬ìŠ¤íŠ¸ ì•ˆì˜ ëª¨ë“  ì´í™íŠ¸ê°€ í•˜ë‚˜ì˜ ì´í™íŠ¸ë¡œ ë¬¶ì—¬ì„œ ì‚¬ìš©ëœë‹¤.
-    public void use(BattleUnit ch)
+    // ÀÌÆåÆ®¸®½ºÆ® ¾ÈÀÇ ÀÌÆåÆ®µéÀ» ¼ø¼­´ë·Î ½ÇÇà
+    public void use(Character ch)
     {
-        for (int i = 0; i < EffectList.Count; i++)
+        for(int i = 0; i < EffectList.Count; i++)
         {
             EffectList[i].Effect(ch);
         }

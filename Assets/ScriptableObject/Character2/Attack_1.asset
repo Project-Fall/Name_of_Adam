@@ -12,6 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adf99918a2fa5834b8e43166199eedc1, type: 3}
   m_Name: Attack_1
   m_EditorClassIdentifier: 
-  attackType: 1
   range: {fileID: 11400000, guid: 41a049d9cd3e2b947a171d34ef7ee2a7, type: 2}
   DMG: 1

@@ -12,12 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 388468ddf8550394ab24930191eb3e09, type: 3}
   m_Name: Character
   m_EditorClassIdentifier: 
-  team: 1
+  team: 0
   sprite: {fileID: 352634130, guid: 98c4b20bacff2b441aaa02fb1e5195de, type: 3}
   stat:
     HP: 20
     ATK: 50
     SPD: 30
-  FallGauge: 0
-  IsFall: 0
   skill: {fileID: 11400000, guid: afa5410f62ea1864a85e0376b676cdc0, type: 2}
