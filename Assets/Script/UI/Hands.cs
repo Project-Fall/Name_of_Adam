@@ -5,18 +5,24 @@ using UnityEngine;
 public class Hands : MonoBehaviour
 {
     [SerializeField] List<Hand> HandList;
-    
-    BattleDataManager _BattleDataMNG;
 
-    void Awake()
+    void OnMouseDown()
     {
-        _BattleDataMNG = GameManager.Instance.BattleMNG.BattleDataMNG;
-
         //전투 시작 후 초기 멀리건 4장
         for (int i = 0; i < 4; i++) {
             AddUnitToHand();
         }
     }
+
+    /*
+    void Awake()
+    {
+        //전투 시작 후 초기 멀리건 4장
+        for (int i = 0; i < 4; i++) {
+            AddUnitToHand();
+        }
+    }
+    */
 
     public void AddUnitToHand()
     {
@@ -25,7 +31,7 @@ public class Hands : MonoBehaviour
         {
             if (h.isHandNull())
             {
-                h.SetHandDeckUnit(_BattleDataMNG.GetRandomDeckUnit());
+                h.SetHandDeckUnit(GameManager.Instance.BattleMNG.BattleDataMNG.GetRandomDeckUnit());
                 break;
             }
         }
@@ -54,19 +60,8 @@ public class Hands : MonoBehaviour
         {
             if (!h.isHandNull())
             {
-                _BattleDataMNG.AddDeckUnit(h.RemoveHandDeckUnit());
+                GameManager.Instance.BattleMNG.BattleDataMNG.AddDeckUnit(h.RemoveHandDeckUnit());
             }
         }
-    }
-
-    //테스트용입니다.
-    public void begoneHands()
-    {
-        transform.position = new Vector3(180, -200, 0);
-    }
-    
-    public void comebackHands()
-    {
-        transform.position = new Vector3(180, -150, 0);
     }
 }

@@ -6,7 +6,7 @@ public class Test_UnitAdder : MonoBehaviour
 {
     [SerializeField] List<BattleUnitSO> unit;
 
-    void Awake()
+    void OnMouseDown()
     {
         Debug.Log("ADD");
         DeckUnit d1 = new DeckUnit();

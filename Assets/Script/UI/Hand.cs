@@ -11,7 +11,7 @@ public class Hand : MonoBehaviour
 
     private DeckUnit HandUnit = null;
 
-    void start()
+    void Awake()
     {
         SR = GetComponent<SpriteRenderer>();
     }
