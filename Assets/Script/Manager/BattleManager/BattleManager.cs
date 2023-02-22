@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,125 +11,273 @@ using UnityEngine;
 
 public class BattleManager : MonoBehaviour
 {
-    private BattleDataManager _BattleDataMNG;
-    public BattleDataManager BattleDataMNG => _BattleDataMNG;
+    private BattleDataManager _battleData;
+    public BattleDataManager Data => _battleData;
+    [SerializeField] public List<BattleUnit> _BattleUnitOrderList = new List<BattleUnit>();
 
-    private UI_WatingLine _WatingLine;
     private UIManager _UIMNG;
     private Field _field;
+    private Mana _mana;
+
     public Field Field => _field;
 
-    private List<BattleUnit> _BattleUnitOrderList;
+    [SerializeField] private bool TestMode = true;
+    private ClickType _clickType;
+
+    private UI_Hands _hands;
+    private UI_WaitingLine _waitingLine;
+    private UI_TurnCount _turnCount;
+
+    private Vector2 coord;
+
+    private bool isEngage = true;
 
     private void Awake()
     {
-        _BattleDataMNG = new BattleDataManager();
-        
-        _BattleUnitOrderList = new List<BattleUnit>();
-        _WatingLine = GameManager.UIMNG.WatingLine;
-        _UIMNG = GameManager.UIMNG;
-        _field = GameObject.Find("Field").GetComponent<Field>().SetClickEvent(OnClickTile);
+        _UIMNG = GameManager.UI;
+        _battleData = Util.GetOrAddComponent<BattleDataManager>(gameObject);
+        _mana = Util.GetOrAddComponent<Mana>(gameObject);
+        _hands = _UIMNG.ShowScene<UI_Hands>();
+        _waitingLine = _UIMNG.ShowScene<UI_WaitingLine>();
+        //_turnCount = GameManager.UI.ShowScene<UI_TurnCount>();
 
-        StartEnter();
+        PhaseChanger(Phase.SetupField);
     }
 
-    private void OnClickTile(Vector2 coord, Tile tile)
+    private void Update()
     {
-        //Prepare 페이즈
-        if (CurrentPhase == Phase.Prepare)
+        PhaseUpdate();
+    }
+
+    private void UnitSpawn()
+    {
+        GetComponent<UnitSpawner>().Spawn();
+    }
+
+    private void SetupField()
+    {
+        GameObject fieldObject = GameObject.Find("Field");
+
+        if (fieldObject == null)
+            fieldObject = GameManager.Resource.Instantiate("Field");
+
+        _field = fieldObject.GetComponent<Field>();
+    }
+
+    public void OnClickTile(Tile tile)
+    {
+        coord = Field.FindCoordByTile(tile);
+
+        if(_CurrentPhase == Phase.Engage && _clickType == ClickType.Nothing)
         {
-            // ----------------변경 예정------------------------
-            DeckUnit clickedUnit = _UIMNG.Hands.ClickedUnit;
-            if (clickedUnit == null)
-                return;
-
-            _BattleDataMNG.ChangeMana(-1 * clickedUnit.GetUnitSO().ManaCost);
-
-            GameObject BattleUnitPrefab = GameManager.Resource.Instantiate("Unit");
-            BattleUnit BattleUnit = BattleUnitPrefab.GetComponent<BattleUnit>();
-
-            BattleUnit.BattleUnitSO = clickedUnit.GetUnitSO();
-            BattleUnit.setLocate(coord);
-
-            GameManager.BattleMNG.Field.EnterTile(BattleUnit, coord);
-
-            BattleUnit.Init();
-
-            _UIMNG.Hands.RemoveHand(_UIMNG.Hands.ClickedHand);
-            _UIMNG.Hands.ClearHand();
-            // ------------------------------------------------
+            _clickType = ClickType.Move;
         }
-        //Start 페이즈
-        else if (CurrentPhase == Phase.Start)
+        else if(_clickType == ClickType.Before_Attack)
         {
-            //범위 외
-            if (Field.IsPlayerRange(coord) == false || Field.GetUnit(coord) != null)
-                return;
-
-            // ----------------변경 예정------------------------
-            DeckUnit clickedUnit = _UIMNG.Hands.ClickedUnit;
-            if (clickedUnit == null)
-                return;
-
-            _BattleDataMNG.ChangeMana(-1 * clickedUnit.GetUnitSO().ManaCost);
-
-            GameObject BattleUnitPrefab = GameManager.Resource.Instantiate("Unit");
-            BattleUnit BattleUnit = BattleUnitPrefab.GetComponent<BattleUnit>();
-
-            BattleUnit.BattleUnitSO = clickedUnit.GetUnitSO();
-            BattleUnit.setLocate(coord);
-
-            GameManager.BattleMNG.Field.EnterTile(BattleUnit, coord);
-
-            BattleUnit.Init();
-
-            _UIMNG.Hands.RemoveHand(_UIMNG.Hands.ClickedHand);
-            _UIMNG.Hands.ClearHand();
-            // ------------------------------------------------
-
+            _clickType = ClickType.Attack;
         }
-        //Engage 페이즈
-        else
-        {
-            _field.ClearAllColor();
-            GetNowUnit().TileSelected(coord);
+
+    }
+
+    // *****
+    // 임시임시
+    // 팩토리는 다른곳으로 빼는걸로
+    private void BattleUnitFactory(Vector2 coord)
+    {
+        //범위 외
+        if (Field.IsPlayerRange(coord) == false || Field.GetUnit(coord) != null)
             return;
-        }
+
+        // ----------------변경 예정------------------------
+        Unit clickedUnit = _hands.ClickedUnit;
+        if (clickedUnit == null)
+            return;
+
+        _mana.ChangeMana(-1 * clickedUnit.Data.ManaCost);
+
+        GameObject BattleUnitPrefab = GameManager.Resource.Instantiate("Units/BaseUnit");
+        BattleUnit BattleUnit = BattleUnitPrefab.GetComponent<BattleUnit>();
+
+        BattleUnit.Data = clickedUnit.Data;
+        UnitSetting(BattleUnit, coord);
+
+        Data.BattleUnitAdd(BattleUnit);
+        _hands.RemoveHand(_hands.ClickedHand);
+        _hands.ClearHand();
+        // ------------------------------------------------
     }
-    
-    #region Phase Control
-    public enum Phase
+    public void UnitSetting(BattleUnit _unit, Vector2 coord)
     {
-        Start,
-        Prepare,
-        Engage
+        _unit.setLocate(coord);
+        _unit.Init(_unit.Team, coord);
+        Field.EnterTile(_unit, coord);
+        _unit.UnitDeadAction = UnitDeadAction;
+
+        Data.BattleUnitAdd(_unit);
     }
+    // 23.02.16 임시 수정
+    private void UnitDeadAction(BattleUnit _unit)
+    {
+        Data.BattleUnitRemove(_unit);
+        BattleOrderRemove(_unit);
+    }
+
+    #region Phase Control
 
     private Phase _CurrentPhase;
     public Phase CurrentPhase => _CurrentPhase;
 
     public void PhaseUpdate()
     {
-        if (_CurrentPhase == Phase.Prepare)
+        switch (CurrentPhase)
         {
-            PrepareExit();
-            EngageEnter();
+            case Phase.SetupField:
+                SetupField();
+                Debug.Log("필드 생성");
 
-            PhaseChanger(Phase.Engage);
-        }
-        else if (_CurrentPhase == Phase.Engage)
-        {
-            EngageExit();
-            PrepareEnter();
+                PhaseChanger(Phase.SpawnEnemyUnit);
 
-            PhaseChanger(Phase.Prepare);
-        }
-        else if(_CurrentPhase == Phase.Start)
-        {
-            StartExit();
-            EngageEnter();
+                break;
 
-            PhaseChanger(Phase.Engage);
+            case Phase.SpawnEnemyUnit:
+
+                //UnitSpawn();
+
+                GetComponent<UnitSpawner>().Spawn();
+
+                PhaseChanger(Phase.Start);
+                break;
+
+            case Phase.Start:
+                Debug.Log("Start Enter");
+
+                Debug.Log("Start Exit");
+
+                PhaseChanger(Phase.Engage);
+                
+                break;
+
+            case Phase.Engage:
+                if(isEngage)
+                {
+                    isEngage = false;
+                    Debug.Log("Engage Enter");
+
+                    //UI 튀어나옴
+                    //UI가 작동할 수 있게 해줌
+
+                    // 필드 위의 모든 표시 삭제
+                    Field.ClearAllColor();
+
+                    // 턴 시작 전에 순서를 정렬한다.
+
+                    _BattleUnitOrderList.Clear();
+
+                    foreach (BattleUnit unit in _battleData.BattleUnitList)
+                    {
+                        _BattleUnitOrderList.Add(unit);
+                    }
+
+                    BattleOrderReplace();
+                    
+                    if(_waitingLine != null)
+                    {
+                        Debug.Log("WaitingLIne");
+                    }
+
+                    _waitingLine.SetBattleOrderList();
+                    _waitingLine.SetWaitingLine();
+
+                    
+                }
+
+                // 실행을 해야 i++
+                if(_BattleUnitOrderList.Count > 0)
+                {
+                    // 유닛이 스킬 씀
+                    BattleUnit Unit = GetNowUnit();
+                    if (0 < Unit.HP.GetCurrentHP())
+                    {
+                        if (Unit.Team == Team.Enemy)
+                        {
+                            Unit.AI.AIAction();
+                            Field.ClearAllColor();
+                            _BattleUnitOrderList.RemoveAt(0);
+                            _waitingLine.SetWaitingLine();
+                        }
+                        else
+                        {
+                            Field.ClearAllColor();
+                            if (_clickType == ClickType.Nothing)
+                            {
+                                Field.SetTileColor(Unit, Color.yellow, ClickType.Move);
+                            }
+                            else
+                            {
+                                Field.SetTileColor(Unit,Color.red, ClickType.Attack);
+                            }
+
+                            
+                            
+                            if (Field.Get_Abs_Pos(Unit, _clickType).Contains(coord))
+                            {
+                                if (_clickType == ClickType.Move)
+                                {
+                                    Vector2 dest = coord - Unit.Location;
+                                    MoveLocate(Unit, dest);
+                                    ChangeClickType(ClickType.Before_Attack);
+                                }
+                                else if (_clickType == ClickType.Attack)
+                                {
+                                    // 제자리를 클릭했다면 공격하지 않는다.
+                                    if (coord != Unit.Location)
+                                        Unit.SkillUse(_field.GetUnit(coord));
+                                    // 공격 실행 후 바로 다음유닛 행동 실행
+                                    Field.ClearAllColor();
+                                    _BattleUnitOrderList.RemoveAt(0);
+                                    _waitingLine.SetWaitingLine();
+                                    ChangeClickType(ClickType.Nothing);
+                                }
+                            }
+                            else
+                            {
+                                break;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    PhaseChanger(Phase.Prepare);
+                    isEngage = true;
+                }
+
+                //EngageExit();
+
+                Debug.Log("Engage Exit");
+                //UI 들어감
+                //UI 사용 불가
+
+                BattleOverCheck();
+                
+                
+                break;
+
+            case Phase.Prepare:
+                //PrepareEnter();
+                Debug.Log("Prepare Enter");
+
+                _mana.ChangeMana(2);
+                _battleData.TurnPlus();
+                //_turnCount.ShowTurn();
+
+                // 배치나 플레이어 스킬 등의 작업(코루틴으로 버튼 대기) UI_PhaseChange 버튼의 입력대기 받도록
+
+                //PrepareExit();
+
+                Debug.Log("Prepare Exit");
+                PhaseChanger(Phase.Engage);
+                break;
         }
     }
 
@@ -137,81 +286,23 @@ public class BattleManager : MonoBehaviour
         _CurrentPhase = phase;
     }
 
-    public void StartEnter()
-    {
-        //전투시 맨 처음 Prepare 단계
-        Debug.Log("Start Enter");
-        PhaseChanger(Phase.Start);
-    }
-
-    public void StartExit()
-    {
-        Debug.Log("Start Exit");
-    }
-
-    public void PrepareEnter()
-    {
-        Debug.Log("Prepare Enter");
-        PhaseChanger(Phase.Prepare);
-        //UI 튀어나옴
-        //UI가 작동할 수 있게 해줌
-    }
-
-    public void PrepareExit()
-    {
-        Debug.Log("Prepare Exit");
-        //UI 들어감
-        //UI 사용 불가
-    }
-
-    public void EngageEnter()
-    {
-        Debug.Log("Engage Enter");
-        PhaseChanger(Phase.Engage);
-        //UI 튀어나옴
-        //UI가 작동할 수 있게 해줌
-
-        _BattleUnitOrderList.Clear();
-
-        foreach(BattleUnit unit in _BattleDataMNG.BattleUnitList)
-        {
-            Debug.Log(unit.Location);
-            _BattleUnitOrderList.Add(unit);
-        }
-
-        // 턴 시작 전에 다시한번 순서를 정렬한다.
-        BattleOrderReplace();
-        GameManager.BattleMNG.Field.ClearAllColor();
-
-        _WatingLine.SetBattleUnitList(_BattleUnitOrderList);
-        _WatingLine.SetWatingLine();
-
-        UseUnitSkill();
-    }
-
-    public void EngageExit()
-    {
-        Debug.Log("Engage Exit");
-        //UI 들어감
-        //UI 사용 불가
-        _BattleDataMNG.ChangeMana(2);
-        BattleOverCheck();
-    }
+    
     #endregion
 
     public void BattleOverCheck()
     {
         int MyUnit = 0;
         int EnemyUnit = 0;
-        foreach(BattleUnit BUnit in BattleDataMNG.BattleUnitList)
+
+        foreach(BattleUnit BUnit in Data.BattleUnitList)
         {
-            if (BUnit.BattleUnitSO.MyTeam)//아군이면
+            if (BUnit.Team == Team.Player)//아군이면
                 MyUnit++;
             else
                 EnemyUnit++;
         }
 
-        MyUnit += BattleDataMNG.DeckUnitList.Count;
+        MyUnit += Data.PlayerDeck.Count;
         //EnemyUnit 대기 중인 리스트만큼 추가하기
 
         if (MyUnit == 0)
@@ -244,46 +335,30 @@ public class BattleManager : MonoBehaviour
             .ToList();
     }
 
-    public BattleUnit GetUnitbyOrder(int i)
+
+    public List<BattleUnit> GetUnitbyOrder()
     {
-        return _BattleUnitOrderList[i];
+        return _BattleUnitOrderList;
     }
+
 
     public void BattleOrderRemove(BattleUnit _unit)
     {
         _BattleUnitOrderList.Remove(_unit);
     }
 
+    public void ChangeClickType(ClickType type)
+    {
+        _clickType = type;
+    }
+
     // BattleUnitList의 첫 번째 요소부터 순회
     // 다음 차례의 공격 호출은 CutSceneMNG의 ZoomOut에서 한다.
-    public void UseUnitSkill()
-    {
-        if (_BattleUnitOrderList.Count <= 0)
-        {
-            PhaseUpdate();
-            return;
-        }
+    
 
-        if (0 < _BattleUnitOrderList[0].CurHP)
-        {
-            //_BattleUnitOrderList[0].ChangeState(BattleUnitState.Move);
-            //_BattleUnitOrderList[0].UpdateState();
-        }
-        else
-        {
-            UseNextUnit();
-        }
-    }
-
-    public void UseNextUnit()
-    {
-        _BattleUnitOrderList.RemoveAt(0);
-        _WatingLine.SetWatingLine();
-        UseUnitSkill();
-    }
     
     // 이동 경로를 받아와 이동시킨다
-    public void MoveLotate(BattleUnit caster, Vector2 coord)
+    public void MoveLocate(BattleUnit caster, Vector2 coord)
     {
         Vector2 current = caster.Location;
         Vector2 dest = current + coord;
@@ -291,170 +366,37 @@ public class BattleManager : MonoBehaviour
         Field.MoveUnit(current, dest);
     }
 
-    
-    public void SetTileColor(Color clr)
-    {
-        List<Vector2> rangeList = Field.Get_Abs_Pos(GetNowUnit());
-        Field.SetTileColor(rangeList, clr);
-    }
-
+    // *****
+    // 경유만 하는 함수가 필요할까?
     public void SetUnit(BattleUnit unit, Vector2 coord)
     {
         Field.EnterTile(unit, coord);
     }
 
-    public BattleUnit GetNowUnit() => _BattleUnitOrderList[0];
-
-    #region AI
-    public void BattleUnitAI()
+    public BattleUnit GetNowUnit()
     {
-        List<Vector2> FindTileList = new List<Vector2>();
-        List<Vector2> RangedVectorList = new List<Vector2>();
-
-        List<Vector2> AttackRangeList = _BattleUnitOrderList[0].BattleUnitSO.GetRange();
-
-        //전달받은 범위에서 유닛을 찾는다.
-        foreach (Vector2 arl in AttackRangeList)
-        {
-            Vector2 vector = _BattleUnitOrderList[0].Location;
-
-            if (Field.IsInRange(vector))
-            {
-                Vector2 vec = vector;
-                if (_field.TileDict[vec].IsOnTile)
-                {
-                    FindTileList.Add(vec);
-                }
-            }
-        }
-
-        //찾은 유닛이 있는지 확인하고, 있다면 원거리인지, 근거리인지 확인한다.
-        if (FindTileList.Count > 0)
-        {
-            foreach (Vector2 ftl in FindTileList)
-            {
-                if (_field.TileDict[ftl].Unit.BattleUnitSO.RType == RangeType.Ranged)
-                {
-                    RangedVectorList.Add(ftl);
-                }
-            }
-
-            if (RangedVectorList.Count > 0)
-            {
-                //원거리 유닛이 있을 경우
-                //Random.Range(0, RangeList.Count);
-            }
-            else
-            {
-                //근거리 유닛만 있을 경우
-                //Random.Range(0, findUnitList.Count);
-            }
-        }
-        else
-        {
-            //공격 범위 내에서 찾은 유닛이 없으면 이동하고 공격한다
-            SortedSet<Vector3> AttackTileSet = new SortedSet<Vector3>();
-
-            //모든 공격 타일을 AttackTileSet에 저장한다. X, Y는 좌표, Z는 원거리/근거리 유무
-            foreach(BattleUnit unit in _BattleDataMNG.BattleUnitList)
-            {
-                if (unit.BattleUnitSO.MyTeam)
-                {
-                    foreach (Vector2 arl in AttackRangeList)
-                    {
-                        Vector3 vector = unit.Location - arl;
-                        if (unit.BattleUnitSO.RType == RangeType.Ranged)
-                            vector.z = 0f;//원거리면 0
-                        else
-                            vector.z = 0.1f;//근거리면 0.1
-
-
-                        AttackTileSet.Add(vector);
-                    }
-                }
-            }
-
-            //유닛을 때릴 수 있는 타일이 이동 범위 내에 있는 지 확인한다.
-            //단 위, 아래, 왼, 오른쪽만 이동 가능하다고 가정
-            for (int i = -1; i <= 1; i += 2)
-            {
-                for (float j = 0; j <= 0.1f; j += 0.1f)
-                {
-                    Vector3 vec1 = new Vector3(_BattleUnitOrderList[0].Location.x + i, _BattleUnitOrderList[0].Location.y, j);
-                    if (AttackTileSet.Contains(vec1))
-                    {
-                        FindTileList.Add(vec1);
-                    }
-
-                    Vector3 vec2 = new Vector3(_BattleUnitOrderList[0].Location.x, _BattleUnitOrderList[0].Location.y + i, j);
-                    if (AttackTileSet.Contains(vec2))
-                    {
-                        FindTileList.Add(vec2);
-                    }
-                }
-            }
-
-
-            if (FindTileList.Count > 0)
-            {
-                //이동해서 갈 수 있는 공격 타일이 있을 경우
-                foreach(Vector3 v in FindTileList)
-                {
-                    if (v.z == 0)
-                    {
-                        RangedVectorList.Add(new Vector2(v.x, v.y));
-                    }
-                }
-
-                if (RangedVectorList.Count > 0)
-                {
-                    //원거리가 있음
-                    //Random.Range(0, RangedVectorList.Count);
-                }
-                else
-                {
-                    //근거리만 있음
-                    //Random.Range(0, FindTileList.Count);
-                }
-            }
-            else
-            {
-                Vector3 MyPosition = _BattleUnitOrderList[0].Location;
-
-                float dis = 100f;
-                Vector3 minVec = new Vector3();
-
-                foreach (Vector3 v in RangedVectorList)
-                {
-                    if (dis > Mathf.Abs(v.x - MyPosition.x) + Mathf.Abs(v.y - MyPosition.y)) 
-                    {
-                        dis = Mathf.Abs(v.x - MyPosition.x) + Mathf.Abs(v.y - MyPosition.y);
-                        minVec = v;
-                    }
-                }
-                //가장 가까운 타일 = minVec으로 이동
-
-                dis = 100f;//재활용
-                Vector3 moveVec = new Vector3();
-                for (int i = -1; i <= 1; i += 2)
-                {
-                    Vector3 vec1 = new Vector3(MyPosition.x + i, MyPosition.y, 0);
-                    if (dis > (vec1 - minVec).sqrMagnitude) 
-                    {
-                        dis = (vec1 - minVec).sqrMagnitude;
-                        moveVec = vec1;
-                    }
-
-                    Vector3 vec2 = new Vector3(MyPosition.x, MyPosition.y + i, 0);
-                    if (dis > (vec2 - minVec).sqrMagnitude)
-                    {
-                        dis = (vec2 - minVec).sqrMagnitude;
-                        moveVec = vec2;
-                    }
-                }
-                //moveVec으로 이동
-            }
-        }
+        if (_BattleUnitOrderList.Count != 0)
+            return _BattleUnitOrderList[0];
+        return null;
     }
-    #endregion
+    
+    // 임시 메서드
+    BattleUnit dump()
+    {
+        BattleUnit caster = GetNowUnit();
+
+        List<Vector2> rangeList = caster.Data.GetAttackRange();
+        BattleUnit hitUnits = new BattleUnit();
+        
+        BattleUnit unit = _field.GetUnit(caster.SelectTile);
+
+        if (unit != null)
+        {
+            if (unit.Team != caster.Team)
+                hitUnits = unit;
+        }
+        
+
+        return hitUnits;
+    }
 }

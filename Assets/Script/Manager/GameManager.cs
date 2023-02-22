@@ -7,14 +7,14 @@ public class GameManager : MonoBehaviour
     private static GameManager s_instance;
     public static GameManager Instance { get { Init(); return s_instance; } }
     
-    [SerializeField] BattleManager _battleMNG;
-    public static BattleManager BattleMNG => Instance._battleMNG;
+    [SerializeField] private BattleManager _battle;
+    public static BattleManager Battle => Instance._battle;
     
-    [SerializeField] private CutSceneManager _CutSceneMNG;
-    public static CutSceneManager CutSceneMNG => Instance._CutSceneMNG;
+    [SerializeField] private CutSceneManager _cutScene;
+    public static CutSceneManager CutScene => Instance._cutScene;
 
-    [SerializeField] UIManager _UIMNG;
-    public static UIManager UIMNG => Instance._UIMNG;
+    [SerializeField] private UIManager _ui;
+    public static UIManager UI => Instance._ui;
 
     private ResourceManager _resource = new ResourceManager();
     public static ResourceManager Resource => Instance._resource;
@@ -32,7 +32,6 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        Debug.Log("Awake");
         Init();
     }
 
@@ -56,10 +55,6 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         // 디버그용 입력기
-        if (Input.GetMouseButtonDown(1))
-        {
-            BattleMNG.PhaseUpdate();
-        }
         if (Input.GetKeyDown(KeyCode.Q))
         {
             //  SceneChanger.SceneChange("StageSelectScene");

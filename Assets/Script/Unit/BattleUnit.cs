@@ -2,236 +2,131 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-
-public class BattleUnit : MonoBehaviour
+public class BattleUnit : Unit
 {
-    [SerializeField] public BattleUnitSO BattleUnitSO;
+    [SerializeField] private Team _team;
+    public Team Team => _team;
 
-    BattleManager _BattleMNG;
-    BattleDataManager _BattleDataMNG;
-    CutSceneManager _CutSceneMNG;
+    private SpriteRenderer _renderer;
+    private Animator _animator;
 
-    SpriteRenderer _SR;
-    Animator _Animator;
-    
+    public Unit_AI_Controller AI;
 
-    #region Location
+    [SerializeField] public UnitHP HP;
+    [SerializeField] public UnitFall Fall;
+    [SerializeField] public UnitSkill Skill;
+
     [SerializeField] Vector2 _location;
     public Vector2 Location => _location;
-    #endregion
-    #region HP
-    [SerializeField] float _MaxHP, _CurHP;
-    public float MaxHP => _MaxHP;
-    public float CurHP
-    {
-        get { return _CurHP; }
-        set
-        {
-            _CurHP = value;
-
-            if (MaxHP < _CurHP)
-                _CurHP = MaxHP;
-            else if (_CurHP < 0)
-                _CurHP = 0;
-        }
-    }
-    #endregion
 
     public Vector2 _SelectTile = new Vector2(-1, -1);
     public Vector2 SelectTile => _SelectTile;
 
-    // Move인지 Attack인지 확인하기 위한 임시클래스
-    bool isMove = true;
-    public bool IsMove => isMove;
+    // 23.02.16 임시 수정
+    private Action<BattleUnit> _UnitDeadAction;
+    public Action<BattleUnit> UnitDeadAction
+    {
+        set { _UnitDeadAction = value; }
+    }
+    
     private void Awake()
     {
-        _BattleMNG = GameManager.BattleMNG;
-        _BattleDataMNG = GameManager.BattleMNG.BattleDataMNG;
-        _CutSceneMNG = GameManager.CutSceneMNG;
+        _renderer = GetComponent<SpriteRenderer>();
+        _animator = GetComponent<Animator>();
+        AI = GetComponent<Unit_AI_Controller>();
 
-        _SR = GetComponent<SpriteRenderer>();
-        _Animator = GetComponent<Animator>();
-    }
-
-    private void Start()
-    {
-        Debug.Log("스타트");
-        _BattleDataMNG.BattleUnitEnter(this);
-        //ChangeState(BattleUnitState.Idle);
-        //UpdateState();
-
-        // 적군일 경우 x축 뒤집기
-        _SR.flipX = (!BattleUnitSO.MyTeam) ? true : false;
-        setLocate(Location);
-    }
-
-    public void Init()
-    {
-        //ChangeState(BattleUnitState.Idle);
-        //UpdateState();
-        // 적군일 경우 x축 뒤집기
-        _SR.flipX = (!BattleUnitSO.MyTeam) ? true : false;
-        setLocate(Location);
-    }
-
-    
-    public void UpdateState()
-    {
-        //switch (curr_state)
-        //{
-        //    case BattleUnitState.Idle:
-        //        _Animator.SetBool("isAttack", false);
-        //        _Animator.SetBool("isHit", false);
-
-        //        break;
-
-        //    case BattleUnitState.Move:
-        //        _BattleMNG.SetTileColor(Color.yellow);
-
-
-
-        //        break;
-
-        //    case BattleUnitState.AttackWait:
-        //        _BattleMNG.SetTileColor(Color.yellow);
-
-
-
-
-        //        break;
-
-        //    case BattleUnitState.Attack:
-        //        _Animator.SetBool("isAttack", true);
-
-        //        break;
-
-        //    case BattleUnitState.HitWait:
-        //        _Animator.SetBool("isHit", true);
-
-        //        break;
-        //}
-    }
-    
-
-    // 이동가능한 범위를 가져온다.
-    public List<Vector2> GetCanMoveRange()
-    {
-        List<Vector2> vecList = new List<Vector2>();
-        vecList.Add(new Vector2(0, 0));
+        _renderer.sprite = Data.Image;
         
-        for (int i = 1; i <= BattleUnitSO.MoveDistance; i++)
-        {
-            for (int j = -1; j <= 1; j += 2)
-            {
-                vecList.Add(new Vector2(i * j, 0));
-                vecList.Add(new Vector2(0, i * j));
-            }
-        }
-
-        return vecList;
+        AI.SetCaster(this);
     }
 
-
-    public void Attack_OnAttack(List<BattleUnit> _HitUnits)
+    public void Init(Team team, Vector2 coord)
     {
-        _CutSceneMNG.BattleCutScene(this, _HitUnits);
+        HP.Init(Stat.HP);
+        Fall.Init(Stat.Fall);
+        _team = team;
+
+        // 적군일 경우 x축 뒤집기
+        _renderer.flipX = (Team == Team.Enemy) ? true : false;
+        setLocate(coord);
+    }
+
+    public void OnAttack(List<BattleUnit> _HitUnits)
+    {
+        foreach (BattleUnit unit in _HitUnits)
+            unit.GetDamage(GetStat().ATK);
     }
     
-    public void Hit_GetDamage(float DMG)
-    {
-        CurHP -= DMG;
-
-        Debug.Log("DMG : " + DMG + ", CurHP ; " + CurHP);
-
-        if (MaxHP <= CurHP)  // 현재 체력이 최대 체력을 넘겼을 시
-            CurHP = MaxHP;
-        else if (CurHP <= 0) // 유닛 사망 시
-            UnitDestroy();
+    public void GetDamage(int DMG) {
+        HP.ChangeHP(-DMG);
     }
     
-
     //오브젝트 생성 시, 최초 위치 설정
-    public void setLocate(Vector2 coord)
-    {
+    public void setLocate(Vector2 coord) {
         _location = coord;
-        _BattleMNG.SetUnit(this, coord);
     }
     
-    void UnitDestroy()
+    public void UnitDiedEvent()
     {
-        _BattleDataMNG.BattleUnitExit(this);
-        _BattleMNG.BattleOrderRemove(this);
+        // 23.02.16 임시 수정
+        _UnitDeadAction(this);
         Destroy(gameObject);
+    }
+
+    public void UnitFallEvent()
+    {
+        ChangeTeam();
+        Debug.Log($"{Data.name} Fall");
+    }
+
+    public void ChangeTeam(Team team = default)
+    {
+        if(team != default)
+        {
+            _team = team;
+            return;
+        }
+        
+        if (Team == Team.Player)
+            _team = Team.Enemy;
+        else
+            _team = Team.Player;
     }
 
     public void SetPosition(Vector3 dest)
     {
         transform.position = dest;
     }
+    
 
+    public void SkillUse(BattleUnit _unit) {
+        Skill.Use(this, _unit);
+    }                   
 
-    public void TileSelected(Vector2 coord)
-    {
-        if (isMove)
-            MoveTileClick(coord);
-        else
-            AttackTileClick(coord);
+    public Stat GetStat(bool buff = true) {
+        return Stat;
     }
 
-    void MoveTileClick(Vector2 coord)
-    {
-        coord -= Location;
-
-        // 이동범위 밖을 선택했다면 다시 선택하기
-        if (!GetCanMoveRange().Contains(coord))
-        {
-            _BattleMNG.SetTileColor(Color.yellow);
-            return;
-        }
-
-        _BattleMNG.MoveLotate(this, coord);
-        //ChangeState(BattleUnitState.AttackWait);
-        //UpdateState();
-
-        isMove = false;
-        return;
+    public void ChangeHP(int value) {
+        HP.ChangeHP(value);
     }
 
-    void AttackTileClick(Vector2 coord)
+    public void ChangeFall(int value)
     {
-        Vector2 dump = coord - Location;
-
-        // 공격범위 밖을 선택했으면 다시 선택하기
-        if (!BattleUnitSO.GetRange().Contains(dump))
-        {
-            _BattleMNG.SetTileColor(Color.yellow);
-            return;
-        }
-
-        _SelectTile = coord;
-
-        if (_SelectTile == Location)
-            _BattleMNG.UseNextUnit();
-        else
-            BattleUnitSO.use(this);
-
-        isMove = true;
-        return;
+        Fall.ChangeFall(value);
     }
+    
+    public bool GetFlipX() => _renderer.flipX;
 
-
-
-    public Stat GetStat(bool buff = true)
-    {
-        Stat stat = BattleUnitSO.stat;
-
-        if (buff == false)
-            return stat;
-
-        return stat;
-        //return _stigma.Use(stat);
-    }
-
-    public bool GetFlipX() => _SR.flipX;
+    public CutSceneType GetCutSceneType() => CutSceneType.center; // Skill 없어져서 바꿨어요
+    
+    public List<Vector2> GetAttackRange() => Data.GetAttackRange();
+    
+    public List<Vector2> GetMoveRange() => Data.GetMoveRange();
 }
+
+// 22.02.16
+// 유닛에서 사용하는 매니저 제거
+// 매니저를 사용하는 기능들은 각 매니저로 기능을 옮김

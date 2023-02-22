@@ -3,50 +3,36 @@
   <Class Name="Field" Collapsed="true">
     <Position X="14.25" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <HashCode>EAAAAKQQgAAECAAgAAgEIQAAADEAgAAAAACQAAAAAEg=</HashCode>
       <FileName>Assets\Script\Field\Field.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Tile" Collapsed="true">
     <Position X="16.25" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AACAAAAQADAAgACAAAoAAAAAgABAAAQAIAgAAEAAAEA=</HashCode>
+      <HashCode>AAAAAACQACAAAAAAIAgAAAAAEAAAAAAAIAiCAAAAAAI=</HashCode>
       <FileName>Assets\Script\Field\Tile.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BattleDataManager" Collapsed="true">
     <Position X="1.5" Y="6.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAIQUAEEACEIGAWgEAACQMAAACAAAAgIIAAAAhAAgAA=</HashCode>
+      <HashCode>AgIQAAEAQAAAAAGAAAAAAICAIQAAAAgAIAAIAiAggAg=</HashCode>
       <FileName>Assets\Script\Manager\BattleManager\BattleDataManager.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BattleManager" Collapsed="true">
     <Position X="1.5" Y="5.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAACAAAAQACAAAAAAEAGAAEBAIAIAQCEAAgAAAAEA=</HashCode>
+      <HashCode>IGAQwCgAgAABAALAAgBEQAAUCBAoAJEAEAEjAACAiEA=</HashCode>
       <FileName>Assets\Script\Manager\BattleManager\BattleManager.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CameraHandler" Collapsed="true">
     <Position X="8.5" Y="6.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AISAAAIAAiAAAgAAAAAAAAAAAAAAAEAQABAAAAAAAQA=</HashCode>
-      <FileName>Assets\Script\Manager\CameraHandler.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="CutSceneManager" Collapsed="true">
-    <Position X="8.5" Y="5.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AACQAAAQAKAAAgIQgQAAAAAAAAAEEAAAAAIQAQBAAAA=</HashCode>
-      <FileName>Assets\Script\Manager\CutSceneManager.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="DataManager" Collapsed="true">
-    <Position X="3.75" Y="5.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAACAEAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Assets\Script\Manager\DataManager\DataManager.cs</FileName>
+      <HashCode>AIQQAAIIAiAAAgAAAAAAAAAEAAAAAEAQABAAAAAAAQA=</HashCode>
+      <FileName>Assets\Etc File\Manager\CameraHandler.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="FieldManager" Collapsed="true">
@@ -59,28 +45,14 @@
   <Class Name="GameManager" Collapsed="true">
     <Position X="8.5" Y="4" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ABSAAAAAAgAAGAAAEAAAQACACARABABASAAAAAAgAEA=</HashCode>
+      <HashCode>AAQAAAAAIAAAEAAAAgAASACCAAQABAAASAACAARgUEA=</HashCode>
       <FileName>Assets\Script\Manager\GameManager.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="SceneChanger" Collapsed="true">
-    <Position X="15.25" Y="5.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Assets\Script\Manager\SceneChanger.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="StageManager" Collapsed="true">
-    <Position X="13" Y="5.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAgAAAAAAAAAAAAAAAABAAAGAAAAEAAACAAAQAAAAA=</HashCode>
-      <FileName>Assets\Script\Manager\StageManager.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="UIManager" Collapsed="true">
     <Position X="10.75" Y="5.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>IAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAAAAAAAIAAAA=</HashCode>
+      <HashCode>AAAAAIACAAAABDAAEAAAAAAAAAAACAAgBAAAACAEACA=</HashCode>
       <FileName>Assets\Script\Manager\UIManager.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -96,13 +68,6 @@
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Assets\Script\ScriptableObject\Effect_Attack.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Effect_Fall" Collapsed="true">
-    <Position X="20" Y="5.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAIAAgAAAAAAAIAAAAAAAAAAAAAAAgAAAAAAAA=</HashCode>
-      <FileName>Assets\Script\ScriptableObject\Effect_Fall.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Effect_Move" Collapsed="true">
@@ -122,21 +87,14 @@
   <Class Name="RangeEditor" Collapsed="true">
     <Position X="24" Y="6.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAEAAACAACQABAAAAAAAAAAAAACAA=</HashCode>
-      <FileName>Assets\Script\ScriptableObject\RangeSO.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="RangeSO" Collapsed="true">
-    <Position X="24" Y="5.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAACQAAAAAAABAgAAAAAAAA=</HashCode>
-      <FileName>Assets\Script\ScriptableObject\RangeSO.cs</FileName>
+      <HashCode>BAAAAAAAAAAgAgAAEAAECAAAAABAAAAAAAAAAEAACAA=</HashCode>
+      <FileName>Assets\Script\ScriptableObject\UnitData.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SkillSO" Collapsed="true">
     <Position X="24" Y="4.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>CAAAAAAIAAAACAAAAAAAAAAAAAAAAAAABAhAAAAAAAA=</HashCode>
+      <HashCode>CAAAAAAIAAAAAAAAAAAAAAAAAAAEAAAABAhAAAAAAAA=</HashCode>
       <FileName>Assets\Script\ScriptableObject\SkillSO.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -150,29 +108,15 @@
   <Class Name="Stigma" Collapsed="true">
     <Position X="29.25" Y="4.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAIAAAAAAAAAAAQAAEAAAAQAAAAEAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Assets\Script\Stigma.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="UI_Hand" Collapsed="true">
-    <Position X="10.75" Y="7.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAISAAAAAAgAAAAEAAAAQAAAQAIAAAAABAAAA=</HashCode>
-      <FileName>Assets\Script\UI\UI_Hand.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="UI_Hands" Collapsed="true">
-    <Position X="10.75" Y="10.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAQAAAQAAAAAQAADAAAiAACDAAAAICAAAAAIIAA=</HashCode>
-      <FileName>Assets\Script\UI\UI_Hands.cs</FileName>
+      <HashCode>AAQAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Unit\Stigma.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="UI_ManaGuage" Collapsed="true">
     <Position X="10.75" Y="11.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAACQAAAAAAAABAAAAAAAAAAAIAABAAAAAAAA=</HashCode>
-      <FileName>Assets\Script\UI\UI_ManaGuage.cs</FileName>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\UI\Sub\UI_ManaGuage.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="UI_NextStageEventSystem" Collapsed="true">
@@ -196,24 +140,24 @@
       <FileName>Assets\Script\UI\UI_TurnChange.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="UI_WatingLine" Collapsed="true">
+  <Class Name="UI_WaitingLine" Collapsed="true">
     <Position X="10.75" Y="8.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAACAAAAAAAAAAgAAAIAAAAIAAgAAAAAAAAAA=</HashCode>
-      <FileName>Assets\Script\UI\UI_WatingLine.cs</FileName>
+      <HashCode>AAAACAAAACACAAEAAAAAAAAAAAIEAIAAAAAAAAAAEAA=</HashCode>
+      <FileName>Assets\Script\UI\Sub\UI_WaitingLine.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="UI_WatingUnit" Collapsed="true">
+  <Class Name="UI_WaitingUnit" Collapsed="true">
     <Position X="10.75" Y="9.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAgAACAAAAAAAAAAAACAAAAAAAQAAAAAAAAAAAA=</HashCode>
-      <FileName>Assets\Script\UI\UI_WatingUnit.cs</FileName>
+      <FileName>Assets\Script\UI\Sub\UI_WaitingUnit.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BattleUnit" Collapsed="true">
     <Position X="24" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>LBGAgABQEi0BgAABJEAAUAxABEEEEESGAAEEAKACAFA=</HashCode>
+      <HashCode>EBCAQgAAUAhAAACBBBIAQAgCUAAACgAANCECAIAAAFA=</HashCode>
       <FileName>Assets\Script\Unit\BattleUnit.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -224,34 +168,83 @@
       <FileName>Assets\Script\Unit\DeckUnit.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="RangeSO" Collapsed="true">
+    <Position X="24" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAACQAAAAAAABAgAAAAAAAA=</HashCode>
+      <FileName>Assets\Etc File\Etc\RangeSO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Class Name="Test_UnitAdder" Collapsed="true">
     <Position X="14.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
-      <FileName>Assets\Script\Unit\Test_UnitAdder.cs</FileName>
+      <FileName>Assets\Etc File\Etc\Test_UnitAdder.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Struct Name="CutSceneData" Collapsed="true">
-    <Position X="8.5" Y="8" Width="1.5" />
+  <Class Name="CutSceneManager" Collapsed="true">
+    <Position X="8.5" Y="5.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AABAAEgAAAAAAAAAAAAAAAgAEIAJAAEAAAQAAAAAAAA=</HashCode>
-      <FileName>Assets\Script\Manager\CutSceneManager.cs</FileName>
+      <HashCode>AAAQAAAQAKAAAgIQgQAAAAEEAAAEEAAAAAIQAABAAAA=</HashCode>
+      <FileName>Assets\Etc File\Manager\CutSceneManager.cs</FileName>
     </TypeIdentifier>
-  </Struct>
+  </Class>
+  <Class Name="DataManager" Collapsed="true">
+    <Position X="3.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Etc File\Manager\DataManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SceneChanger" Collapsed="true">
+    <Position X="15.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Etc File\Manager\SceneChanger.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StageManager" Collapsed="true">
+    <Position X="13" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAAAAAABAAAGAAAAEAAACAAAQAAAAA=</HashCode>
+      <FileName>Assets\Etc File\Manager\StageManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Effect_Fall" Collapsed="true">
+    <Position X="20" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAGAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Skills\Effects\Effect_Fall.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UI_Hand" Collapsed="true">
+    <Position X="10.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACICAAAAAAAAAAAAAAQAKAQAIAABAAAAAAA=</HashCode>
+      <FileName>Assets\Script\UI\Sub\UI_Hand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UI_Hands" Collapsed="true">
+    <Position X="10.75" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAYAACQAAAAAAAACAAAiAAChAAAAACAAAAAIIAA=</HashCode>
+      <FileName>Assets\Script\UI\Sub\UI_Hands.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Struct Name="Stat" Collapsed="true">
     <Position X="29.25" Y="6.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>gAAAAAAAAAAAAAAAAAAAAAAAQIAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Assets\Script\ScriptableObject\BattleUnitSO.cs</FileName>
+      <HashCode>gAAAAAAAAAAAAAAAQAEAAAgAQIAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Utils\Define.cs</FileName>
     </TypeIdentifier>
   </Struct>
-  <Enum Name="EncountStage" Collapsed="true">
-    <Position X="13" Y="6.75" Width="1.5" />
+  <Struct Name="CutSceneData" Collapsed="true">
+    <Position X="8.5" Y="8" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAQAAAAAAQAAAAAAAAgAAAAAAAgAAAAAAAAA=</HashCode>
-      <FileName>Assets\Script\Manager\StageManager.cs</FileName>
+      <HashCode>AABAAEgAAAAAAAAAAAAAAAgAEIABAAEAAAQAgAAAAAA=</HashCode>
+      <FileName>Assets\Etc File\Manager\CutSceneManager.cs</FileName>
     </TypeIdentifier>
-  </Enum>
+  </Struct>
   <Enum Name="RangeType" Collapsed="true">
     <Position X="24" Y="9.25" Width="1.5" />
     <TypeIdentifier>
@@ -264,13 +257,6 @@
     <TypeIdentifier>
       <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAACACAAAAAAAI=</HashCode>
       <FileName>Assets\Script\ScriptableObject\Effect_Move.cs</FileName>
-    </TypeIdentifier>
-  </Enum>
-  <Enum Name="CutSceneType" Collapsed="true">
-    <Position X="24" Y="7.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAgAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAACA=</HashCode>
-      <FileName>Assets\Script\ScriptableObject\RangeSO.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="AttackType" Collapsed="true">
@@ -292,6 +278,20 @@
     <TypeIdentifier>
       <HashCode>AAAAAABAAIAAAAAAAAIAAAAAAIAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Assets\Script\Unit\BattleUnit.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="CutSceneType" Collapsed="true">
+    <Position X="24" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>Assets\Etc File\Etc\RangeSO.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="EncountStage" Collapsed="true">
+    <Position X="13" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAAAQAAAAAAAAgAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>Assets\Etc File\Manager\StageManager.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Font Name="맑은 고딕" Size="9" />

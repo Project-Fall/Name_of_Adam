@@ -8,6 +8,6 @@ public class UI_PhaseChange : EventTrigger
     public override void OnPointerClick(PointerEventData eventData)
     {
         Debug.Log("Button On");
-        GameManager.BattleMNG.PhaseUpdate();
+        
     }
 }

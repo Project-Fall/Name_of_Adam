@@ -6,29 +6,15 @@ using System;
 
 public class Field : MonoBehaviour
 {
-    [SerializeField] GameObject TilePrefabs;
-    [SerializeField] GameObject UnitPrefabs;
+    private Dictionary<Vector2, Tile> _tileDict = new Dictionary<Vector2, Tile>();
+    public Dictionary<Vector2, Tile> TileDict => _tileDict;
+
+    // 필드의 생성을 위한 필드의 위치
+    private Vector3 FieldPosition => new Vector3(0, -1.4f, 0);
+    private Vector3 FieldRotation => new Vector3(16, 0, 0);
 
     private const int MaxFieldX = 6;
     private const int MaxFieldY = 3;
-
-    private Dictionary<Vector2, Tile> _tileDict = new Dictionary<Vector2, Tile>();
-    public Dictionary<Vector2, Tile> TileDict => _tileDict;
-    public Vector2 FindCoordByTile(Tile tile)
-    {
-        foreach (KeyValuePair<Vector2, Tile> items in TileDict)
-            if (items.Value == tile)
-                return items.Key;
-
-        Debug.Log("Can't find target tile");
-        return default;
-    }
-
-    // 필드의 생성을 위한 필드의 위치
-    public Vector3 FieldPosition => new Vector3(0, -1.4f, 0);
-    public Vector3 FieldRotation => new Vector3(16, 0, 0);
-
-    public Action<Vector2, Tile> OnClickAction;
 
     private void Awake()
     {
@@ -40,10 +26,22 @@ public class Field : MonoBehaviour
         transform.eulerAngles = FieldRotation;
     }
 
-    public Field SetClickEvent(Action<Vector2, Tile> action)
+    // 타일의 좌표값을 리턴한다.
+    public Vector2 FindCoordByTile(Tile tile)
     {
-        OnClickAction = action;
-        return this;
+        // 타일이 없으면 -1, -1을 반환
+        if(tile == null)
+        {
+            Debug.Log("Tile Parameter is Null");
+            return new Vector2(-1, -1);
+        }
+
+        foreach (KeyValuePair<Vector2, Tile> items in TileDict)
+            if (items.Value == tile)
+                return items.Key;
+
+        Debug.Log("Can't find target tile");
+        return new Vector2(-1, -1);
     }
 
     public BattleUnit GetUnit(Vector2 coord)
@@ -66,7 +64,9 @@ public class Field : MonoBehaviour
         float locY = disY * y + 1.5f;
 
         Vector3 tilePos = new Vector3(locX, transform.position.y + locY);
-        return Instantiate(TilePrefabs, transform).GetComponent<Tile>().Init(tilePos, TileClick);
+        GameObject tileObject = GameManager.Resource.Instantiate("Tile", transform);
+        
+        return tileObject.GetComponent<Tile>().Init(tilePos);
     }
 
     // 타일이 최대 범위를 벗어났는지 확인
@@ -79,19 +79,41 @@ public class Field : MonoBehaviour
 
     public void MoveUnit(Vector2 current, Vector2 dest)
     {
-        if (IsInRange(dest) == false)
-            return;
-        if (TileDict[dest].IsOnTile)
+        // *****
+        // 이 둘이 같은 처리를 하는 것이 맞을까?
+        if (IsInRange(dest) == false | current == dest)
             return;
 
-        BattleUnit unit = TileDict[current].Unit;
-        ExitTile(current);
-        unit.setLocate(dest);
-        //EnterTile(unit, dest);
+        BattleUnit currentUnit = TileDict[current].Unit;
+        BattleUnit destUnit = TileDict[dest].Unit;
+        
+        if (TileDict[dest].UnitExist)
+        {
+            // *****
+            // 얘는 위의 IsRange(dest)와 같이 처리해도 될 것 같다
+            if (currentUnit.Team == destUnit.Team)
+            {
+                ExitTile(current);
+                ExitTile(dest);
+
+                currentUnit.setLocate(dest);
+                destUnit.setLocate(current);
+
+                EnterTile(currentUnit, dest);
+                EnterTile(destUnit, current);
+                return;
+            }
+        }
+        else
+        {
+            ExitTile(current);
+            currentUnit.setLocate(dest);
+            EnterTile(currentUnit, dest);
+        }
     }
 
     // 지정한 위치에 있는 타일의 좌표를 반환
-    public Vector3 GetTilePosition(Vector2 coord)
+    private Vector3 GetTilePosition(Vector2 coord)
     {
         Vector3 position = TileDict[coord].transform.position;
 
@@ -105,25 +127,18 @@ public class Field : MonoBehaviour
         return position;
     }
 
-    public void ClearAllColor()
+    // *****
+    // 메서드 이름 바꾸기
+    public List<Vector2> Get_Abs_Pos(BattleUnit _unit, ClickType _clickType)
     {
-        foreach(KeyValuePair<Vector2, Tile> items in TileDict)
-        {
-            items.Value.SetColor(Color.white);
-        }
-    } 
-
-    public List<Vector2> Get_Abs_Pos(BattleUnit _unit)
-    {
-        _unit.GetCanMoveRange();
         List<Vector2> ResultVector = new List<Vector2>();
 
-        List<Vector2> RangeList;
+        List<Vector2> RangeList = new List<Vector2>();
 
-        if (_unit.IsMove)
-            RangeList = _unit.GetCanMoveRange();
-        else
-            RangeList = _unit.BattleUnitSO.GetRange();
+        if (_clickType == ClickType.Move)
+            RangeList = _unit.GetMoveRange();
+        else if(_clickType == ClickType.Attack)
+            RangeList = _unit.GetAttackRange();
 
         foreach (Vector2 vec in RangeList)
         {
@@ -137,13 +152,25 @@ public class Field : MonoBehaviour
         return ResultVector;
     }
 
-    public void SetTileColor(List<Vector2> vector, Color clr)
+
+    public void SetTileColor(BattleUnit unit, Color clr, ClickType _clickType)
     {
+
+        List<Vector2> vector = Get_Abs_Pos(unit, _clickType);
         foreach (Vector2 vec in vector)
         {
             TileDict[vec].SetColor(clr);
         }
     }
+
+    public void ClearAllColor()
+    {
+        foreach (KeyValuePair<Vector2, Tile> items in TileDict)
+        {
+            items.Value.SetColor(Color.white);
+        }
+    }
+
 
     public void EnterTile(BattleUnit unit, Vector2 coord)
     {
@@ -152,21 +179,12 @@ public class Field : MonoBehaviour
         unit.SetPosition(GetTilePosition(coord));
     }
 
-    public void ExitTile(Vector2 coord)
+    private void ExitTile(Vector2 coord)
     {
         TileDict[coord].ExitTile();
     }
 
-    public void TileClick(Tile tile)
-    {
-        Vector2 coord = FindCoordByTile(tile);
-
-        if (coord == null)
-            return;
-
-        OnClickAction(coord, tile);
-    }
-
+    // 배치 가능 범위 확인
     public bool IsPlayerRange(Vector2 coord)
     {
         if ((int)coord.x < MaxFieldX / 2)
