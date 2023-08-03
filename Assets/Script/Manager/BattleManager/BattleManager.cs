@@ -110,19 +110,22 @@ public class BattleManager : MonoBehaviour
 
     private void SetBackground()
     {
-        //string str = GameManager.Data.CurrentStageData.FactionName;
+        string str = GameManager.Data.CurrentStageData.FactionName;
 
         for(int i = 0; i < 3; i++)
         {
             CutSceneBackground[i].gameObject.SetActive(false);
             Background[i].gameObject.SetActive(false);
             //Background
-            //if (((Faction)i + 1).ToString() == str)
-            if(i == 0)
+            if (((Faction)i + 1).ToString() == str)
                 CutSceneBackground[i].gameObject.SetActive(true);
                 Background[i].gameObject.SetActive(true);
 
         }
+
+        if(str == "" || str == null)
+            CutSceneBackground[0].gameObject.SetActive(true);
+            Background[0].gameObject.SetActive(true);
     }
     #region Click 관련
 
@@ -286,7 +289,9 @@ public class BattleManager : MonoBehaviour
         }
 
         string unitname = unit.DeckUnit.Data.Name;
-        GameManager.Sound.Play("Character/" + unitname + "/" + unitname + "_Attack");
+        string faction = unit.DeckUnit.Data.Faction.ToString();
+        Debug.Log(unitname + "   " + faction);
+        GameManager.Sound.Play("Character/" + faction + "/" + unitname + "/" + unitname + "_Attack");
 
     }
 
@@ -357,7 +362,7 @@ public class BattleManager : MonoBehaviour
         Debug.Log("YOU WIN");
         Data.OnBattleOver();
         _phase.ChangePhase(new BattleOverPhase());
-        if(GameManager.Data.Map.StageList.Find(x => x.ID == GameManager.Data.Map.CurrentTileID).BattleStageLevel >= 10)
+        if(GameManager.Data.CurrentStageData.Level == 11)
             GameManager.UI.ShowScene<UI_BattleOver>().SetImage("elite win");
         else
             GameManager.UI.ShowScene<UI_BattleOver>().SetImage("win");
