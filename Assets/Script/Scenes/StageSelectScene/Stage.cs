@@ -1,17 +1,8 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-public enum StageInfo
-{
-    아군에게_낙인을_부여합니다 = 1,
-    아군의_스탯을_강화합니다   = 2,
-
-    월식의_기사단과_전투합니다 = 11,
-    죄의_짐승들과_전투합니다   = 12,
-    바벨의_잔재와_전투합니다   = 13
-}
 
 public enum StageType
 {
@@ -20,100 +11,82 @@ public enum StageType
     Battle
 }
 
-public enum MapSign
+public class Stage : MonoBehaviour
 {
-    CommonBattle,
-    EliteBattle,
-    Store,
-    Random
-}
+    [SerializeField] public int ID;
+    [Space (10f)]
+    [SerializeField] Animation Anim;
+    [Space(10f)]
+    [SerializeField] public List<Stage> NextStage;
+    [Space(10f)]
+    [Header("StageInfo")]
+    [SerializeField] private StageType _type;
+    public StageType Type => _type;
+    [SerializeField] private StageName _name;
+    public StageName Name => _name;
 
-// 인스펙터에서 스테이지 정보를 받기 위한 테스트 클래스
-[Serializable]
-public struct TestContainer
-{
-    public StageName Name;
-    public StageType Type;
-    public Sprite Background;
-    public int MaxCount;
-    public int MaxAppear;
-}
-// 스마게용 임시 스테이지 관련 클래스
-[Serializable]
-public class BattleData
-{
-    public Faction faction;
-    public int level;
-    public int id;
-}
+    [SerializeField] private int _battleStageLevel;
+    public int BattleStageLevel => _battleStageLevel;
+    [SerializeField] private int _battleStageID;
+    public int BattleStageID => _battleStageID;
 
+    private Coroutine coro;
+    private float ZoomSpeed = 0.05f;
 
-// 현재 전투 스테이지의 경우 팩션에 대한 데이터가 없음
-// Type == Battle 인 스테이지에 팩션에 대한 데이터가 추가되어야 함
-[Serializable]
-public class Stage
-{
-    // 담고있는 정보가 어떤 스테이지의 것인지 확인하기 위한 변수
-    public StageName Name;
-    [SerializeField] StageType Type;     // 전투, 이벤트 등 
-    [NonSerialized] public Faction BattleFaction;
-    public Sprite Background;
-    int MaxAppear;   // 필드에 출현 가능한 최대 갯수
-    int NowAppear;
-    int MaxCount;    // 최대 출현 가능 갯수
-    int RemainCount;
-
-    // 스마게용 임시 변수
-    public BattleData BattleStageData;
-
-    public Stage(StageName name, StageType type, int count, int appear, Sprite sprite)
+    private void Awake()
     {
-        Name = name;
-        Type = type;
-        Background = sprite;
-        MaxAppear = appear;
-        NowAppear = 0;
-        MaxCount = RemainCount = count;
+        StageManager.Instance.InputStageList(this);
+
+        coro = null;
+        Anim.Stop();
     }
 
-    public void SetBattleFaction()
+    public void OnMouseUp() => StageManager.Instance.StageMove(ID);
+
+    public void OnMouseEnter()
     {
-        BattleFaction = (Faction) UnityEngine.Random.Range(0, Enum.GetValues(typeof(Faction)).Length);
-        string name = BattleFaction.ToString();
-        Background = GameManager.Resource.Load<Sprite>("Arts/UI/Stage/" + name);
+        if (coro != null)
+            StopCoroutine(coro);
+        coro = StartCoroutine(SizeUp());
     }
 
-    public StageType GetStageType() => Type;
-    public int GetRemainCount() => RemainCount;
-
-    // 이 스테이지가 출현 가능한 조건이라면 true를 반환
-    public bool GetStage()
+    public void OnMouseExit()
     {
-        // 최대 출현 가능 갯수 초과
-        if (MaxAppear <= NowAppear)
-            return false;
-
-        // 카운트 초과
-        if (RemainCount <= 0)
-            return false;
-
-        RemainCount--;
-        NowAppear++;
-        return true;
+        if (coro != null)
+            StopCoroutine(coro);
+        coro = StartCoroutine(SizeDown());
     }
 
-    public void RecallCount()
+    public void SetBattleStage(int a, int b)
     {
-        if (RemainCount <= MaxCount)
-            RemainCount++;
+        _battleStageLevel = a;
+        _battleStageID = b;
     }
 
-    public void InitCount()
+    public void StartBlink()
     {
-        RemainCount = MaxCount;
+        Anim.Play();
     }
 
-    // 현재 클래스의 내용물을 복사하여 새로운 객체를 반환
-    public Stage Clone() => new Stage(Name, Type, MaxCount, MaxAppear, Background);
-    public void AppearClear() => NowAppear = 0;
+    IEnumerator SizeUp()
+    {
+        while (transform.localScale.x < 1.5f)
+        {
+            transform.localScale += new Vector3(ZoomSpeed, ZoomSpeed);
+            yield return null;
+        }
+
+        transform.localScale = new Vector3(1.5f, 1.5f, 1);
+    }
+
+    IEnumerator SizeDown()
+    {
+        while (transform.localScale.x > 1)
+        {
+            transform.localScale -= new Vector3(ZoomSpeed, ZoomSpeed);
+            yield return null;
+        }
+
+        transform.localScale = new Vector3(1, 1, 1);
+    }
 }
