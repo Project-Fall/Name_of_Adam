@@ -52,7 +52,7 @@ public class UI_StigmaSelectButtonPopup : UI_Popup
 
         while (result.Count < stigmaCount)
         {
-            Stigma stigma = GameManager.Data.StigmaController.GetRandomStigma();
+            Stigma stigma = GameManager.Data.StigmaController.GetRandomStigma(GameManager.Data.GetProbability());
 
             if (existStigma.Contains(stigma))
                 continue;
@@ -70,7 +70,7 @@ public class UI_StigmaSelectButtonPopup : UI_Popup
     {
         for (int i = 0; i < stigmaList.Count; i++)
         {
-            GameObject.Instantiate(_buttonPrefab, _grid).GetComponent<UI_StigmaSelectButton>().init(this, stigmaList[i]);
+            GameObject.Instantiate(_buttonPrefab, _grid).GetComponent<UI_StigmaSelectButton>().Init(this, stigmaList[i]);
         }
     }
 

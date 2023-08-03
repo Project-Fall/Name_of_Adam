@@ -14,12 +14,12 @@ public class UI_StigmaSelectButton : UI_Base
     private UI_StigmaSelectButtonPopup _popup;
     private Stigma _stigma;
 
-    public void init(UI_StigmaSelectButtonPopup popup, Stigma stigma)
+    public void Init(UI_StigmaSelectButtonPopup popup, Stigma stigma)
     {
         _popup = popup;
         _stigma = stigma;
 
-        _stigmaName.text = stigma.GetName();
+        _stigmaName.text = stigma.Name;
         _stigmaDescription.text = stigma.Description;
         _stigmaImage.sprite = stigma.Sprite;
     }

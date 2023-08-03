@@ -118,7 +118,6 @@ public enum Scene
     Battle,
 }
 
-
 public enum Sounds
 {
     BGM,
@@ -156,18 +155,13 @@ public enum ActiveTiming
     NONE//없음
 };
 
-public enum RomanNumber
+public enum StigmaTier
 {
-    I = 1,
-    II = 2,
-    III = 3,
-    IV = 4,
-    V = 5,
-    VI = 6,
-    VII = 7,
-    VIII = 8,
-    IX = 9,
-    X = 10,
+    Tier1,
+    Tier2,
+    Tier3,
+    Unique,
+    Harlot
 }
 
 public enum FieldColorType
@@ -184,5 +178,8 @@ public enum BuffEnum
     Encourage,
     Bleeding,
     Benediction,
-    Crime
+    Crime,
+    Sin,
+    TraceOfSolar,
+    TraceOfLunar
 }

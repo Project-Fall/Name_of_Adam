@@ -92,6 +92,12 @@ public class BattleUnit : MonoBehaviour
         _nextAttackSkip = ActiveTimingCheck(ActiveTiming.ATTACK_TURN);
     }
 
+    public void FieldUnitDdead()
+    {
+        //필드 유닛 사망시 체크
+        ActiveTimingCheck(ActiveTiming.FIELD_UNIT_DEAD);
+    }
+
     public void SetTeam(Team team)
     {
         _team = team;
@@ -126,20 +132,13 @@ public class BattleUnit : MonoBehaviour
 
         GameManager.VisualEffect.StartVisualEffect(Resources.Load<AnimationClip>("Animation/UnitDeadEffect"), this.transform.position);
 
+        BattleManager.Instance.UnitDeadEvent(this);
         StartCoroutine(UnitDeadEffect());
-
-        if (_team == Team.Enemy)
-        {
-            GameManager.Data.DarkEssenseChage(Data.DarkEssenseDrop);
-        }
         GameManager.Sound.Play("Dead/DeadSFX");
     }
 
     private IEnumerator UnitDeadEffect()
     {
-        BattleManager.Data.BattleUnitRemove(this);
-        BattleManager.Data.BattleOrderRemove(this);
-
         Color c = _renderer.color;
 
         while (c.a > 0)
@@ -163,7 +162,6 @@ public class BattleUnit : MonoBehaviour
         }
 
         //타락 이벤트 시작
-        HP.Init(DeckUnit.DeckUnitTotalStat.MaxHP, DeckUnit.DeckUnitTotalStat.MaxHP);
         BattleManager.Data.CorruptUnits.Add(this);
 
         GameManager.Sound.Play("UI/FallSFX/Fall");
@@ -255,9 +253,13 @@ public class BattleUnit : MonoBehaviour
         }
     }
 
-    public void Attack(BattleUnit unit) {
+    //엑티브 타이밍에 대미지 바꿀 때용
+    public int ChangedDamage = 0;
+
+    public void Attack(BattleUnit unit, int damage) {
         if(unit != null)
         {
+            ChangedDamage = damage;
             bool attackSkip = false;
             Team team = unit.Team;
 
@@ -265,7 +267,7 @@ public class BattleUnit : MonoBehaviour
             attackSkip |= ActiveTimingCheck(ActiveTiming.BEFORE_ATTACK, unit);
 
             //대미지 확정 시 체크
-            attackSkip |= ActiveTimingCheck(ActiveTiming.DAMAGE_CONFIRM, unit);
+            attackSkip |= ActiveTimingCheck(ActiveTiming.DAMAGE_CONFIRM, unit, ChangedDamage);
 
             if (team != unit.Team)
             {
@@ -277,10 +279,11 @@ public class BattleUnit : MonoBehaviour
             if (attackSkip)
                 return;
 
-            unit.GetAttack(-BattleUnitTotalStat.ATK, this);
+            unit.GetAttack(-ChangedDamage, this);
 
             //공격 후 체크
-            ActiveTimingCheck(ActiveTiming.AFTER_ATTACK, unit);
+            ActiveTimingCheck(ActiveTiming.AFTER_ATTACK, unit, ChangedDamage);
+            ChangedDamage = 0;
         }
     }
 
@@ -313,11 +316,11 @@ public class BattleUnit : MonoBehaviour
 
     public void SetBuff(Buff buff, BattleUnit caster)
     {
-        Buff.SetBuff(buff, caster);
+        Buff.SetBuff(buff, caster, this);
         BattleUnitChangedStat = Buff.GetBuffedStat();
     }
 
-    public bool ActiveTimingCheck(ActiveTiming activeTiming, BattleUnit receiver = null)
+    public bool ActiveTimingCheck(ActiveTiming activeTiming, BattleUnit receiver = null, int num = 0)
     {
         bool skipNextAction = false;
 
@@ -331,6 +334,7 @@ public class BattleUnit : MonoBehaviour
 
         foreach (Buff buff in Buff.CheckActiveTiming(activeTiming))
         {
+            buff.SetValue(num);
             skipNextAction = buff.Active(this, receiver);
         }
 

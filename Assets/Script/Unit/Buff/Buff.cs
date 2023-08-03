@@ -32,13 +32,19 @@ public abstract class Buff : MonoBehaviour
     protected bool _caster;
     public bool Caster => _caster;
 
+    protected bool _owner;
+    public bool Owner => _owner;
 
-    public abstract void Init(BattleUnit caster);
+
+    public abstract void Init(BattleUnit caster, BattleUnit owner);
+
     public abstract bool Active(BattleUnit caster = null, BattleUnit rereceiver = null);
 
     public abstract void Stack();
 
     public abstract Stat GetBuffedStat();
+
+    public abstract void SetValue(int num);
 
     public void CountChange(int num)
     {

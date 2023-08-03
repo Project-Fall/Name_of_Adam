@@ -12,6 +12,6 @@ public class UnitAction : MonoBehaviour
 
     public void Action(BattleUnit receiver)
     {
-        _unit.Attack(receiver);
+        _unit.Attack(receiver, _unit.BattleUnitTotalStat.ATK);
     }
 }
