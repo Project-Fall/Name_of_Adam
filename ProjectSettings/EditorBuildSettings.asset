@@ -26,13 +26,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainScene.unity
     guid: 478486cde4bdcd840afc3983e3b37ce1
-  - enabled: 1
-    path: Assets/Scenes/StageSelectScene.unity
-    guid: f6c5136d5d2025340b84790d4806ab6f
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/StigmaScene.unity
     guid: 01401f6f9c7306e41822287d7817c601
   - enabled: 1
     path: Assets/Scenes/UpgradeScene.unity
     guid: dc6c5e4a93c28cc43b9de2d4b747df2f
+  - enabled: 1
+    path: Assets/Scenes/StageSelectScene.unity
+    guid: 57caec6fd24935340a0f9d720bc500c5
   m_configObjects: {}
