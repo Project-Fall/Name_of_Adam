@@ -223,14 +223,12 @@ public class BattleManager : MonoBehaviour
         DeckUnit unit = BattleUI.UI_hands.GetSelectedUnit();
         if (Field._coloredTile.Contains(coord) == false)
             return;
-
+        BattleUnit spawnedUnit = GetComponent<UnitSpawner>().DeckSpawn(unit, coord);
         Mana.ChangeMana(-unit.DeckUnitTotalStat.ManaCost);
 
         if (isFirst)
             unit.FirstTurnDiscountUndo();
 
-        GetComponent<UnitSpawner>().DeckSpawn(unit, coord);
-        
         BattleUI.RemoveHandUnit(unit);
         GameManager.UI.ClosePopup();
         Field.ClearAllColor();
@@ -326,22 +324,6 @@ public class BattleManager : MonoBehaviour
         BattleUI.RemoveHandUnit(Data.PlayerHands[randNum]);
 
         BattleOverCheck();
-    }
-
-    public void UnitDeadEvent(BattleUnit unit)
-    {
-        BattleManager.Data.BattleUnitRemove(unit);
-        BattleManager.Data.BattleOrderRemove(unit);
-
-        if (unit.Team == Team.Enemy)
-        {
-            GameManager.Data.DarkEssenseChage(unit.Data.DarkEssenseDrop);
-        }
-
-        foreach (BattleUnit fieldUnit in _battleData.BattleUnitList)
-        {
-            fieldUnit.FieldUnitDdead();
-        }
     }
 
     public void BattleOverCheck()

@@ -30,15 +30,17 @@ public class HarlotSceneController : MonoBehaviour
         List<Script> scripts = new List<Script>();
 
         if (GameManager.Data.GameData.isVisitUpgrade == false)
-            scripts = GameManager.Data.ScriptData["낙인소_입장_최초"];
+            scripts = GameManager.Data.ScriptData["���μ�_����_����"];
         else
-            scripts = GameManager.Data.ScriptData["낙인소_입장"];
+            scripts = GameManager.Data.ScriptData["���μ�_����"];
 
         GameManager.UI.ShowPopup<UI_Conversation>().Init(scripts);
 
-        stigma = GameManager.Data.StigmaController.GetRandomStigma(GameManager.Data.GetProbability());
+        stigma = GameManager.Data.StigmaController.GetRandomStigma();
 
-        Debug.Log(stigma.Name);
+        Debug.Log(stigma.GetName());
+
+
         /*
         if(GameManager.Data.GameData)
         {
@@ -49,6 +51,7 @@ public class HarlotSceneController : MonoBehaviour
             _forbiddenButton.gameObject.SetActive(false);
         }
         */
+
     }
 
     public void ClickStigmatization()
@@ -56,6 +59,8 @@ public class HarlotSceneController : MonoBehaviour
         _menuChoose.SetActive(false);
 
         _stigmazation.SetActive(true);
+
+
     }
 
     public void ClickGetEliteUnit()
@@ -64,12 +69,13 @@ public class HarlotSceneController : MonoBehaviour
         _getEliteUnit.SetActive(true);
 
         // 유닛 얻는 내용
+
     }
 
     // 유닛 고르기 버튼
     public void ClickUnitSelectBTN()
     {
-        GameManager.UI.ShowPopup<UI_MyDeck>().Init(false, OnSelect);
+        GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck").Init(false, OnSelect);
     }
 
     // 유닛 선택 후 타락 관련 낙인 부여 버튼
@@ -108,7 +114,7 @@ public class HarlotSceneController : MonoBehaviour
     public void AddStigmaScript(Stigma stigma)
     {
         UI_Conversation script = GameManager.UI.ShowPopup<UI_Conversation>();
-        string scriptKey = "낙인소_" + stigma.Name;
+        string scriptKey = "낙인소_" + stigma.GetName();
         script.Init(GameManager.Data.ScriptData[scriptKey], false);
         StartCoroutine(QuitScene(script));
     }

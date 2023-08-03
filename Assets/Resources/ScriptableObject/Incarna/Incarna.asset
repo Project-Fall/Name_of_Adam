@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: "\uD654\uC2E0"
   Sprite: {fileID: 0}
   PlayerSkillList:
-  - {fileID: 5395026236160498702, guid: 63388be1b1c6f2f4e99351a5ce301eff, type: 3}
-  - {fileID: 7054707282272573995, guid: f2f72a3cd78392f46b8fa500ac4463b6, type: 3}
-  - {fileID: 953998516908887098, guid: 456fca205dc248b439f07a55f2a34670, type: 3}
+  - {fileID: 11400000, guid: a8c7559f612cb8a429662984cdad7087, type: 2}
+  - {fileID: 11400000, guid: 9619319320dfc73468abf666a2ca7034, type: 2}
+  - {fileID: 11400000, guid: b54a8847ace00584ca9174d138240985, type: 2}
   PlayerSkillCount: 3
