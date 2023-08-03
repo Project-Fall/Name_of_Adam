@@ -30,7 +30,7 @@ public class UnitSpawner : MonoBehaviour
     private void Start()
     {
         // 디버그용
-        if (GameManager.Data.CurrentStageData.Units.Count == 0)
+        if (GameManager.Data.Map.CurrentTileID == 0)
         {
             foreach (SpawnData data in AnimTest)
               InitSpawn(data);
@@ -68,26 +68,23 @@ public class UnitSpawner : MonoBehaviour
 
     public void SpawnInitialUnit()
     {
-        List<StageUnitData> datas = GameManager.Data.CurrentStageData.Units;
-        string factionName = GameManager.Data.CurrentStageData.FactionName;
+        DataManager _data = GameManager.Data;
+
+        TestStage stage = _data.Map.StageList.Find(x => x.ID == _data.Map.CurrentTileID);
+        Debug.Log(stage.BattleStageID);
+        StageSpawnData spawnData = GameManager.Data.StageDatas[stage.BattleStageLevel].Find(x => x.ID == stage.BattleStageID);
+
+        List<StageUnitData> datas = spawnData.Units;
 
         foreach (StageUnitData data in datas)
         {
             SpawnData sd = new SpawnData();
-            sd.prefab = GameManager.Resource.Load<GameObject>($"Prefabs/BattleUnits/{factionName}/{data.Name}");
+            sd.prefab = GameManager.Resource.Load<GameObject>($"Prefabs/BattleUnits/{data.Name}");
             sd.location = data.Location;
             sd.team = Team.Enemy;
-
-            //sd.deckUnit.Data = sd.prefab.GetComponent<BattleUnit>()
+            
             InitSpawn(sd);
-
-            //Spawn(data, data.location);
-            //SpawnTest(data, data.Location);
         }
-        //foreach (SpawnData data in SpawnMonsters)
-        //{
-        //    Spawn(data, data.location);
-        //}
     }
 
     private Transform SetParent()

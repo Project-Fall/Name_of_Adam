@@ -64,26 +64,17 @@ public enum StageName
 {
     none,
 
-    StigmaStore = 1,
+    StigmaStore  = 1,
     UpgradeStore = 2,
-    MoneyStore,
-    Harlot,
-    RandomEvent,
-    CommonBattle,
-    EliteBattle,
-    BossBattle,
+    MoneyStore   = 3,
+    Harlot       = 4,
+    RandomEvent  = 5,
+    CommonBattle = 6,
+    EliteBattle  = 7,
+    BossBattle   = 8,
 
 
     Random
-}
-
-[SerializeField]
-public enum Faction
-{
-    오리지널      = 0,
-    월식의_기사단 = 1,
-    까마귀        = 2,
-    바벨          = 3,
 }
 
 [SerializeField]
@@ -125,14 +116,6 @@ public enum FieldColor
 public enum Scene
 {
     Battle,
-}
-
-[Serializable]
-public struct TestUnit
-{
-    public GameObject Unit;
-    public Vector2 Location;
-    public Team Team;
 }
 
 

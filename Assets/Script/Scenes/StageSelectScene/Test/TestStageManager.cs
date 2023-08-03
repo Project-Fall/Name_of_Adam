@@ -19,27 +19,78 @@ public class TestStageContainer
     public List<int> Branch;
 }
 
+[Serializable]
+public class MapData
+{
+    public List<TestStage> StageList;
+    public int CurrentTileID;
+    // public int[] PassedTileID; // 지나온 타일(기획에 따라 다르게)
+}
+
 public class TestStageManager : MonoBehaviour
 {
-    private static TestStageManager instance;
-    public static TestStageManager Instance => instance;
+    private static TestStageManager s_instance;
+    public static TestStageManager Instance { get { Init(); return s_instance; } }
 
-    StageChanger _stageChanger;
-
+    List<TestStage> StageList;
     [SerializeField] TestStage CurrentStage;
+    StageChanger _stageChanger;
 
 
     private void Awake()
     {
-        instance = this;
         _stageChanger = new StageChanger();
     }
 
     private void Start()
     {
+        if (GameManager.Data.Map.StageList == null)
+            SetBattleLevel();
+        SetCurrentStage();
+    }
+
+    private static void Init()
+    {
+        if (s_instance == null)
+        {
+            GameObject go = GameObject.Find("@StageManager");
+            s_instance = go.GetComponent<TestStageManager>();
+        }
+    }
+
+    public void InputStageList(TestStage stage)
+    {
+        if (StageList == null)
+            StageList = new List<TestStage>();
+        StageList.Add(stage);
+    }
+
+    public void SetCurrentStage()
+    {
+        int curID = GameManager.Data.Map.CurrentTileID;
+        CurrentStage = StageList.Find(x => x.ID == curID);
+
         StartBlink();
     }
 
+
+    private void SetBattleLevel()
+    {
+        int addLevel = GameManager.Data.StageAct * 2;
+
+        foreach(TestStage value in StageList)
+        {
+            if (value.Type != StageType.Battle)
+                continue;
+
+            int x = (value.ID <= 1 && addLevel == 0) ? 0 : (int)value.BattleStageLevel + addLevel;
+            int y = UnityEngine.Random.Range(0, GameManager.Data.StageDatas[x].Count);
+
+            value.SetBattleStage(x, y);
+        }
+
+        GameManager.Data.Map.StageList = StageList;
+    }
 
     private void StartBlink()
     {
@@ -47,11 +98,9 @@ public class TestStageManager : MonoBehaviour
             stage.StartBlink();
     }
 
-    public void StageMove(TestStage _st)
+    public void StageMove(int _id)
     {
-        Stage stage = new Stage(_st.Stage, _st.Type, 0, 0, null);
-
-        _stageChanger.SetNextStage(stage);
+        _stageChanger.SetNextStage(_id);
     }
 }
 
