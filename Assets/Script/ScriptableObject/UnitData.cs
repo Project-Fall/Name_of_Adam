@@ -13,7 +13,6 @@ public class UnitData : MonoBehaviour
 
     public string Name;
     public string Description;
-    public Faction Faction;
     public Rarity Rarity;
     public Sprite Image;
     public AnimType AnimType;

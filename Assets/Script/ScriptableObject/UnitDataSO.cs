@@ -20,9 +20,6 @@ public class UnitDataSO : ScriptableObject
     [SerializeField] private string _description;
     public string Description => _description;
 
-    [SerializeField] private Faction _faction;
-    public Faction Faction => _faction;
-
     [SerializeField] private Rarity _rarity;
     public Rarity Rarity => _rarity;
 
