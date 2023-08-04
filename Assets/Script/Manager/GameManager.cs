@@ -26,6 +26,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private VisualEffectManager _visualEffect;
     public static VisualEffectManager VisualEffect => Instance._visualEffect;
 
+    private SaveController _saveController;
+    public static SaveController SaveManager => Instance._saveController;
+
+
     public bool Tutorial_Trigger = true;
 
     void Awake()
@@ -36,6 +40,8 @@ public class GameManager : MonoBehaviour
         //    Init();
         if (s_instance != null)
             return;
+
+        _saveController = new SaveController();
         Data.Init();
         Sound.Init();
         VisualEffect.Init();
@@ -60,8 +66,27 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+            Time.timeScale = 1;
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+            Time.timeScale = 2;
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+            Time.timeScale = 4;
+
         if (Input.GetKeyDown(KeyCode.O))
-            SceneChanger.SceneChange("StageSelectScene");
-        
+        {
+            while (true)
+            {
+                BattleUnit unit = BattleManager.Data.BattleUnitList.Find(x => x.Team == Team.Enemy);
+                if (unit == null)
+                    break;
+
+                unit.ChangeHP(-100);
+            }
+            BattleManager.Instance.BattleOverCheck();
+        }
+        if (Input.GetKeyDown(KeyCode.Z))
+            GameManager.SaveManager.DeleteSaveData();
+
     }
 }

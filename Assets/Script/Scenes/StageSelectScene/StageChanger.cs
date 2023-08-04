@@ -9,7 +9,8 @@ public class StageChanger
     // 다음 스테이지 이동용
     public void SetNextStage(int _id)
     {
-        Stage stage = GameManager.Data.Map.StageList.Find(x => x.ID == _id);
+        StageData stage = GameManager.Data.Map.StageList.Find(x => x.ID == _id);
+
         GameManager.Data.Map.CurrentTileID = _id;
         if (stage.Type == StageType.Battle)
         {

@@ -14,6 +14,7 @@ public class DataManager : MonoBehaviour
 {
     // public Dictionary<int, Stat> StatDict { get; private set; } = new Dictionary<int, Stat>();
     public Dictionary<int, List<StageSpawnData>> StageDatas = new Dictionary<int, List<StageSpawnData>>();
+    public List<Stage> StageList;
     public MapData Map;
     public int StageAct;
 
@@ -27,12 +28,14 @@ public class DataManager : MonoBehaviour
     {
         // StatDict = LoadJson<StatData, int, Stat>("StatData").MakeDict();
         StageDatas = LoadJson<StageLoader, int, List<StageSpawnData>>("StageData").MakeDict();
-        foreach (KeyValuePair<int, List<StageSpawnData>> st in StageDatas)
-            Debug.Log(st.Key + ", " + st.Value.Count);
         ScriptData = LoadJson<ScriptLoader, string, List<Script>>("Script").MakeDict();
         StigmaController = new StigmaController();
-
+        
         Map = new MapData();
+
+        if (GameManager.SaveManager.SaveFileCheck())
+            GameManager.SaveManager.LoadGame();
+
         _darkEssense = GameData.DarkEssence;
         _playerSkillCount = GameData.Incarna.PlayerSkillCount;
     }

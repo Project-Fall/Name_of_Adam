@@ -11,27 +11,28 @@ public enum StageType
     Battle
 }
 
+[Serializable]
+public class StageData
+{
+    public int ID;
+    public StageType Type;
+    public StageName Name;
+    public int StageLevel;
+    public int StageID;
+}
+
 public class Stage : MonoBehaviour
 {
-    [SerializeField] public int ID;
-    [Space (10f)]
     [SerializeField] Animation Anim;
     [Space(10f)]
     [SerializeField] public List<Stage> NextStage;
     [Space(10f)]
     [Header("StageInfo")]
-    [SerializeField] private StageType _type;
-    public StageType Type => _type;
-    [SerializeField] private StageName _name;
-    public StageName Name => _name;
-
-    [SerializeField] private int _battleStageLevel;
-    public int BattleStageLevel => _battleStageLevel;
-    [SerializeField] private int _battleStageID;
-    public int BattleStageID => _battleStageID;
+    [SerializeField] public StageData Datas;
 
     private Coroutine coro;
     private float ZoomSpeed = 0.05f;
+
 
     private void Awake()
     {
@@ -41,7 +42,7 @@ public class Stage : MonoBehaviour
         Anim.Stop();
     }
 
-    public void OnMouseUp() => StageManager.Instance.StageMove(ID);
+    public void OnMouseUp() => StageManager.Instance.StageMove(Datas.ID);
 
     public void OnMouseEnter()
     {
@@ -57,10 +58,12 @@ public class Stage : MonoBehaviour
         coro = StartCoroutine(SizeDown());
     }
 
-    public void SetBattleStage(int a, int b)
+    public StageData SetBattleStage(int a, int b)
     {
-        _battleStageLevel = a;
-        _battleStageID = b;
+        Datas.StageLevel = a;
+        Datas.StageID = b;
+
+        return Datas;
     }
 
     public void StartBlink()

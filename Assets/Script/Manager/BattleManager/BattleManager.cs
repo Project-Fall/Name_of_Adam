@@ -357,8 +357,12 @@ public class BattleManager : MonoBehaviour
         Debug.Log("YOU WIN");
         Data.OnBattleOver();
         _phase.ChangePhase(new BattleOverPhase());
-        if(GameManager.Data.Map.StageList.Find(x => x.ID == GameManager.Data.Map.CurrentTileID).BattleStageLevel >= 10)
+        StageData data = GameManager.Data.Map.StageList.Find(x => x.ID == GameManager.Data.Map.CurrentTileID);
+        if (data.StageLevel >= 10)
+        {
             GameManager.UI.ShowScene<UI_BattleOver>().SetImage("elite win");
+            GameManager.SaveManager.DeleteSaveData();
+        }
         else
             GameManager.UI.ShowScene<UI_BattleOver>().SetImage("win");
     }
@@ -368,6 +372,7 @@ public class BattleManager : MonoBehaviour
         Debug.Log("YOU LOSE");
         _phase.ChangePhase(new BattleOverPhase());
         GameManager.UI.ShowScene<UI_BattleOver>().SetImage("lose");
+        GameManager.SaveManager.DeleteSaveData();
         GameManager.Data.DeckClear();
     }
 

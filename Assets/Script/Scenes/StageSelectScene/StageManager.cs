@@ -5,9 +5,10 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
+[Serializable]
 public class MapData
 {
-    public List<Stage> StageList;
+    public List<StageData> StageList;
     public int CurrentTileID;
     // public int[] PassedTileID;
 }
@@ -31,7 +32,7 @@ public class StageManager : MonoBehaviour
     private void Start()
     {
         if (GameManager.Data.Map.StageList == null)
-            SetBattleLevel();
+            SetStageData();
         SetCurrentStage();
     }
 
@@ -54,22 +55,28 @@ public class StageManager : MonoBehaviour
     public void SetCurrentStage()
     {
         int curID = GameManager.Data.Map.CurrentTileID;
-        CurrentStage = StageList.Find(x => x.ID == curID);
+
+        CurrentStage = StageList.Find(x => x.Datas.ID == curID);
         StartBlink();
     }
 
-    private void SetBattleLevel()
+    private void SetStageData()
     {
+        List<StageData> StageDatas = new List<StageData>();
         int addLevel = GameManager.Data.StageAct * 2;
+
         foreach (Stage value in StageList)
         {
-            if (value.Type != StageType.Battle)
-                continue;
-            int x = (value.ID <= 1 && addLevel == 0) ? 0 : (int)value.BattleStageLevel + addLevel;
-            int y = UnityEngine.Random.Range(0, GameManager.Data.StageDatas[x].Count);
-            value.SetBattleStage(x, y);
+            if (value.Datas.Type == StageType.Battle)
+            {
+                int x = (value.Datas.ID <= 1 && addLevel == 0) ? 0 : (int)value.Datas.StageLevel + addLevel;
+                int y = UnityEngine.Random.Range(0, GameManager.Data.StageDatas[x].Count);
+                StageDatas.Add(value.SetBattleStage(x, y));
+            }
+            else
+                StageDatas.Add(value.Datas);
         }
-        GameManager.Data.Map.StageList = StageList;
+        GameManager.Data.Map.StageList = StageDatas;
     }
 
     private void StartBlink()
@@ -80,7 +87,10 @@ public class StageManager : MonoBehaviour
 
     public void StageMove(int _id)
     {
-        _stageChanger.SetNextStage(_id);
+        foreach (Stage st in CurrentStage.NextStage) {
+            if (st.Datas.ID == _id)
+                _stageChanger.SetNextStage(_id);
+        }
     }
 }
 

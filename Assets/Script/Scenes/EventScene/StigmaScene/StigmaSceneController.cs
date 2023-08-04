@@ -146,6 +146,7 @@ public class StigmaSceneController : MonoBehaviour
         quitScript.Init(GameManager.Data.ScriptData["낙인소_퇴장"], false);
 
         yield return StartCoroutine(quitScript.PrintScript());
+        GameManager.SaveManager.SaveGame();
         SceneChanger.SceneChange("StageSelectScene");
     }
 }

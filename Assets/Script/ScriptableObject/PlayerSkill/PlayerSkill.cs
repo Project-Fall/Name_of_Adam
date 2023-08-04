@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 [CreateAssetMenu(fileName = "PlayerSkill", menuName = "Scriptable Object/PlayerSkill")]
 
+[Serializable]
 public abstract class PlayerSkill : ScriptableObject
 {
     public abstract string GetName();

@@ -8,7 +8,7 @@ using UnityEngine;
 [Serializable]
 public class SaveData
 {
-    public MapSaveData MapData;
+    public MapData MapData;
     public Incarna IncarnaData;
     public PlayerSkill UniversalPlayerSkillData;
     public List<DeckUnit> DeckUnitData;
@@ -18,32 +18,21 @@ public class SaveData
     public int GuardCount;
 }
 
-[Serializable]
-public class MapSaveData
-{
-    // MapList(현재 맵 지도)
-    public int CurrentTileID;
-    // public int[] PassedTileID; // 지나온 타일(기획에 따라 다르게)
-}
-
 public class SaveController
 {
-    static string path
+    string path;
+
+    public SaveController()
     {
-        get {
-            if (path == null)
-                Path.Combine(Application.persistentDataPath, "SaveData.json");
-            return path;
-        }
-        set { path = value; }
+        path = Path.Combine(Application.persistentDataPath, "SaveData.json");
     }
 
-    public static void SaveGame()
+    public void SaveGame()
     {
         SaveData newData = new SaveData();
         GameData CurGameData = GameManager.Data.GameData;
 
-        // Map
+        newData.MapData = GameManager.Data.Map;
 
         newData.IncarnaData = CurGameData.Incarna;
         newData.DeckUnitData = CurGameData.DeckUnits;
@@ -58,23 +47,23 @@ public class SaveController
         File.WriteAllText(path, json);
     }
 
-    public static void LoadGame()
+    public void LoadGame()
     {
-
-        SaveData loadData = JsonUtility.FromJson<SaveData>(path);
+        string json =  File.ReadAllText(path);
+        SaveData loadData = JsonUtility.FromJson<SaveData>(json);
         GameData CurGameData = GameManager.Data.GameData;
 
-        // Map
+        GameManager.Data.Map = loadData.MapData;
 
-        CurGameData.Incarna = loadData.IncarnaData;
-        CurGameData.UniversalPlayerSkill = loadData.UniversalPlayerSkillData;
-        CurGameData.DeckUnits = loadData.DeckUnitData;
-        CurGameData.DarkEssence = loadData.DarkEssence;
+        GameManager.Data.GameData.Incarna = loadData.IncarnaData;
+        GameManager.Data.GameData.UniversalPlayerSkill = loadData.UniversalPlayerSkillData;
+        GameManager.Data.GameData.DeckUnits = loadData.DeckUnitData;
+        GameManager.Data.GameData.DarkEssence = loadData.DarkEssence;
         //CurGameData.DefaultMana
         //CurGameData.GuardCount
     }
 
-    public static bool SaveFileCheck() => File.Exists(Path.Combine(Application.persistentDataPath, "SaveData.json")) ? true : false;
+    public bool SaveFileCheck() => File.Exists(Path.Combine(Application.persistentDataPath, "SaveData.json")) ? true : false;
 
-    public static void DeleteSaveData() => File.Delete(path);
+    public void DeleteSaveData() => File.Delete(path);
 }

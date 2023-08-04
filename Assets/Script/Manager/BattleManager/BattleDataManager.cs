@@ -51,6 +51,7 @@ public class BattleDataManager : MonoBehaviour
         PlayerHands.Clear();
 
         GameManager.Data.SetDeck(_playerDeck);
+        GameManager.SaveManager.SaveGame();
     }
 
     private int _turnCount = 0;
