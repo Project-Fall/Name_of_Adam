@@ -13,6 +13,7 @@ public class UI_Hands : UI_Scene
     public void AddUnit(DeckUnit unit)
     {
         UI_Hand newCard = GameObject.Instantiate(HandPrefabs, Grid).GetComponent<UI_Hand>();
+        Debug.Log("dd");
         newCard.SetUnit(this, unit);
         _handList.Add(newCard);
     }

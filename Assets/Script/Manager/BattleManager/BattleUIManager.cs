@@ -27,7 +27,7 @@ public class BattleUIManager : MonoBehaviour
 
         //정보들
         UI_waitingLine = GameManager.UI.ShowScene<UI_WaitingLine>();
-        UI_turnCount = GameManager.UI.ShowScene<UI_TurnCount>();
+        //UI_turnCount = GameManager.UI.ShowScene<UI_TurnCount>();
 
         //컨트롤바
         _turnChangeButton = GameManager.UI.ShowScene<UI_TurnChangeButton>();
