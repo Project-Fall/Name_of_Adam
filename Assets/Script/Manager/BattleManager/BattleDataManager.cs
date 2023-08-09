@@ -59,7 +59,7 @@ public class BattleDataManager : MonoBehaviour
     public void TurnPlus()
     {
         _turnCount++;
-        BattleManager.BattleUI.UI_turnCount.Refresh();
+        //BattleManager.BattleUI.UI_turnCount.Refresh();
     }
 
     public void DarkEssenseChage(int chage)
