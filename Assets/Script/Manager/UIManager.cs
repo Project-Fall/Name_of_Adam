@@ -28,11 +28,13 @@ public class UIManager : MonoBehaviour
             _escOprion.gameObject.SetActive(true);
             Time.timeScale = 0;
         }
-        else if (TutorialManager.Instance.IsTutorialactive && !state)
+        /*
+         else if (TutorialManager.Instance.IsTutorialactive && !state)
         {
             _escOprion.gameObject.SetActive(false);
             Time.timeScale = 0;
         }
+        */
         else if (_escOprion.gameObject.activeSelf && !state)
         {
             _escOprion.gameObject.SetActive(false);
