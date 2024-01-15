@@ -23,13 +23,13 @@ MonoBehaviour:
     CurrentUpgradeCount: 0
   _uniqueStigma: []
   _id: 
-  _name: "\uAC80\uBCD1"
+  _name: "\uC804\uB839"
   _description: "\uB2E8\uC77C \uC801\uC5D0\uAC8C (ATK)\uC758 \uB370\uBBF8\uC9C0\uB97C
     \uC90D\uB2C8\uB2E4."
   _rarity: 0
   _image: {fileID: 21300000, guid: b1cfb933082a5d048b72c67a4088c95c, type: 3}
-  _animatorController: {fileID: 9100000, guid: bb7ba7f3d0ea75447b98790f60bc524d, type: 2}
-  _corruptionAnimatorController: {fileID: 9100000, guid: b467d896df5a93c409da33274fd8cbfa, type: 2}
+  _animatorController: {fileID: 9100000, guid: 70f198f4dadf40d40abc9652ea8281df, type: 2}
+  _corruptionAnimatorController: {fileID: 9100000, guid: 9b85c2559191c664d87401b63e149777, type: 2}
   _skillEffectAnim: {fileID: 0}
   _corruptionSkillEffectAnim: {fileID: 0}
   _animType: {fileID: 11400000, guid: 555a1753a8aa54e44a23372a3b71365d, type: 2}
