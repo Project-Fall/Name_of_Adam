@@ -12,7 +12,7 @@ public class OutGameData
     public int ProgressCoin;                 // 진척도 코인
     public List<ProgressItem> ProgressItems; // 진척도 상점의 상품들
     public List<HallUnit> HallUnit;          // 전당 유닛
-    public bool TutorialClear = false;
+    public bool TutorialClear = true;
 }
 
 [Serializable]

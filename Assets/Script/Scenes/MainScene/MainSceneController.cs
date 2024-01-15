@@ -27,8 +27,8 @@ public class MainSceneController : MonoBehaviour
 
         if (GameManager.OutGameData.isTutorialClear())
         {
-            GameManager.Data.HallDeckSet();
-            GameManager.Data.HallSelectedDeckSet();
+            //GameManager.Data.HallDeckSet();
+            //GameManager.Data.HallSelectedDeckSet();
             SceneChanger.SceneChange("DifficultySelectScene");
         }
         else

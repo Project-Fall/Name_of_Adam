@@ -35,7 +35,7 @@ public class DifficultySelectSceneController : MonoBehaviour
 
         if (UI_IncarnaSelect.activeSelf == true)
         {
-            //화신 데이터에 저장
+            /*
             if (GameManager.OutGameData.IsUnlockedItem(18))
             {
                 GameManager.Data.GameDataMain.DarkEssence = 10;
@@ -44,11 +44,18 @@ public class DifficultySelectSceneController : MonoBehaviour
             {
                 GameManager.Data.GameDataMain.DarkEssence = 7;
             }
+            */
 
+            GameManager.Data.GameDataMain.DarkEssence = 20;
             GameManager.Data.GameDataMain.Incarna = incarnaData;
-            UI_IncarnaSelect.SetActive(false);
-            UI_HallSelect.SetActive(true);
+
+            GameManager.Data.MainDeckSet();
+            GameManager.Data.GameData.FallenUnits.Clear();
+            GameManager.Data.GameData.FallenUnits.AddRange(GameManager.Data.GameDataMain.DeckUnits);
+
+            SceneChanger.SceneChange("StageSelectScene");
         }
+        /*
         else if (UI_HallSelect.activeSelf == true)
         {
             GameManager.Data.MainDeckSet();
@@ -57,6 +64,7 @@ public class DifficultySelectSceneController : MonoBehaviour
 
             SceneChanger.SceneChange("StageSelectScene");
         }
+        */
     }
 
     public void OnIncarnaClick(int i)

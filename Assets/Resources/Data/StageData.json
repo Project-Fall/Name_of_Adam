@@ -1768,6 +1768,279 @@
       ]
     },
     {
+      "Level": 5,
+      "StageData": [
+        {
+          "ID": 0,
+          "Units": [
+            {
+              "Name": "노동자",
+              "Location": {
+                "x": 3,
+                "y": 2
+              }
+            },
+            {
+              "Name": "노동자",
+              "Location": {
+                "x": 3,
+                "y": 0
+              }
+            },
+            {
+              "Name": "집정관",
+              "Location": {
+                "x": 5,
+                "y": 1
+              }
+            }
+          ]
+        },
+        {
+          "ID": 1,
+          "Units": [
+            {
+              "Name": "중갑병",
+              "Location": {
+                "x": 3,
+                "y": 2
+              }
+            },
+            {
+              "Name": "중갑병",
+              "Location": {
+                "x": 3,
+                "y": 0
+              }
+            }
+          ]
+        },
+        {
+          "ID": 2,
+          "Units": [
+            {
+              "Name": "궁병",
+              "Location": {
+                "x": 5,
+                "y": 1
+              }
+            }
+          ]
+        },
+        {
+          "ID": 4,
+          "Units": [
+            {
+              "Name": "수녀",
+              "Location": {
+                "x": 4,
+                "y": 2
+              }
+            },
+            {
+              "Name": "수녀",
+              "Location": {
+                "x": 4,
+                "y": 0
+              }
+            }
+          ]
+        },
+        {
+          "ID": 5,
+          "Units": [
+            {
+              "Name": "습격자",
+              "Location": {
+                "x": 3,
+                "y": 2
+              }
+            },
+            {
+              "Name": "습격자",
+              "Location": {
+                "x": 3,
+                "y": 0
+              }
+            },
+            {
+              "Name": "괴인",
+              "Location": {
+                "x": 5,
+                "y": 0
+              }
+            },
+            {
+              "Name": "라헬레아",
+              "Location": {
+                "x": 4,
+                "y": 1
+              }
+            }
+          ]
+        },
+        {
+          "ID": 6,
+          "Units": [
+            {
+              "Name": "투발카인",
+              "Location": {
+                "x": 4,
+                "y": 1
+              }
+            },
+            {
+              "Name": "척후병",
+              "Location": {
+                "x": 5,
+                "y": 0
+              }
+            },
+            {
+              "Name": "척후병",
+              "Location": {
+                "x": 5,
+                "y": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Level": 6,
+      "StageData": [
+        {
+          "ID": 0,
+          "Units": [
+            {
+              "Name": "삼신기",
+              "Location": {
+                "x": 4,
+                "y": 1
+              }
+            }
+          ]
+        },
+        {
+          "ID": 1,
+          "Units": [
+            {
+              "Name": "도살자",
+              "Location": {
+                "x": 3,
+                "y": 1
+              }
+            },
+            {
+              "Name": "암살자",
+              "Location": {
+                "x": 4,
+                "y": 2
+              }
+            }
+          ]
+        },
+        {
+          "ID": 2,
+          "Units": [
+            {
+              "Name": "궁병",
+              "Location": {
+                "x": 3,
+                "y": 2
+              }
+            },
+            {
+              "Name": "전령",
+              "Location": {
+                "x": 4,
+                "y": 1
+              }
+            }
+          ]
+        },
+        {
+          "ID": 4,
+          "Units": [
+            {
+              "Name": "수녀",
+              "Location": {
+                "x": 4,
+                "y": 2
+              }
+            },
+            {
+              "Name": "수녀",
+              "Location": {
+                "x": 4,
+                "y": 0
+              }
+            }
+          ]
+        },
+        {
+          "ID": 5,
+          "Units": [
+            {
+              "Name": "습격자",
+              "Location": {
+                "x": 3,
+                "y": 2
+              }
+            },
+            {
+              "Name": "습격자",
+              "Location": {
+                "x": 3,
+                "y": 0
+              }
+            },
+            {
+              "Name": "라헬레아",
+              "Location": {
+                "x": 4,
+                "y": 1
+              }
+            },
+            {
+              "Name": "괴인",
+              "Location": {
+                "x": 5,
+                "y": 0
+              }
+            }
+          ]
+        },
+        {
+          "ID": 6,
+          "Units": [
+            {
+              "Name": "투발카인",
+              "Location": {
+                "x": 4,
+                "y": 1
+              }
+            },
+            {
+              "Name": "척후병",
+              "Location": {
+                "x": 5,
+                "y": 0
+              }
+            },
+            {
+              "Name": "척후병",
+              "Location": {
+                "x": 5,
+                "y": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
       "Level": 10,
       "StageData": [
         {

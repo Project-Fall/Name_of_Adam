@@ -27,7 +27,7 @@ MonoBehaviour:
   _name: "\uAD34\uC778"
   _description: 
   _rarity: 0
-  _image: {fileID: -449138422, guid: ddd22f39687e52a46a1e3c4960e6f8d2, type: 3}
+  _image: {fileID: 198361487, guid: c173d12699d284e4da0cbe57996c910b, type: 3}
   _animatorController: {fileID: 9100000, guid: fd0126330f43b574784b40eea7cfbb4f, type: 2}
   _corruptionAnimatorController: {fileID: 9100000, guid: bf02f1f223c93414facf783dd1735bed, type: 2}
   _skillEffectAnim: {fileID: 0}

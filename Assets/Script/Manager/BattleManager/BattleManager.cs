@@ -114,9 +114,9 @@ public class BattleManager : MonoBehaviour
             {
                 if (GameManager.Data.Map.GetCurrentStage().StageID == 0)
                 {
-                    string scriptKey = "니므롯전_입장";
+                    //string scriptKey = "니므롯전_입장";
 
-                    EventConversation(scriptKey);
+                    //EventConversation(scriptKey);
                 }
             }
             else

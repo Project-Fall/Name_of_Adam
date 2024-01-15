@@ -65,8 +65,8 @@
       "title": "강화소_입장_최초",
       "contents": [
         {
-          "name": "라반",
-          "script": "유닛을 강화하거나 신성을 제거하십시오."
+          "name": "Messenger of faith",
+          "script": "May the faith in the Holy One lead to thy salvation."
         }
       ]
     },
@@ -74,8 +74,8 @@
       "title": "강화소_입장",
       "contents": [
         {
-          "name": "라반",
-          "script": "유닛을 강화하거나 신성을 제거하십시오."
+          "name": "Messenger of faith",
+          "script": "May the faith in the Holy One lead to thy salvation."
         }
       ]
     },

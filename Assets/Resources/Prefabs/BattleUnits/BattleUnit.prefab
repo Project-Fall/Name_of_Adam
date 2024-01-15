@@ -275,7 +275,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5198015285715519274}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.013, y: 0.083, z: 0}
+  m_LocalPosition: {x: 0.021, y: 0.048, z: 0}
   m_LocalScale: {x: 1.5, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -468,6 +468,7 @@ MonoBehaviour:
       FallCurrentCount: 0
       FallMaxCount: 0
       ManaCost: 0
+      CurrentUpgradeCount: 0
     DeckUnitChangedStat:
       MaxHP: 0
       CurrentHP: 0
@@ -476,6 +477,7 @@ MonoBehaviour:
       FallCurrentCount: 0
       FallMaxCount: 0
       ManaCost: 0
+      CurrentUpgradeCount: 0
     HallUnitID: 0
     IsMainDeck: 0
   BattleUnitChangedStat:
@@ -486,6 +488,7 @@ MonoBehaviour:
     FallCurrentCount: 0
     FallMaxCount: 0
     ManaCost: 0
+    CurrentUpgradeCount: 0
   _team: 0
   SkillEffectAnim: {fileID: 0}
   HP: {fileID: 1722822296286429812}

@@ -682,9 +682,7 @@ MonoBehaviour:
   _blur: {fileID: 1661568333}
   _shakeInfo:
   - {x: -0.45, y: 0, z: 0.16}
-  - {x: 0.35, y: 0, z: 0.12}
-  - {x: -0.35, y: 0, z: 0.12}
-  - {x: 0.3, y: 0, z: 0.12}
+  - {x: 0.5, y: 0, z: 0.12}
 --- !u!4 &49041953
 Transform:
   m_ObjectHideFlags: 0

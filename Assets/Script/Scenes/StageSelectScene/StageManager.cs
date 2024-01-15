@@ -44,12 +44,12 @@ public class StageManager : MonoBehaviour
             }
             else if (GameManager.Data.StageAct == 1)
             {
-                GameManager.Data.Map.MapObject = Resources.Load<GameObject>("Prefabs/Stage/Maps/Map");
+                GameManager.Data.Map.MapObject = Resources.Load<GameObject>("Prefabs/Stage/Maps/VideoMap1");
                 //GameManager.Data.Map.MapObject = Resources.Load<GameObject>("Prefabs/Stage/ProtoMap1");
             }
             else if (GameManager.Data.StageAct == 2)
             {
-                GameManager.Data.Map.MapObject = Resources.Load<GameObject>("Prefabs/Stage/Maps/ProtoMap2");
+                GameManager.Data.Map.MapObject = Resources.Load<GameObject>("Prefabs/Stage/Maps/VideoMap2");
             }
             else
             {
@@ -133,6 +133,7 @@ public class StageManager : MonoBehaviour
 
         for (int i = 0; i < StageList.Count; i++)
         {
+            /*
             if (StageList[i].Datas.Type == StageType.Battle && StageList[i].Datas.Name == StageName.CommonBattle)
             {
                 //12/20 프로토타입 버전은 레벨별 데이터 차이 없음, 추후 사용 가능성 다수
@@ -154,7 +155,8 @@ public class StageManager : MonoBehaviour
             {
                 StageDatas.Add(StageList[i].Datas);
             }
-
+            */
+            StageDatas.Add(StageList[i].Datas);
         }
 
         GameManager.Data.Map.StageList = StageDatas;

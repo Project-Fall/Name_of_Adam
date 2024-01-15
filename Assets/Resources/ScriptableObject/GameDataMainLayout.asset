@@ -24,10 +24,11 @@ MonoBehaviour:
       MaxHP: 0
       CurrentHP: 0
       ATK: 0
-      SPD: 0
+      SPD: 25
       FallCurrentCount: 0
       FallMaxCount: 0
       ManaCost: 0
+      CurrentUpgradeCount: 1
     DeckUnitChangedStat:
       MaxHP: 0
       CurrentHP: 0
@@ -36,6 +37,7 @@ MonoBehaviour:
       FallCurrentCount: 0
       FallMaxCount: 0
       ManaCost: 0
+      CurrentUpgradeCount: 0
     HallUnitID: 0
     IsMainDeck: 1
   - Data: {fileID: 11400000, guid: fe1a880de4b579946a1955a8c6326fcb, type: 2}
@@ -47,6 +49,7 @@ MonoBehaviour:
       FallCurrentCount: 0
       FallMaxCount: 0
       ManaCost: 0
+      CurrentUpgradeCount: 0
     DeckUnitChangedStat:
       MaxHP: 0
       CurrentHP: 0
@@ -55,6 +58,7 @@ MonoBehaviour:
       FallCurrentCount: 0
       FallMaxCount: 0
       ManaCost: 0
+      CurrentUpgradeCount: 0
     HallUnitID: 0
     IsMainDeck: 1
   - Data: {fileID: 11400000, guid: 27b54eeec5c6e364c8d20046d9508d64, type: 2}
@@ -66,6 +70,7 @@ MonoBehaviour:
       FallCurrentCount: 0
       FallMaxCount: 0
       ManaCost: 0
+      CurrentUpgradeCount: 0
     DeckUnitChangedStat:
       MaxHP: 0
       CurrentHP: 0
@@ -74,9 +79,217 @@ MonoBehaviour:
       FallCurrentCount: 0
       FallMaxCount: 0
       ManaCost: 0
+      CurrentUpgradeCount: 0
     HallUnitID: 0
     IsMainDeck: 1
-  FallenUnits: []
+  - Data: {fileID: 11400000, guid: 34fa111edf579e0459bd33afa6afea60, type: 2}
+    DeckUnitUpgradeStat:
+      MaxHP: 0
+      CurrentHP: 0
+      ATK: 0
+      SPD: 0
+      FallCurrentCount: 0
+      FallMaxCount: 0
+      ManaCost: 0
+      CurrentUpgradeCount: 0
+    DeckUnitChangedStat:
+      MaxHP: 0
+      CurrentHP: 0
+      ATK: 0
+      SPD: 0
+      FallCurrentCount: 0
+      FallMaxCount: 0
+      ManaCost: 0
+      CurrentUpgradeCount: 0
+    HallUnitID: 0
+    IsMainDeck: 1
+  - Data: {fileID: 11400000, guid: d37f2fd75daeb014a84d86ceaaf86e20, type: 2}
+    DeckUnitUpgradeStat:
+      MaxHP: 0
+      CurrentHP: 0
+      ATK: 0
+      SPD: 0
+      FallCurrentCount: 0
+      FallMaxCount: 0
+      ManaCost: 0
+      CurrentUpgradeCount: 0
+    DeckUnitChangedStat:
+      MaxHP: 0
+      CurrentHP: 0
+      ATK: 0
+      SPD: 0
+      FallCurrentCount: 0
+      FallMaxCount: 0
+      ManaCost: 0
+      CurrentUpgradeCount: 0
+    HallUnitID: 0
+    IsMainDeck: 1
+  - Data: {fileID: 11400000, guid: b28b4906d12f2bd4e8246b36b3b64ca5, type: 2}
+    DeckUnitUpgradeStat:
+      MaxHP: 0
+      CurrentHP: 0
+      ATK: 0
+      SPD: 0
+      FallCurrentCount: 0
+      FallMaxCount: 0
+      ManaCost: 0
+      CurrentUpgradeCount: 0
+    DeckUnitChangedStat:
+      MaxHP: 0
+      CurrentHP: 0
+      ATK: 0
+      SPD: 0
+      FallCurrentCount: 0
+      FallMaxCount: 0
+      ManaCost: 0
+      CurrentUpgradeCount: 0
+    HallUnitID: 0
+    IsMainDeck: 1
+  FallenUnits:
+  - Data: {fileID: 11400000, guid: 603f616d232afb64087646cca9b70364, type: 2}
+    DeckUnitUpgradeStat:
+      MaxHP: 0
+      CurrentHP: 0
+      ATK: 0
+      SPD: 25
+      FallCurrentCount: 0
+      FallMaxCount: 0
+      ManaCost: 0
+      CurrentUpgradeCount: 1
+    DeckUnitChangedStat:
+      MaxHP: 0
+      CurrentHP: 0
+      ATK: 0
+      SPD: 0
+      FallCurrentCount: 0
+      FallMaxCount: 0
+      ManaCost: 0
+      CurrentUpgradeCount: 0
+    HallUnitID: 0
+    IsMainDeck: 1
+  - Data: {fileID: 11400000, guid: fe1a880de4b579946a1955a8c6326fcb, type: 2}
+    DeckUnitUpgradeStat:
+      MaxHP: 0
+      CurrentHP: 0
+      ATK: 0
+      SPD: 0
+      FallCurrentCount: 0
+      FallMaxCount: 0
+      ManaCost: 0
+      CurrentUpgradeCount: 0
+    DeckUnitChangedStat:
+      MaxHP: 0
+      CurrentHP: 0
+      ATK: 0
+      SPD: 0
+      FallCurrentCount: 0
+      FallMaxCount: 0
+      ManaCost: 0
+      CurrentUpgradeCount: 0
+    HallUnitID: 0
+    IsMainDeck: 1
+  - Data: {fileID: 11400000, guid: 27b54eeec5c6e364c8d20046d9508d64, type: 2}
+    DeckUnitUpgradeStat:
+      MaxHP: 0
+      CurrentHP: 0
+      ATK: 0
+      SPD: 0
+      FallCurrentCount: 0
+      FallMaxCount: 0
+      ManaCost: 0
+      CurrentUpgradeCount: 0
+    DeckUnitChangedStat:
+      MaxHP: 0
+      CurrentHP: 0
+      ATK: 0
+      SPD: 0
+      FallCurrentCount: 0
+      FallMaxCount: 0
+      ManaCost: 0
+      CurrentUpgradeCount: 0
+    HallUnitID: 0
+    IsMainDeck: 1
+  - Data: {fileID: 11400000, guid: 34fa111edf579e0459bd33afa6afea60, type: 2}
+    DeckUnitUpgradeStat:
+      MaxHP: 0
+      CurrentHP: 0
+      ATK: 0
+      SPD: 0
+      FallCurrentCount: 0
+      FallMaxCount: 0
+      ManaCost: 0
+      CurrentUpgradeCount: 0
+    DeckUnitChangedStat:
+      MaxHP: 0
+      CurrentHP: 0
+      ATK: 0
+      SPD: 0
+      FallCurrentCount: 0
+      FallMaxCount: 0
+      ManaCost: 0
+      CurrentUpgradeCount: 0
+    HallUnitID: 0
+    IsMainDeck: 1
+  - Data: {fileID: 11400000, guid: d37f2fd75daeb014a84d86ceaaf86e20, type: 2}
+    DeckUnitUpgradeStat:
+      MaxHP: 0
+      CurrentHP: 0
+      ATK: 0
+      SPD: 0
+      FallCurrentCount: 0
+      FallMaxCount: 0
+      ManaCost: 0
+      CurrentUpgradeCount: 0
+    DeckUnitChangedStat:
+      MaxHP: 0
+      CurrentHP: 0
+      ATK: 0
+      SPD: 0
+      FallCurrentCount: 0
+      FallMaxCount: 0
+      ManaCost: 0
+      CurrentUpgradeCount: 0
+    HallUnitID: 0
+    IsMainDeck: 1
+  - Data: {fileID: 11400000, guid: b28b4906d12f2bd4e8246b36b3b64ca5, type: 2}
+    DeckUnitUpgradeStat:
+      MaxHP: 0
+      CurrentHP: 0
+      ATK: 0
+      SPD: 0
+      FallCurrentCount: 0
+      FallMaxCount: 0
+      ManaCost: 0
+      CurrentUpgradeCount: 0
+    DeckUnitChangedStat:
+      MaxHP: 0
+      CurrentHP: 0
+      ATK: 0
+      SPD: 0
+      FallCurrentCount: 0
+      FallMaxCount: 0
+      ManaCost: 0
+      CurrentUpgradeCount: 0
+    HallUnitID: 0
+    IsMainDeck: 1
   isVisitUpgrade: 0
   isVisitStigma: 0
-  isVisitHarlot: 0
+  Progress:
+    NormalWin: 0
+    EliteWin: 0
+    BossWin: 0
+    NormalKill: 0
+    EliteKill: 0
+    NimrodKill: 0
+    HorusKill: 0
+    FishKill: 0
+    NormalFall: 0
+    EliteFall: 0
+    NimrodFall: 0
+    HorusFall: 0
+    FishFall: 0
+    SecChapterClear: 0
+    LeftDarkEssence: 0
+    SurvivedNormal: 0
+    SurvivedElite: 0
+    SurvivedBoss: 0
