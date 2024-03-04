@@ -51,5 +51,5 @@ MonoBehaviour:
   _sprite_164: {fileID: 21300000, guid: f62ddc3b9894f654db62947c93c9bf74, type: 3}
   _description: Recovers 10 health after the end of its turn.
   _activeTiming: 2
-  _tier: 2
+  _tier: 0
   _isLock: 0

@@ -51,5 +51,5 @@ MonoBehaviour:
   _sprite_164: {fileID: 21300000, guid: 31831dec0c7aca94abc830d084729772, type: 3}
   _description: Becomes capable of moving one step diagonally.
   _activeTiming: 2
-  _tier: 1
+  _tier: 0
   _isLock: 0

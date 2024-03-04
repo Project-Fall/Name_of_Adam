@@ -51,5 +51,5 @@ MonoBehaviour:
   _sprite_164: {fileID: 21300000, guid: b38555a1a24f4174da61210516972ce3, type: 3}
   _description: Earns invincibility 2 times upon summoning.
   _activeTiming: 2
-  _tier: 1
+  _tier: 0
   _isLock: 0

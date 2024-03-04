@@ -52,5 +52,5 @@ MonoBehaviour:
   _description: "When attacking, there is a 50% chance for damage to be doubled and\r
     a 50% chance for it to be halved."
   _activeTiming: 2
-  _tier: 2
+  _tier: 0
   _isLock: 1

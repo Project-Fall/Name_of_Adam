@@ -52,5 +52,5 @@ MonoBehaviour:
   _description: Oneself and nearby allies within 4 tiles gain an attack boost for
     2 turns upon summoning.
   _activeTiming: 2
-  _tier: 1
+  _tier: 0
   _isLock: 0

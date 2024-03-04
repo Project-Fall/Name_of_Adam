@@ -52,5 +52,5 @@ MonoBehaviour:
   _description: Attack power increases by 3 for each target attacked. Resets at the
     end of the stage.
   _activeTiming: 2
-  _tier: 1
+  _tier: 0
   _isLock: 0

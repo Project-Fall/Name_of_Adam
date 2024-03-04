@@ -51,5 +51,5 @@ MonoBehaviour:
   _sprite_164: {fileID: 21300000, guid: 8e782dc92e19fd2458ca5fdb9b887030, type: 3}
   _description: Gains an extra turn upon defeating an enemy.
   _activeTiming: 8
-  _tier: 2
+  _tier: 0
   _isLock: 1

@@ -52,5 +52,5 @@ MonoBehaviour:
   _description: The unit becomes stunned once, but the mana cost of the next skill
     is eliminated upon summoning.
   _activeTiming: 8
-  _tier: 2
+  _tier: 0
   _isLock: 1

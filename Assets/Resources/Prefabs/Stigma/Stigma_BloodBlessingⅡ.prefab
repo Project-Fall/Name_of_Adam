@@ -51,5 +51,5 @@ MonoBehaviour:
   _sprite_164: {fileID: 21300000, guid: c76e07437b2998f49984802863cefec1, type: 3}
   _description: Recovers 15 health when an enemy or an ally dies.
   _activeTiming: 2
-  _tier: 1
+  _tier: 0
   _isLock: 0

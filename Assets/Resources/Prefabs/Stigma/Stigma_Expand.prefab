@@ -51,5 +51,5 @@ MonoBehaviour:
   _sprite_164: {fileID: 21300000, guid: 904a63929d14936498ff11502bc4908d, type: 3}
   _description: Becomes capable of moving one additional step in the cross direction.
   _activeTiming: 2
-  _tier: 1
+  _tier: 0
   _isLock: 0

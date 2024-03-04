@@ -51,5 +51,5 @@ MonoBehaviour:
   _sprite_164: {fileID: 21300000, guid: 0caf7616d3cdad24089eef3a0b5ae8dd, type: 3}
   _description: Earns immortality 2 times upon summoning.
   _activeTiming: 2
-  _tier: 1
+  _tier: 0
   _isLock: 0
