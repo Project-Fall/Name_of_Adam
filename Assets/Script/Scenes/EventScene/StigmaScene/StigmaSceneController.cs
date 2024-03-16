@@ -251,7 +251,11 @@ public class StigmaSceneController : MonoBehaviour,StigmaInterface
 
         UI_Conversation quitScript = GameManager.UI.ShowPopup<UI_Conversation>();
 
-        if (GameManager.OutGameData.GetVisitStigma() == false)
+        int questLevel = (int)(GameManager.Data.GameData.NpcQuest.StigmaQuest / 12.5f);
+        if (questLevel > 4) 
+            questLevel = 4;
+
+        if (GameManager.OutGameData.GetVisitStigma() == false && questLevel < 4)
         {
             GameManager.OutGameData.SetVisitStigma(true);
             Debug.Log("GameManager.OutGameData.getVisitStigma() : " + GameManager.OutGameData.GetVisitStigma());
@@ -259,8 +263,6 @@ public class StigmaSceneController : MonoBehaviour,StigmaInterface
         }
         else
         {
-            int questLevel = (int)(GameManager.Data.GameData.NpcQuest.StigmaQuest / 12.5f);
-            if (questLevel > 4) questLevel = 4;
             quitScript.Init(GameManager.Data.ScriptData[$"낙인소_퇴장_{25 * questLevel}_랜덤코드:{Random.Range(0, exitDialogNums[questLevel])}"], false);
         }
         yield return StartCoroutine(quitScript.PrintScript());

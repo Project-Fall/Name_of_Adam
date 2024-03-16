@@ -261,15 +261,18 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
 
         UI_Conversation quitScript = GameManager.UI.ShowPopup<UI_Conversation>();
 
-        if (GameManager.OutGameData.GetVisitDarkshop()==false)
+        int questLevel = (int)(GameManager.Data.GameData.NpcQuest.DarkshopQuest / 7.5f);
+        if (questLevel > 4) 
+            questLevel = 4;
+
+        if (GameManager.OutGameData.GetVisitDarkshop() == false && questLevel < 4)
         {
             GameManager.OutGameData.SetVisitDarkshop(true);
             quitScript.Init(GameManager.Data.ScriptData["탕녀_퇴장_최초"], false);
         }
         else 
         {
-            int questLevel = (int)(GameManager.Data.GameData.NpcQuest.DarkshopQuest / 7.5f);
-            if (questLevel > 4) questLevel = 4;
+
             quitScript.Init(GameManager.Data.ScriptData[$"탕녀_퇴장_{25 * questLevel}_랜덤코드:{Random.Range(0, exitDialogNums[questLevel])}"], false);
         }
         
