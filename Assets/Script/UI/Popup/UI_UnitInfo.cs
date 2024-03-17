@@ -110,10 +110,10 @@ public class UI_UnitInfo : UI_Popup
             speedChange = " <color=\"" + DownColorStr + "\">(" + (_unit.DeckUnitStat.SPD - _unit.Data.RawStat.SPD).ToString() + ")</color>";
         }
 
-        _unitInfoStat.text = "HP: " + _unit.DeckUnitTotalStat.MaxHP.ToString() + hpChange + "\n" +
-                                    "Cost: " + _unit.DeckUnitTotalStat.ManaCost.ToString() + costChange + darkEssenseCost + "\n" +
-                                    "Attack: " + _unit.DeckUnitTotalStat.ATK.ToString() + attackChange + "\n" +
-                                    "Speed: " + _unit.DeckUnitTotalStat.SPD.ToString() + speedChange;
+        _unitInfoStat.text = GameManager.Locale.GetLocalizedUpgrade("Cost") + ": " + _unit.DeckUnitTotalStat.MaxHP.ToString() + hpChange + "\n" +
+                                    GameManager.Locale.GetLocalizedUpgrade("HP") + ": " + _unit.DeckUnitTotalStat.ManaCost.ToString() + costChange + darkEssenseCost + "\n" +
+                                    GameManager.Locale.GetLocalizedUpgrade("Attack") + ": " + _unit.DeckUnitTotalStat.ATK.ToString() + attackChange + "\n" +
+                                    GameManager.Locale.GetLocalizedUpgrade("Speed") + ": " + _unit.DeckUnitTotalStat.SPD.ToString() + speedChange;
 
         for (int i = 0; i < 4; i++)
         {

@@ -34,6 +34,34 @@ MonoBehaviour:
     m_Localized: "\uCF54\uC2A4\uD2B8 (COST)"
     m_Metadata:
       m_Items: []
+  - m_Id: 10588385230778368
+    m_Localized: "\uCCB4\uB825"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10588457091788800
+    m_Localized: "\uCF54\uC2A4\uD2B8"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10588484937773056
+    m_Localized: "\uACF5\uACA9\uB825"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10588522120278016
+    m_Localized: "\uC18D\uB3C4"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10588606404816896
+    m_Localized: "\uACF5\uACA9\uB825"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10588689590448128
+    m_Localized: "\uC18D\uB3C4"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10588729721548800
+    m_Localized: "\uCF54\uC2A4\uD2B8"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
