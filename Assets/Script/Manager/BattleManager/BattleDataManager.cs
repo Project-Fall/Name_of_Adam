@@ -192,28 +192,30 @@ public class BattleDataManager : MonoBehaviour
 
     public void BattleUnitOrderSorting()
     {
-        List<(BattleUnit, int?)> tempOrderList = new(_battleUnitOrderUnits);
+        List<BattleUnit> prevOrderList = new(_battleUnitOrderList);
 
-        _battleUnitOrderList = _battleUnitOrderList.OrderByDescending(unit => {
-            (BattleUnit, int?) result = tempOrderList.FirstOrDefault(item => item.Item1 == unit);
-
-            if (result.Item2 == null)
-            {
-                tempOrderList.Remove(result);
-                return unit.BattleUnitTotalStat.SPD;
-            }
-            else
-            {
-                tempOrderList.Remove(result);
-                return result.Item2;
-            }
-        })
-            .ThenBy(unit => unit.Team)
-            .ThenByDescending(unit => unit.Location.y)
-            .ThenBy(unit => unit.Location.x)
+        _battleUnitOrderList = _battleUnitOrderUnits
+            .OrderByDescending(unit => unit.Item2 ?? unit.Item1.BattleUnitTotalStat.SPD)
+            .ThenBy(unit => unit.Item1.Team)
+            .ThenByDescending(unit => unit.Item1.Location.y)
+            .ThenBy(unit => unit.Item1.Location.x)
+            .Select(unit => unit.Item1)
             .ToList();
 
-        BattleManager.BattleUI.RefreshWaitingLine(_battleUnitOrderList);
+        if (prevOrderList.Count != _battleUnitOrderList.Count)
+        {
+            BattleManager.BattleUI.RefreshWaitingLine(_battleUnitOrderList);
+        }
+        else
+        {
+            for (int i = 0; i < prevOrderList.Count; i++)
+            {
+                if (prevOrderList[i] != _battleUnitOrderList[i])
+                {
+                    BattleManager.BattleUI.RefreshWaitingLine(_battleUnitOrderList);
+                }
+            }
+        }
     }
 
     public void BattleOrderRemove(BattleUnit removedUnit)

@@ -136,7 +136,8 @@ public class UI_Option : UI_Popup
     {
         GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
         GameManager.UI.ClosePopup(this);
-        GameManager.UI.ESCOPopups.Pop();
+        if (GameManager.UI.ESCOPopups.Count != 0)
+            GameManager.UI.ESCOPopups.Pop();
         GameManager.OutGameData.SaveData();
     }
 }

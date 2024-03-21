@@ -59,13 +59,11 @@ public class UI_WaitingLine : UI_Scene
 
     private void ClearWaitingLine()
     {
-        for (int i = 0; i < _waitingUnitList.Count; i++)
+        foreach (UI_WaitingUnit unit in _waitingUnitList)
         {
-            UI_WaitingUnit unit = _waitingUnitList[i];
-            _waitingUnitList.Remove(unit);
             Destroy(unit.gameObject);
-            i--;
         }
+        _waitingUnitList.Clear();
     }
 
     public void OnClickSeeNextUnits()
