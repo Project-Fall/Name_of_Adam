@@ -58,7 +58,7 @@ public class BattleManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1) && _phase.CurrentPhaseCheck(Phase.Prepare))
         {
             //우클릭
             _battleUI.CancelAllSelect();
@@ -229,10 +229,24 @@ public class BattleManager : MonoBehaviour
     }
 
     #region Click 관련
+    private bool _tileClickCooldown = false;
+
     public void OnClickTile(Tile tile)
     {
-        Vector2 coord = _field.GetCoordByTile(tile);
-        _phase.OnClickEvent(coord);
+        if (!_tileClickCooldown)
+        {
+            Vector2 coord = _field.GetCoordByTile(tile);
+            _phase.OnClickEvent(coord);
+        }
+    }
+
+    private void SetTlieClickCoolDown(float time)
+    {
+        _tileClickCooldown = true;
+
+        PlayAfterCoroutine(() => {
+            _tileClickCooldown = false;
+        }, time);
     }
 
     public void PreparePhaseClick(Vector2 coord)
@@ -296,9 +310,14 @@ public class BattleManager : MonoBehaviour
         }
 
         if (MoveUnit(unit, coord))
+        {
             PlayAfterCoroutine(() => _phase.ChangePhase(_phase.Action), 1f);
+            SetTlieClickCoolDown(1f);
+        }
         else if (coord == unit.Location)
+        {
             _phase.ChangePhase(_phase.Action);
+        }
     }
 
     public void ActionPhaseClick(Vector2 coord)
@@ -308,6 +327,8 @@ public class BattleManager : MonoBehaviour
 
         if (!GameManager.OutGameData.IsTutorialClear())
             TutorialManager.Instance.DisableToolTip();
+
+        SetTlieClickCoolDown(0.2f);
 
         BattleUnit nowUnit = _battleData.GetNowUnit();
 
