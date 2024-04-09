@@ -31,6 +31,22 @@ MonoBehaviour:
     m_Key: Cost (COST)
     m_Metadata:
       m_Items: []
+  - m_Id: 19263673565245440
+    m_Key: Attack
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19263729957662720
+    m_Key: HP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19263775021264896
+    m_Key: Speed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19263811629150208
+    m_Key: Cost
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

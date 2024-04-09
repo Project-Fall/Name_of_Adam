@@ -34,6 +34,22 @@ MonoBehaviour:
     m_Localized: Cost (COST)
     m_Metadata:
       m_Items: []
+  - m_Id: 19263673565245440
+    m_Localized: Attack
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19263729957662720
+    m_Localized: HP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19263775021264896
+    m_Localized: Speed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19263811629150208
+    m_Localized: Cost
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

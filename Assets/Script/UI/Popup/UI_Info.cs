@@ -154,15 +154,15 @@ public class UI_Info : UI_Scene
 
         if (unit.Data.DarkEssenseCost > 0)
         {
-            statText = "ATK: " + "<color=\"AttackColor\">" + unit.DeckUnitTotalStat.ATK.ToString() + "</color>" + "\n" +
-                    "SPD:  " + "<color=\"SpeedColor\">" + unit.DeckUnitTotalStat.SPD.ToString() + "</color>" + "\n" +
-                    "COST:  " + "<color=\"CostColor\">" + unit.DeckUnitTotalStat.ManaCost.ToString() + "/" + unit.Data.DarkEssenseCost.ToString() + "</color>";
+            statText = GameManager.Locale.GetLocalizedUpgrade("Attack") + ": " + "<color=\"AttackColor\">" + unit.DeckUnitTotalStat.ATK.ToString() + "</color>" + "\n" +
+                    GameManager.Locale.GetLocalizedUpgrade("Speed") + ":  " + "<color=\"SpeedColor\">" + unit.DeckUnitTotalStat.SPD.ToString() + "</color>" + "\n" +
+                    GameManager.Locale.GetLocalizedUpgrade("Cost") + ":  " + "<color=\"CostColor\">" + unit.DeckUnitTotalStat.ManaCost.ToString() + "/" + unit.Data.DarkEssenseCost.ToString() + "</color>";
         }
         else
         {
-            statText = "ATK: " + "<color=\"AttackColor\">" + unit.DeckUnitTotalStat.ATK.ToString() + "</color>" + "\n" +
-                    "SPD:  " + "<color=\"SpeedColor\">" + unit.DeckUnitTotalStat.SPD.ToString() + "</color>" + "\n" +
-                    "COST:  " + "<color=\"CostColor\">" + unit.DeckUnitTotalStat.ManaCost.ToString() + "</color>";
+            statText = GameManager.Locale.GetLocalizedUpgrade("Attack") + ": " + "<color=\"AttackColor\">" + unit.DeckUnitTotalStat.ATK.ToString() + "</color>" + "\n" +
+                    GameManager.Locale.GetLocalizedUpgrade("Speed") + ":  " + "<color=\"SpeedColor\">" + unit.DeckUnitTotalStat.SPD.ToString() + "</color>" + "\n" +
+                    GameManager.Locale.GetLocalizedUpgrade("Cost") + ":  " + "<color=\"CostColor\">" + unit.DeckUnitTotalStat.ManaCost.ToString() + "</color>";
         }
 
         string hpText = unit.DeckUnitTotalStat.CurrentHP.ToString() + "/" + unit.DeckUnitTotalStat.MaxHP.ToString();
