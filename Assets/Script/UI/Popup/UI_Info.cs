@@ -58,15 +58,15 @@ public class UI_Info : UI_Scene
 
         if (unit.Data.DarkEssenseCost > 0)
         {
-                statText = "ATK: " + "<color=\"AttackColor\">" + battleUnit.BattleUnitTotalStat.ATK.ToString() + "</color>" + "\n" +
-                        "SPD:  " + "<color=\"SpeedColor\">" + battleUnit.BattleUnitTotalStat.SPD.ToString() + "</color>" + "\n" +
-                        "COST:  " + "<color=\"CostColor\">" + battleUnit.BattleUnitTotalStat.ManaCost.ToString() + "/" + unit.Data.DarkEssenseCost.ToString() + "</color>";
+                statText = GameManager.Locale.GetLocalizedUpgrade("Attack") + ": " + "<color=\"AttackColor\">" + battleUnit.BattleUnitTotalStat.ATK.ToString() + "</color>" + "\n" +
+                        GameManager.Locale.GetLocalizedUpgrade("Speed") + ":  " + "<color=\"SpeedColor\">" + battleUnit.BattleUnitTotalStat.SPD.ToString() + "</color>" + "\n" +
+                        GameManager.Locale.GetLocalizedUpgrade("Cost") + ":  " + "<color=\"CostColor\">" + battleUnit.BattleUnitTotalStat.ManaCost.ToString() + "/" + unit.Data.DarkEssenseCost.ToString() + "</color>";
         }
         else
         {
-                statText = "ATK: " + "<color=\"AttackColor\">" + battleUnit.BattleUnitTotalStat.ATK.ToString() + "</color>" + "\n" +
-                        "SPD:  " + "<color=\"SpeedColor\">" + battleUnit.BattleUnitTotalStat.SPD.ToString() + "</color>" + "\n" +
-                        "COST:  " + "<color=\"CostColor\">" + battleUnit.BattleUnitTotalStat.ManaCost.ToString() + "</color>";
+                statText = GameManager.Locale.GetLocalizedUpgrade("Attack") + ": " + "<color=\"AttackColor\">" + battleUnit.BattleUnitTotalStat.ATK.ToString() + "</color>" + "\n" +
+                        GameManager.Locale.GetLocalizedUpgrade("Speed") + ":  " + "<color=\"SpeedColor\">" + battleUnit.BattleUnitTotalStat.SPD.ToString() + "</color>" + "\n" +
+                        GameManager.Locale.GetLocalizedUpgrade("Cost") + ":  " + "<color=\"CostColor\">" + battleUnit.BattleUnitTotalStat.ManaCost.ToString() + "</color>";
         }
 
                                 
