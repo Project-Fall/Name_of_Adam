@@ -14,10 +14,11 @@ public class UI_EliteReward : UI_Popup
 
     private int _stageAct;
 
-    private DeckUnit GetRandomUnit(List<UnitDataSO> unitLists, List<int> selectedUnitNumbers)
+    private DeckUnit GetRandomNormalUnit(List<UnitDataSO> unitLists)
     {
         DeckUnit deckUnit = new DeckUnit();
-        
+        List<int> selectedUnitNumbers = new();
+
         int unitNumber = Random.Range(0, unitLists.Count);
 
         while (selectedUnitNumbers.Contains(unitNumber))
@@ -56,7 +57,6 @@ public class UI_EliteReward : UI_Popup
     public void SetRewardPanel()
     {
         List<UnitDataSO> normalUnits = new();
-        List<int> selectedUnitNumbers = new();
         _stageAct = GameManager.Data.StageAct;
 
         var units = GameManager.Resource.LoadAll<UnitDataSO>($"ScriptableObject/UnitDataSO");
@@ -70,7 +70,7 @@ public class UI_EliteReward : UI_Popup
 
         foreach (var card in uI_EliteCards)
         {
-            DeckUnit randUnit = GetRandomUnit(normalUnits, selectedUnitNumbers);
+            DeckUnit randUnit = GetRandomNormalUnit(normalUnits);
             card.Init(randUnit);
         }
 

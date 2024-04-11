@@ -145,6 +145,10 @@ public class GameManager : MonoBehaviour
             UI_UpgradeSelectButton upgradePopup = GameObject.FindObjectOfType<UI_UpgradeSelectButton>();
             if (upgradePopup != null)
                 upgradePopup.ResetUpgradeSelectButtons();
+
+            UI_EliteReward uI_EliteReward = GameObject.FindObjectOfType<UI_EliteReward>();
+            if (uI_EliteReward != null)
+                uI_EliteReward.SetRewardPanel();
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
