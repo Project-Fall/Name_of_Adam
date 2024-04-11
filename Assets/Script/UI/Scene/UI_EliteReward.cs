@@ -14,15 +14,15 @@ public class UI_EliteReward : UI_Popup
 
     private int _stageAct;
 
-    private DeckUnit GetRandomNormalUnit(List<UnitDataSO> unitLists)
+    private DeckUnit GetRandomUnit(List<UnitDataSO> unitLists, List<int> selectedUnitNumbers)
     {
         DeckUnit deckUnit = new DeckUnit();
-        List<int> selectedUnitNumbers = new();
 
         int unitNumber = Random.Range(0, unitLists.Count);
 
         while (selectedUnitNumbers.Contains(unitNumber))
         {
+            Debug.Log($"'{unitNumber}번 유닛'은(는) 중복된 유닛입니다.");
             unitNumber = Random.Range(0, unitLists.Count);
         }
 
@@ -57,6 +57,7 @@ public class UI_EliteReward : UI_Popup
     public void SetRewardPanel()
     {
         List<UnitDataSO> normalUnits = new();
+        List<int> selectedUnitNumbers = new();
         _stageAct = GameManager.Data.StageAct;
 
         var units = GameManager.Resource.LoadAll<UnitDataSO>($"ScriptableObject/UnitDataSO");
@@ -70,7 +71,7 @@ public class UI_EliteReward : UI_Popup
 
         foreach (var card in uI_EliteCards)
         {
-            DeckUnit randUnit = GetRandomNormalUnit(normalUnits);
+            DeckUnit randUnit = GetRandomUnit(normalUnits, selectedUnitNumbers);
             card.Init(randUnit);
         }
 
