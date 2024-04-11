@@ -65,6 +65,13 @@ public class UI_EliteReward : UI_Popup
         {
             if (unit.Rarity == Rarity.Normal && !unit.IsBattleOnly)
             {
+                #region Demo 전용
+                if (unit.ID == "전령" || unit.ID == "집정관")
+                {
+                    Debug.Log($"'{unit.ID}'은(는) 데모 전용 유닛입니다.");
+                    continue;
+                }
+                #endregion
                 normalUnits.Add(unit);
             }
         }
