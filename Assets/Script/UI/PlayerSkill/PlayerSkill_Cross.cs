@@ -44,7 +44,7 @@ public class PlayerSkill_Cross : PlayerSkill
                 }
 
                 if (!targetUnit.FallEvent)
-                    targetUnit.ChangeHP(-20);
+                    targetUnit.GetAttack(-20, null);
             }
         }
         return false;
