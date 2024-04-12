@@ -7,7 +7,7 @@ using TMPro;
 
 public class UI_Conversation : UI_Popup
 {
-    private float _typingSpeed = 0.05f;
+    private float _typingSpeed = 0.04f;
     private Coroutine co_typing = null;
     private List<Script> scripts = new();
     private bool _battleConversation;
