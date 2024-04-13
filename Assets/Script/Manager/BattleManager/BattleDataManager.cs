@@ -24,6 +24,8 @@ public class BattleDataManager : MonoBehaviour
     private List<UI_StigmaSelectButtonPopup> _corruptionPopups = new();
     public List<UI_StigmaSelectButtonPopup> CorruptionPopups => _corruptionPopups;
 
+    public bool IsCorruptionPopupOn { get; set; }
+
     [SerializeField] private BattleUnit incarnaUnit;
     public BattleUnit IncarnaUnit => incarnaUnit;
 

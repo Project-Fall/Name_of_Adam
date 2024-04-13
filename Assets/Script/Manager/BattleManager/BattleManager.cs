@@ -233,7 +233,7 @@ public class BattleManager : MonoBehaviour
 
     public void OnClickTile(Tile tile)
     {
-        if (!_tileClickCooldown)
+        if (!_tileClickCooldown && Data.IsCorruptionPopupOn == false)
         {
             Vector2 coord = _field.GetCoordByTile(tile);
             _phase.OnClickEvent(coord);
@@ -450,6 +450,7 @@ public class BattleManager : MonoBehaviour
             item.gameObject.SetActive(false);
         var popup = Data.CorruptionPopups[Data.CorruptionPopups.Count - 1];
         popup.gameObject.SetActive(true);
+        Data.IsCorruptionPopupOn = true;
     }
 
     public void DirectAttack(BattleUnit attackUnit)
