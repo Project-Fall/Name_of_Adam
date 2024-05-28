@@ -17,6 +17,7 @@ MonoBehaviour:
   - rid: 3866797750321414145
   - rid: 3866797750321414146
   - rid: 3866797750321414168
+  - rid: 3603023273849520130
   m_AvailableLocales:
     rid: 3866797750321414147
   m_AssetDatabase:
@@ -31,6 +32,11 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: 3603023273849520130
+      type: {class: SpecificLocaleSelector, ns: UnityEngine.Localization.Settings, asm: Unity.Localization}
+      data:
+        m_LocaleId:
+          m_Code: ja
     - rid: 3866797750321414144
       type: {class: CommandLineLocaleSelector, ns: UnityEngine.Localization.Settings, asm: Unity.Localization}
       data:
