@@ -16,7 +16,117 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: 69ed70f16f94ddb4190d4037bbd52206
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: d93c7b63e842bcb429625fa37b088368
+    m_Address: OptionTable_ja
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ja
+  - m_GUID: 7b738dc7c14e1cd4eae21947cf0ceca7
+    m_Address: BuffNameTable_ja
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ja
+  - m_GUID: e971842a387458741b0d702fa9c96fc9
+    m_Address: UITable_ja
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ja
+  - m_GUID: 6582008ca750e054dbc8c8d75573b76d
+    m_Address: SelectStageSceneTable_ja
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ja
+  - m_GUID: 60f79d6d2f85c0b4382fb3b64d0ecf32
+    m_Address: TutorialTable_ja
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ja
+  - m_GUID: 5837eebb75be7da4ba818ba998fd277d
+    m_Address: PlayerSkillNameTable_ja
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ja
+  - m_GUID: e4530121b3d27a24f8879893c154dbdd
+    m_Address: IncarnaTable_ja
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ja
+  - m_GUID: 87d951dc0fa49f44693ab9faa9543353
+    m_Address: UpgradeTable_ja
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ja
+  - m_GUID: ad35061b36e8204469490a003b5ea8e7
+    m_Address: BattleSceneTable_ja
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ja
+  - m_GUID: 2862e902e44bb4e4799ed0c0fdc32d68
+    m_Address: StigmaInfoTable_ja
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ja
+  - m_GUID: 407a0e2f29809dc4885d80f01bf33093
+    m_Address: ProgressSceneTable_ja
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ja
+  - m_GUID: a7e8dc755305884489537ca72ca8c6c4
+    m_Address: ItemTable_ja
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ja
+  - m_GUID: 0038e454566327e49b52b20d10afe601
+    m_Address: MainSceneTable_ja
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ja
+  - m_GUID: db01537df4af0c24fae7e7faf42ea6a5
+    m_Address: StigmaNameTable_ja
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ja
+  - m_GUID: 9b8bce168b24ac543a89f53dd972e048
+    m_Address: EventSceneTable_ja
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ja
+  - m_GUID: 9d1bb5e07dbad734992fe9ed409f67df
+    m_Address: PlayerSkillInfoTable_ja
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ja
+  - m_GUID: e885ec15d1bbe5741b802214ebce6152
+    m_Address: ScriptNameTable_ja
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ja
+  - m_GUID: 82dea1b1ac58f324ea551bc8e0e0e168
+    m_Address: UnitTable_ja
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ja
+  - m_GUID: 9e64696f017e07445be6f3a28a6a313b
+    m_Address: SystemTable_ja
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ja
+  - m_GUID: 12fdf0b97279ae145a8cb99d0225b75f
+    m_Address: CutSceneTable_ja
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ja
+  - m_GUID: 0890f9fcb42989045be80b302ea0f548
+    m_Address: ScriptInfoTable_ja
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ja
+  - m_GUID: 3ba44a74c5600be408fb5d68d84ffb8c
+    m_Address: BuffInfoTable_ja
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ja
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: e59d82e1cf12e914686d0061a6f4ed71, type: 2}
   m_SchemaSet:
