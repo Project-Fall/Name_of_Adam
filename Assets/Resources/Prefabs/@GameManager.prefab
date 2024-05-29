@@ -599,7 +599,7 @@ MonoBehaviour:
       FallCurrentCount: 0
       FallMaxCount: 0
       ManaCost: 0
-    HallUnitID: 0
+    hallUnitID: -1
     IsMainDeck: 0
 --- !u!1 &7143347325917774965
 GameObject:

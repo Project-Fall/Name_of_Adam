@@ -11,7 +11,7 @@ public class LocaleManager : MonoBehaviour
     bool isChangingLanguage;
 
     int currentLocaleIndex;
-    /// <summary> 0 = EN, 1 = KR </summary>
+    /// <summary> 0 = EN, 1 = KR, 2 = JA </summary>
     public int CurrentLocaleIndex => currentLocaleIndex;
 
     public void Init()

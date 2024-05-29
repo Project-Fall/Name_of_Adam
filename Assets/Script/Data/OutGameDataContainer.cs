@@ -184,6 +184,9 @@ public class OutGameDataContainer : MonoBehaviour
         _data = JsonUtility.FromJson<OutGameData>(text.text);
         _data.Version = Application.version;
 
+        SetLanguage(2);
+        GameManager.Locale.LanguageChanged(GetLanguage());
+
         SetProgressInit();
         ReSetOption();
         SaveData();
