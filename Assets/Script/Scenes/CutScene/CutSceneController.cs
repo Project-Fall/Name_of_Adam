@@ -18,6 +18,8 @@ public class CutSceneController : MonoBehaviour
         string language = "EN";
         if (GameManager.OutGameData.GetLanguage() == 1)
             language = "KR";
+        else if (GameManager.OutGameData.GetLanguage() == 2)
+            language = "JA";
 
         cutSceneToDisplay = GameManager.Data.CutSceneToDisplay;
         videoClip = GameManager.Resource.Load<VideoClip>($"Video/VideoClip/{cutSceneToDisplay}_{language}");
