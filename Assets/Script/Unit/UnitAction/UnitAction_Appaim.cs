@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 
 public class UnitAction_Appaim : UnitAction
 {
@@ -56,7 +57,7 @@ public class UnitAction_Appaim : UnitAction
 
             if (hitUnits.Count > 0)
             {
-                ActionStart(attackUnit, hitUnits, new());
+                ActionStart(attackUnit, hitUnits.Distinct().ToList(), new());
             }
             else
             {

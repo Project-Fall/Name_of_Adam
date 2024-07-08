@@ -321,7 +321,7 @@ public class BattleManager : MonoBehaviour
         {
             unit.IsDoneMove = true;
             _phase.ChangePhase(_phase.Action);
-            SetTlieClickCoolDown(1f);
+            SetTlieClickCoolDown(0.4f);
         }
         else
             GameManager.Sound.Play("UI/ClickSFX/ClickFailSFX");
@@ -475,6 +475,9 @@ public class BattleManager : MonoBehaviour
 
     public void DirectAttack(BattleUnit attackUnit)
     {
+        if (attackUnit.Buff.CheckBuff(BuffEnum.Stun))
+            return;
+
         AttackPlayer(attackUnit);
     }
 
@@ -791,7 +794,8 @@ public class BattleManager : MonoBehaviour
             }
             else
             {
-                _field.ExitTile(current);
+                if (_field.IsInRange(current))
+                    _field.ExitTile(current);
                 _field.EnterTile(moveUnit, dest);
                 moveUnit.UnitMove(dest, moveSpeed);
             }
@@ -801,7 +805,7 @@ public class BattleManager : MonoBehaviour
             BattleUI.UI_TurnChangeButton.SetEnable(false);
         
         GameManager.Sound.Play("Move/MoveSFX");
-        
+
         return true;
     }
 
