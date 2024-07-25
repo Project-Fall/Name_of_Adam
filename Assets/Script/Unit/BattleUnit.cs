@@ -314,6 +314,7 @@ public class BattleUnit : MonoBehaviour
         _hpBar.RefreshHPBar(HP.FillAmount());
         _hpBar.RefreshFallBar(Fall.GetCurrentFallCount(), FallAnimMode.On);
 
+        BattleManager.Data.BattleUnitOrderSorting();
         BattleManager.Instance.ActiveTimingCheck(ActiveTiming.STIGMA, this);
 
         if (Buff.CheckBuff(BuffEnum.Benediction))

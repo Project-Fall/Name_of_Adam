@@ -2,14 +2,14 @@ using UnityEngine;
 
 public class Buff_Stigma_Regeneration : Buff
 {
-    int hpUp = 5;
+    int hpUp = 0;
     public override void Init(BattleUnit owner)
     {
         _buffEnum = BuffEnum.Regeneration;
 
-        _name = "재생력";
+        _name = "Regeneration";
 
-        _description = "해당 유닛의 턴이 끝날때마다 체력을 5 회복합니다.";
+        _description = "Regeneration Info";
 
         _count = -1;
 
@@ -35,6 +35,6 @@ public class Buff_Stigma_Regeneration : Buff
 
     public override void SetValue(int num)
     {
-        hpUp = num;
+        hpUp += num;
     }
 }

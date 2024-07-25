@@ -32,6 +32,7 @@ public class UI_WaitingLine : UI_Scene
         {
             _downButton.SetActive(false);
             _upButton.SetActive(false);
+            _waitingLinePage = 0;
         }
 
         CheckWaitingLineActive();
@@ -51,13 +52,14 @@ public class UI_WaitingLine : UI_Scene
             return;
         }
 
-        _waitingBattleUnitList = orderList;
         ClearWaitingLine();
 
         foreach (BattleUnit unit in orderList)
             AddUnit(unit);
 
         ButtonActive();
+
+        _waitingBattleUnitList = orderList;
     }
 
     private void ClearWaitingLine()

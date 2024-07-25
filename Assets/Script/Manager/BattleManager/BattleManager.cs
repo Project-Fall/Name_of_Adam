@@ -323,12 +323,13 @@ public class BattleManager : MonoBehaviour
             _phase.ChangePhase(_phase.Action);
             SetTlieClickCoolDown(0.4f);
         }
+        else if (coord == unit.Location)
+        {
+            _phase.ChangePhase(_phase.Action);
+            SetTlieClickCoolDown(0.2f);
+        }
         else
             GameManager.Sound.Play("UI/ClickSFX/ClickFailSFX");
-        //else if (coord == unit.Location)
-        //{
-        //    _phase.ChangePhase(_phase.Action);
-        //}
     }
 
     public void ActionPhaseClick(Vector2 coord)
@@ -476,7 +477,10 @@ public class BattleManager : MonoBehaviour
     public void DirectAttack(BattleUnit attackUnit)
     {
         if (attackUnit.Buff.CheckBuff(BuffEnum.Stun))
+        {
+            BattleManager.Instance.EndUnitAction();
             return;
+        }
 
         AttackPlayer(attackUnit);
     }
@@ -550,8 +554,8 @@ public class BattleManager : MonoBehaviour
 
     public void UnitFallEvent(BattleUnit unit)
     {
-        if (_phase.CurrentPhaseCheck(_phase.Prepare))
-            _battleData.BattleUnitOrderSorting();
+        //if (_phase.CurrentPhaseCheck(_phase.Prepare))
+        //    _battleData.BattleUnitOrderSorting();
 
         //if (GameManager.OutGameData.GetVisitDarkshop()==true)
         //    GameManager.OutGameData.GetNPCQuest().DarkshopQuest++;

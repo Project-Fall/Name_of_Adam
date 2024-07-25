@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Buff_Stigma_Blessing : Buff
 {
-    int _mana;
+    int _mana = 0;
 
     public override void Init(BattleUnit owner)
     {
@@ -36,6 +36,6 @@ public class Buff_Stigma_Blessing : Buff
 
     public override void SetValue(int num)
     {
-        _mana = num;
+        _mana += num;
     }
 }
