@@ -62,7 +62,8 @@ public class BattleManager : MonoBehaviour
         if (Input.GetMouseButtonDown(1) && _phase.CurrentPhaseCheck(Phase.Prepare))
         {
             //우클릭
-            _battleUI.CancelAllSelect();
+            if (GameManager.OutGameData.IsTutorialClear())
+                _battleUI.CancelAllSelect();
         }
 
         _phase.OnUpdate();
