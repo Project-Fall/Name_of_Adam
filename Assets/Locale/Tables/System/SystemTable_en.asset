@@ -34,7 +34,6 @@ MonoBehaviour:
       succeeded in defeating the King of all Mortals.
 
 
-
       However, your journey
       is not yet over. <color=yellow>A new light <color=white>awaits you beyond the
       horizon.'
@@ -44,10 +43,8 @@ MonoBehaviour:
     m_Localized: 'Congratulations, incarnation of darkness.
 
 
-
       You have overcome
       everything set against you. But the real challenge begins now.
-
 
 
       Test
@@ -119,7 +116,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 24928961360465920
-    m_Localized: You cannot delete the initial unit.
+    m_Localized: You cannot delete this unit.
     m_Metadata:
       m_Items: []
   - m_Id: 28538600321863680
@@ -168,10 +165,8 @@ MonoBehaviour:
     m_Localized: 'Congratulations,incarnation of darkness.
 
 
-
       You have finally
       defeated the Divine.
-
 
 
       However, a new light is rising from the abyss.

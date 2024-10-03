@@ -43,12 +43,13 @@ public class UI_UpgradeSelectButton : UI_Base
     public void OnHoverEnter()
     {
         _frame.GetComponent<Image>().color = new(0.8f, 0.8f, 0.8f);
-        _goldFrame.GetComponent<Image>().color = new(1f, 1f, 1f);
+        _goldFrame.GetComponent<Image>().color = new(0.8f, 0.8f, 0.8f);
     }
 
     public void OnHoverExit()
     {
-
+        _frame.GetComponent<Image>().color = new(1f, 1f, 1f);
+        _goldFrame.GetComponent<Image>().color = new(1f, 1f, 1f);
     }
 
     public void OnClick()
