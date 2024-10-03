@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private TMPro.TMP_Text _systemInfoText;
 
-    private readonly bool _onGM = true;
+    private readonly bool _onGM = false;
 
     private readonly bool _onDebug = false;
 
