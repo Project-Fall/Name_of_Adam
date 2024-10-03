@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: "\uC698"
   m_EditorClassIdentifier: 
   _rawStat:
-    MaxHP: 300
-    CurrentHP: 300
-    ATK: 25
+    MaxHP: 400
+    CurrentHP: 400
+    ATK: 40
     SPD: 0
     FallCurrentCount: 0
     FallMaxCount: 12

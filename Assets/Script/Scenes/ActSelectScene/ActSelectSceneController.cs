@@ -72,6 +72,8 @@ public class ActSelectSceneController : MonoBehaviour
             }
             else
             {
+                _actInfoChapterText[i].gameObject.SetActive(true);
+                _actInfoChapterImage[i].gameObject.SetActive(true);
                 _actInfoChapterText[i].text = GameManager.Locale.GetLocalizedActSelect($"ActInfoChapter_{key}_Chapter{i + 1}");
                 _actInfoChapterImage[i].sprite = GameManager.Resource.Load<Sprite>($"Arts/StageSelect/Node/{imageDic[act * 10 + (i + 1)]}");
             }

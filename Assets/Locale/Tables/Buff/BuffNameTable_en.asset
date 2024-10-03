@@ -138,6 +138,10 @@ MonoBehaviour:
     m_Localized: Awakening
     m_Metadata:
       m_Items: []
+  - m_Id: 86405420864917504
+    m_Localized: Glory
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

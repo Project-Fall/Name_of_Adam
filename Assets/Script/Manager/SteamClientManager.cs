@@ -164,8 +164,6 @@ public class SteamClientManager : MonoBehaviour
 
     public int GetCurrentGameLanguage()
     {
-        return 0;
-
         string language = SteamApps.GetCurrentGameLanguage();
         if (language == "koreana" || language == "ko")
             return 1;

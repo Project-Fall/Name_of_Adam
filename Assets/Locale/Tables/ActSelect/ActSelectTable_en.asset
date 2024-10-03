@@ -104,7 +104,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 903483641856
-    m_Localized: "\u2022 <b>Chapter 1 - Arbiter of Fate"
+    m_Localized: "\u2022 <b>Chapter 1</b> - Arbiter of Fate"
     m_Metadata:
       m_Items: []
   - m_Id: 924744568832
@@ -168,11 +168,11 @@ MonoBehaviour:
       your followers. Finally, through the Trial of Revelation, you seize your world
       of darkness in your hands.
 
-      
 
-      This trial is not merely a stage
-      to prove your strength; it is a grand finale where you discover your true essence
-      and forge your destiny with your own hands.
+
+      This trial is not merely a stage to prove
+      your strength; it is a grand finale where you discover your true essence and
+      forge your destiny with your own hands.
 
 '
     m_Metadata:

@@ -182,40 +182,402 @@ public class GameManager : MonoBehaviour
             GameManager.Data.AddDeckUnit(newUnit);
         }
 
-        if (Input.GetKeyDown(KeyCode.U))
-        {
-            DeckUnit newUnit = new();
-            newUnit.Data = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/욘");
-            newUnit.IsMainDeck = false;
-            newUnit.HallUnitID = -1;
 
-            GameManager.Data.AddDeckUnit(newUnit);
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            GameObject.Find("@UI_Root").AddComponent<CanvasGroup>().GetComponent<CanvasGroup>().alpha = 0f;
+            Cursor.visible = false;
         }
 
         if (Input.GetKeyDown(KeyCode.H))
         {
             SpawnData spawnData = new();
-            spawnData.unitData = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/욘");
+            spawnData.unitData = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/습격자");
+            spawnData.location = new(1, 2);
+            spawnData.team = Team.Player;
+
+            BattleManager.Spawner.SpawnDataSpawn(spawnData);
+
+            spawnData = new();
+            spawnData.unitData = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/흑기사");
+            spawnData.location = new(2, 1);
+            spawnData.team = Team.Player;
+
+            BattleManager.Spawner.SpawnDataSpawn(spawnData);
+
+            spawnData = new();
+            spawnData.unitData = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/엘리우스");
+            spawnData.location = new(4, 1);
+            spawnData.team = Team.Enemy;
+
+            BattleManager.Spawner.SpawnDataSpawn(spawnData);
+
+            spawnData = new();
+            spawnData.unitData = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/야나");
+            spawnData.location = new(5, 0);
+            spawnData.team = Team.Enemy;
+
+            BattleManager.Spawner.SpawnDataSpawn(spawnData);
+
+            while (true)
+            {
+                BattleUnit unit = BattleManager.Data.BattleUnitList.Find(x => x.Team == Team.Enemy && 
+                x.Data.ID != "습격자" && x.Data.ID != "엘리우스" && x.Data.ID != "야나");
+                if (unit == null)
+                    break;
+
+                unit.UnitDiedEvent();
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            SpawnData spawnData = new();
+            spawnData.unitData = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/전령");
+            spawnData.location = new(0, 0);
+            spawnData.team = Team.Player;
+
+            BattleManager.Spawner.SpawnDataSpawn(spawnData);
+
+            spawnData = new();
+            spawnData.unitData = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/리비엘");
+            spawnData.location = new(1, 1);
+            spawnData.team = Team.Player;
+
+            BattleManager.Spawner.SpawnDataSpawn(spawnData);
+
+            spawnData = new();
+            spawnData.unitData = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/노동자");
+            spawnData.location = new(2, 0);
+            spawnData.team = Team.Enemy;
+
+            BattleManager.Spawner.SpawnDataSpawn(spawnData);
+
+            spawnData = new();
+            spawnData.unitData = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/노동자");
+            spawnData.location = new(3, 1);
+            spawnData.team = Team.Enemy;
+
+            BattleManager.Spawner.SpawnDataSpawn(spawnData);
+
+            spawnData = new();
+            spawnData.unitData = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/집정관");
+            spawnData.location = new(5, 1);
+            spawnData.team = Team.Enemy;
+
+            BattleManager.Spawner.SpawnDataSpawn(spawnData);
+
+            while (true)
+            {
+                BattleUnit unit = BattleManager.Data.BattleUnitList.Find(x => x.Team == Team.Enemy &&
+                x.Data.ID != "노동자" && x.Data.ID != "집정관" && x.Data.ID != "리비엘");
+                if (unit == null)
+                    break;
+
+                unit.UnitDiedEvent();
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            SpawnData spawnData = new();
+            spawnData.unitData = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/습격자");
+            spawnData.location = new(1, 0);
+            spawnData.team = Team.Player;
+
+            BattleManager.Spawner.SpawnDataSpawn(spawnData);
+
+            spawnData = new();
+            spawnData.unitData = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/흑기사");
+            spawnData.location = new(2, 1);
+            spawnData.team = Team.Player;
+
+            BattleManager.Spawner.SpawnDataSpawn(spawnData);
+
+            spawnData = new();
+            spawnData.unitData = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/처형자");
+            spawnData.location = new(3, 1);
+            spawnData.team = Team.Enemy;
+
+            BattleManager.Spawner.SpawnDataSpawn(spawnData);
+
+            spawnData = new();
+            spawnData.unitData = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/암살자");
             spawnData.location = new(5, 2);
             spawnData.team = Team.Enemy;
 
             BattleManager.Spawner.SpawnDataSpawn(spawnData);
 
-            spawnData.unitData = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/집정관");
-            spawnData.location = new(2, 2);
+            while (true)
+            {
+                BattleUnit unit = BattleManager.Data.BattleUnitList.Find(x => x.Team == Team.Enemy &&
+                x.Data.ID != "처형자" && x.Data.ID != "암살자");
+                if (unit == null)
+                    break;
+
+                unit.UnitDiedEvent();
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            SpawnData spawnData = new();
+            spawnData.unitData = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/주시자");
+            spawnData.location = new(0, 0);
+            spawnData.team = Team.Player;
+
+            BattleManager.Spawner.SpawnDataSpawn(spawnData);
+
+            spawnData = new();
+            spawnData.unitData = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/주시자");
+            spawnData.location = new(1, 1);
+            spawnData.team = Team.Player;
+
+            BattleManager.Spawner.SpawnDataSpawn(spawnData);
+
+            spawnData = new();
+            spawnData.unitData = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/아라벨라");
+            spawnData.location = new(4, 1);
             spawnData.team = Team.Enemy;
 
             BattleManager.Spawner.SpawnDataSpawn(spawnData);
 
-            spawnData.unitData = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/흑기사");
-            spawnData.location = new(1, 2);
+            spawnData = new();
+            spawnData.unitData = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/망각의_덤불");
+            spawnData.location = new(3, 1);
+            spawnData.team = Team.Enemy;
+
+            BattleManager.Spawner.SpawnDataSpawn(spawnData);
+
+            spawnData = new();
+            spawnData.unitData = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/망각의_덤불");
+            spawnData.location = new(5, 1);
+            spawnData.team = Team.Enemy;
+
+            BattleManager.Spawner.SpawnDataSpawn(spawnData);
+
+            spawnData = new();
+            spawnData.unitData = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/망각의_덤불");
+            spawnData.location = new(4, 0);
+            spawnData.team = Team.Enemy;
+
+            BattleManager.Spawner.SpawnDataSpawn(spawnData);
+
+            spawnData = new();
+            spawnData.unitData = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/망각의_덤불");
+            spawnData.location = new(4, 2);
+            spawnData.team = Team.Enemy;
+
+            BattleManager.Spawner.SpawnDataSpawn(spawnData);
+
+            while (true)
+            {
+                BattleUnit unit = BattleManager.Data.BattleUnitList.Find(x => x.Team == Team.Enemy &&
+                x.Data.ID != "망각의_덤불" && x.Data.ID != "아라벨라" && x.Data.ID != "야나");
+                if (unit == null)
+                    break;
+
+                unit.UnitDiedEvent();
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            SpawnData spawnData = new();
+            spawnData.unitData = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/주시자");
+            spawnData.location = new(1, 0);
+            spawnData.team = Team.Player;
+
+            BattleManager.Spawner.SpawnDataSpawn(spawnData);
+
+            spawnData = new();
+            spawnData.unitData = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/노동자");
+            spawnData.location = new(1, 1);
+            spawnData.team = Team.Player;
+
+            BattleManager.Spawner.SpawnDataSpawn(spawnData);
+
+            spawnData = new();
+            spawnData.unitData = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/아라벨라");
+            spawnData.location = new(4, 1);
+            spawnData.team = Team.Enemy;
+
+            BattleManager.Spawner.SpawnDataSpawn(spawnData);
+
+            spawnData = new();
+            spawnData.unitData = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/망각의_덤불");
+            spawnData.location = new(3, 1);
+            spawnData.team = Team.Enemy;
+
+            BattleManager.Spawner.SpawnDataSpawn(spawnData);
+
+            spawnData = new();
+            spawnData.unitData = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/망각의_덤불");
+            spawnData.location = new(5, 1);
+            spawnData.team = Team.Enemy;
+
+            BattleManager.Spawner.SpawnDataSpawn(spawnData);
+
+            spawnData = new();
+            spawnData.unitData = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/망각의_덤불");
+            spawnData.location = new(4, 0);
+            spawnData.team = Team.Enemy;
+
+            BattleManager.Spawner.SpawnDataSpawn(spawnData);
+
+            spawnData = new();
+            spawnData.unitData = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/망각의_덤불");
+            spawnData.location = new(4, 2);
+            spawnData.team = Team.Enemy;
+
+            BattleManager.Spawner.SpawnDataSpawn(spawnData);
+
+            while (true)
+            {
+                BattleUnit unit = BattleManager.Data.BattleUnitList.Find(x => x.Team == Team.Enemy &&
+                x.Data.ID != "망각의_덤불" && x.Data.ID != "아라벨라" && x.Data.ID != "야나");
+                if (unit == null)
+                    break;
+
+                unit.UnitDiedEvent();
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            SpawnData spawnData = new();
+            spawnData.unitData = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/야나");
+            spawnData.location = new(1, 1);
+            spawnData.team = Team.Player;
+
+            BattleManager.Spawner.SpawnDataSpawn(spawnData);
+
+            spawnData = new();
+            spawnData.unitData = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/라헬&레아");
+            spawnData.location = new(3, 1);
+            spawnData.team = Team.Enemy;
+
+            BattleManager.Spawner.SpawnDataSpawn(spawnData);
+
+            spawnData = new();
+            spawnData.unitData = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/쌍생아");
+            spawnData.location = new(2, 0);
             spawnData.team = Team.Player;
 
             BattleManager.Spawner.SpawnDataSpawn(spawnData);
 
             while (true)
             {
-                BattleUnit unit = BattleManager.Data.BattleUnitList.Find(x => x.Team == Team.Enemy && x.Data.ID != "욘" && x.Data.ID != "주시자" && x.Data.ID != "집정관");
+                BattleUnit unit = BattleManager.Data.BattleUnitList.Find(x => x.Team == Team.Enemy &&
+                x.Data.ID != "망각의_덤불" && x.Data.ID != "라헬&레아" && x.Data.ID != "야나");
+                if (unit == null)
+                    break;
+
+                unit.UnitDiedEvent();
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            SpawnData spawnData = new();
+            spawnData.unitData = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/그을린_자");
+            spawnData.location = new(1, 1);
+            spawnData.team = Team.Player;
+
+            BattleManager.Spawner.SpawnDataSpawn(spawnData);
+
+            spawnData = new();
+            spawnData.unitData = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/라헬&레아");
+            spawnData.location = new(3, 1);
+            spawnData.team = Team.Enemy;
+
+            BattleManager.Spawner.SpawnDataSpawn(spawnData);
+
+            spawnData = new();
+            spawnData.unitData = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/쌍생아");
+            spawnData.location = new(2, 0);
+            spawnData.team = Team.Player;
+
+            BattleManager.Spawner.SpawnDataSpawn(spawnData);
+
+            while (true)
+            {
+                BattleUnit unit = BattleManager.Data.BattleUnitList.Find(x => x.Team == Team.Enemy &&
+                x.Data.ID != "망각의_덤불" && x.Data.ID != "라헬&레아" && x.Data.ID != "야나");
+                if (unit == null)
+                    break;
+
+                unit.UnitDiedEvent();
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            SpawnData spawnData = new();
+            spawnData.unitData = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/도살자");
+            spawnData.location = new(0, 1);
+            spawnData.team = Team.Player;
+
+            BattleManager.Spawner.SpawnDataSpawn(spawnData);
+
+            spawnData = new();
+            spawnData.unitData = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/괴인");
+            spawnData.location = new(1, 2);
+            spawnData.team = Team.Player;
+
+            BattleManager.Spawner.SpawnDataSpawn(spawnData);
+
+            spawnData = new();
+            spawnData.unitData = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/처형자");
+            spawnData.location = new(2, 1);
+            spawnData.team = Team.Enemy;
+
+            BattleManager.Spawner.SpawnDataSpawn(spawnData).ChangeFall(2, null);
+
+            spawnData = new();
+            spawnData.unitData = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/수녀");
+            spawnData.location = new(4, 0);
+            spawnData.team = Team.Enemy;
+
+            BattleManager.Spawner.SpawnDataSpawn(spawnData);
+
+            spawnData = new();
+            spawnData.unitData = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/수녀");
+            spawnData.location = new(4, 2);
+            spawnData.team = Team.Enemy;
+
+            BattleManager.Spawner.SpawnDataSpawn(spawnData);
+
+            while (true)
+            {
+                BattleUnit unit = BattleManager.Data.BattleUnitList.Find(x => x.Team == Team.Enemy &&
+                x.Data.ID != "수녀" && x.Data.ID != "처형자" && x.Data.ID != "야나");
+                if (unit == null)
+                    break;
+
+                unit.UnitDiedEvent();
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            SpawnData spawnData = new();
+            spawnData.unitData = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/구원자");
+            spawnData.location = new(4, 1);
+            spawnData.team = Team.Enemy;
+
+            BattleManager.Spawner.SpawnDataSpawn(spawnData);
+
+            spawnData = new();
+            spawnData.unitData = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/희생의_꽃");
+            spawnData.location = new(3, 2);
+            spawnData.team = Team.Enemy;
+
+            BattleManager.Spawner.SpawnDataSpawn(spawnData);
+
+            spawnData = new();
+            spawnData.unitData = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/희생의_꽃");
+            spawnData.location = new(3, 0);
+            spawnData.team = Team.Enemy;
+
+            BattleManager.Spawner.SpawnDataSpawn(spawnData);
+
+            while (true)
+            {
+                BattleUnit unit = BattleManager.Data.BattleUnitList.Find(x => x.Team == Team.Enemy &&
+                x.Data.ID != "구원자" && x.Data.ID != "희생의_꽃");
                 if (unit == null)
                     break;
 
@@ -223,17 +585,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            SpawnData spawnData = new();
-            spawnData.unitData = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/리비엘");
-            spawnData.location = new(4, 1);
-            spawnData.team = Team.Enemy;
-
-            BattleManager.Spawner.SpawnDataSpawn(spawnData);
-        }
-
-        if (Input.GetKeyDown(KeyCode.K))
+        if (Input.GetKeyDown(KeyCode.I))
         {
             GameObject.Find("@GameManager").transform.Find("IngameDebugConsole").gameObject.SetActive(true);
         }

@@ -135,6 +135,10 @@ MonoBehaviour:
     m_Key: Scale
     m_Metadata:
       m_Items: []
+  - m_Id: 86405420864917504
+    m_Key: Glory
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

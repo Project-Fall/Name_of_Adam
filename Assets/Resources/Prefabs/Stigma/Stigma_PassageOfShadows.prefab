@@ -52,4 +52,4 @@ MonoBehaviour:
   _description: PassageOfShadows Info
   _activeTiming: 2
   _tier: 1
-  _isLock: 0
+  _isLock: 1

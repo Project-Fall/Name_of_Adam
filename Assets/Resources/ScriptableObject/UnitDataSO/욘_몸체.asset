@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: "\uC698_\uBAB8\uCCB4"
   m_EditorClassIdentifier: 
   _rawStat:
-    MaxHP: 30
-    CurrentHP: 30
-    ATK: 25
+    MaxHP: 40
+    CurrentHP: 40
+    ATK: 40
     SPD: 0
     FallCurrentCount: 0
     FallMaxCount: 3
@@ -30,7 +30,7 @@ MonoBehaviour:
   _corruptImage: {fileID: 21300000, guid: 0ab612279335010419092076fcfb7460, type: 3}
   _portraitImage: {fileID: 21300000, guid: 61c1c95e4db16774eb876e7ffe0919a9, type: 3}
   _corruptPortraitImage: {fileID: 21300000, guid: 0969136dc93e82742a9c09ff5fc16d08, type: 3}
-  _diaPortraitImage: {fileID: 21300000, guid: ed461ca39310a2c46b3bcd38deeb4ae4, type: 3}
+  _diaPortraitImage: {fileID: 21300000, guid: 54a9d957b50d51247868e466f24c6702, type: 3}
   _corruptDiaPortraitImage: {fileID: 21300000, guid: ed461ca39310a2c46b3bcd38deeb4ae4, type: 3}
   _animatorController: {fileID: 9100000, guid: f03781ed82925bf408f57b62c4d49be3, type: 2}
   _corruptionAnimatorController: {fileID: 9100000, guid: d5facb7f4acbe3f488b9afeef09b508b, type: 2}

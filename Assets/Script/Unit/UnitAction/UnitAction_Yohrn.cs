@@ -690,6 +690,7 @@ public class UnitAction_Yohrn : UnitAction
                 }
             }
         }
+
         return splashRangeList;
     }
 
