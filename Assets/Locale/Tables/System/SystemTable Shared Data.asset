@@ -147,6 +147,14 @@ MonoBehaviour:
     m_Key: NewUnitHallSaveConfirm
     m_Metadata:
       m_Items: []
+  - m_Id: 73743009414533120
+    m_Key: DemoClear
+    m_Metadata:
+      m_Items: []
+  - m_Id: 73743133356216320
+    m_Key: DemoClearToolTip
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

@@ -52,10 +52,10 @@ public class SaveController : MonoBehaviour
     private const string encryptionKey = "EncryptSaveData!@#$%^&*()_+";
 
     //데모용
-    //private const string SaveDataFileName = "867755930112.dat";
+    private const string SaveDataFileName = "867755930112.dat";
 
     //출시용
-    private const string SaveDataFileName = "867755930113.dat";
+    //private const string SaveDataFileName = "867755930113.dat";
 
     string path;
 

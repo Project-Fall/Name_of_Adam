@@ -39,5 +39,12 @@ public class ShopNode : MonoBehaviour
             Block.SetActive(false);
         }
 
+        #region Demo Àü¿ë
+        if (ItemID == 11 || ItemID == 53 || ItemID == 61 || ItemID == 71)
+        {
+            NodeImage.sprite = GameManager.Resource.Load<Sprite>($"Arts/UI/ProgressShop/wlscjreh_icon_02_lock");
+            Block.SetActive(true);
+        }
+        #endregion
     }
 }

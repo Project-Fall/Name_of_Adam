@@ -63,6 +63,7 @@ public class HarlotSceneController : MonoBehaviour, StigmaInterface
         Debug.Log($"횟수: {GameManager.OutGameData.Data.SacrificeCorruptValue}");
 
         int questLevel = Mathf.Min((int)(GameManager.OutGameData.Data.SacrificeCorruptValue / 20f), 4);
+        questLevel = 0;
         if (questLevel == 4 && GameManager.OutGameData.Data.SaviorClear && !GameManager.OutGameData.Data.IsBaptismCorrupt)
         {
             GameManager.OutGameData.Data.IsBaptismCorrupt = true;
