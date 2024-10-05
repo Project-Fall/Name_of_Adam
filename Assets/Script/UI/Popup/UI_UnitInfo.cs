@@ -364,7 +364,11 @@ public class UI_UnitInfo : UI_Popup
 
     public override bool ESCAction()
     {
-        if (_currentEvent == CurrentEvent.Complate_Apostle)
+        Debug.Log(_currentEvent);
+        if (_currentEvent == CurrentEvent.Complate_Apostle || 
+            _currentEvent == CurrentEvent.Complate_Stigmata ||
+            _currentEvent == CurrentEvent.Complete_Upgrade ||
+            _currentEvent == CurrentEvent.Complete_Heal_Faith)
             return false;
 
         GameManager.UI.ClosePopup();
