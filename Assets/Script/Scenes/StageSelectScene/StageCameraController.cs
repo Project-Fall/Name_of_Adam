@@ -90,7 +90,7 @@ public class StageCameraController : MonoBehaviour
         transform.position = _bottomPosition;
         yield return null;
 
-        if (GameManager.Data.StageAct == 2)
+        if (GameManager.Data.StageAct == 1)
         {
             GameManager.UI.ShowPopup<UI_SystemInfo>().Init("DemoClear", "DemoClearToolTip", () =>
             {

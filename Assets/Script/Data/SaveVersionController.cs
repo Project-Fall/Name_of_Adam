@@ -52,6 +52,13 @@ public class SaveVersionController
             return;
         }
 
+        if ("1.1.0-demo" != userVersion)
+        {
+            GameManager.SaveManager.DeleteSaveData();
+            GameManager.OutGameData.DeleteAllData();
+            GameManager.OutGameData.Init();
+        }
+
         // 버전은 순차적(Linearly)으로 업데이트 되어야 합니다.
         while (userVersion.Equals(Application.version) == false)
         {

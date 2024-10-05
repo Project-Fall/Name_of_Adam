@@ -290,7 +290,7 @@ public class StageManager : MonoBehaviour
 
     public void StageMouseClick(Stage stage)
     {
-        if (GameManager.Data.StageAct == 2)
+        if (GameManager.Data.StageAct == 1)
         {
             return;
         }
