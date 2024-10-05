@@ -3,8 +3,6 @@ using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Unity.VisualScripting;
-
 
 [Serializable]
 public class SaveData
@@ -18,6 +16,7 @@ public class SaveData
     public Progress ProgressData;
     public int StageAct;
     public Vector3 StageDivine;
+    public int CurrentAct;
 }
 
 [Serializable]
@@ -72,15 +71,15 @@ public class SaveController : MonoBehaviour
         List<SaveUnit> saveDeckUnitList = new();
         List<SaveUnit> saveFallenUnitList = new();
         SaveData newData = new();
-        GameData CurGameData = GameManager.Data.GameData;
+        GameData curGameData = GameManager.Data.GameData;
 
-        foreach (DeckUnit unit in CurGameData.DeckUnits)
+        foreach (DeckUnit unit in curGameData.DeckUnits)
         {
             SaveUnit saveUnit = unit.ConventToSaveUnit();
             saveDeckUnitList.Add(saveUnit);
         }
 
-        foreach (DeckUnit unit in CurGameData.FallenUnits)
+        foreach (DeckUnit unit in curGameData.FallenUnits)
         {
             SaveUnit saveUnit = unit.ConventToSaveUnit();
             saveFallenUnitList.Add(saveUnit);
@@ -89,12 +88,13 @@ public class SaveController : MonoBehaviour
         newData.MapData = GameManager.Data.GetMapSaveData();
         newData.DeckUnitData = saveDeckUnitList;
         newData.FallenUnitsData = saveFallenUnitList;
-        newData.IncarnaID = CurGameData.Incarna.ID;
-        newData.DarkEssence = CurGameData.DarkEssence;
-        newData.PlayerHP = CurGameData.PlayerHP;
-        newData.ProgressData = CurGameData.Progress;
+        newData.IncarnaID = curGameData.Incarna.ID;
+        newData.DarkEssence = curGameData.DarkEssence;
+        newData.PlayerHP = curGameData.PlayerHP;
+        newData.ProgressData = curGameData.Progress;
         newData.StageAct = GameManager.Data.StageAct;
-        newData.StageDivine = CurGameData.StageDivine;
+        newData.StageDivine = curGameData.StageDivine;
+        newData.CurrentAct = curGameData.CurrentAct;
 
         string json = JsonUtility.ToJson(newData, true);
 
@@ -159,6 +159,7 @@ public class SaveController : MonoBehaviour
         GameManager.Data.GameData.Progress = loadData.ProgressData;
         GameManager.Data.StageAct = loadData.StageAct;
         GameManager.Data.GameData.StageDivine = loadData.StageDivine;
+        GameManager.Data.GameData.CurrentAct = loadData.CurrentAct;
     }
 
     // 저장된 데이터가 있는지 확인

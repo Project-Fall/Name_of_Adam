@@ -137,7 +137,7 @@ public class UnitAction_Appaim : UnitAction
         {
             _isStateUpdate = false;
         }
-        else if (((activeTiming & ActiveTiming.AFTER_ATTACK) == ActiveTiming.AFTER_ATTACK || (activeTiming & ActiveTiming.ATTACK_TURN_END) == ActiveTiming.ATTACK_TURN_END) && !_isStateUpdate)
+        else if (((activeTiming & ActiveTiming.ATTACK_TURN_END) == ActiveTiming.ATTACK_TURN_END) && !_isStateUpdate)
         {
             _isStateUpdate = true;
 

@@ -31,8 +31,6 @@ public class UnitAction_Yohrn : UnitAction
 
     public override void AIMove(BattleUnit attackUnit)
     {
-        _isBattleMove = true;
-        _isEndAction = false;
         UnitMoveAction(attackUnit);
     }
 
@@ -383,6 +381,31 @@ public class UnitAction_Yohrn : UnitAction
         _portalDict.Add(location, portal);
     }
 
+    private void SetFieldColor()
+    {
+        foreach (BattleUnit subUnit in _subUnitList)
+        {
+            Tile tile = BattleManager.Field.TileDict[subUnit.Location];
+            tile.IsColored = true;
+            tile.SetColor(BattleManager.Field.ColorList(FieldColorType.Attack));
+
+            if (!subUnit.Buff.CheckBuff(BuffEnum.Scale))
+                continue;
+
+            foreach (Vector2 vec in _upDownCoord)
+            {
+                Vector2 targetLocation = vec + subUnit.Location;
+
+                if (BattleManager.Field.IsInRange(targetLocation))
+                {
+                    tile = BattleManager.Field.TileDict[targetLocation];
+                    tile.IsColored = true;
+                    tile.SetColor(BattleManager.Field.ColorList(FieldColorType.Attack));
+                }
+            }
+        }
+    }
+
     public IEnumerator UnitPortalMoveAnimation(BattleUnit unit, Vector2 moverLocation)
     {
         yield return BattleManager.Instance.StartCoroutine(UnitPortalMoveAnimationCoroutine(unit, true));
@@ -481,26 +504,15 @@ public class UnitAction_Yohrn : UnitAction
         }
         else if ((activeTiming & ActiveTiming.ATTACK_TURN_START) == ActiveTiming.ATTACK_TURN_START)
         {
-            foreach (BattleUnit subUnit in _subUnitList)
+            if (_actionBlock)
             {
-                Tile tile = BattleManager.Field.TileDict[subUnit.Location];
-                tile.IsColored = true;
-                tile.SetColor(BattleManager.Field.ColorList(FieldColorType.Attack));
-
-                if (!subUnit.Buff.CheckBuff(BuffEnum.Scale))
-                    continue;
-
-                foreach (Vector2 vec in _upDownCoord)
-                {
-                    Vector2 targetLocation = vec + subUnit.Location;
-
-                    if (BattleManager.Field.IsInRange(targetLocation))
-                    {
-                        tile = BattleManager.Field.TileDict[targetLocation];
-                        tile.IsColored = true;
-                        tile.SetColor(BattleManager.Field.ColorList(FieldColorType.Attack));
-                    }
-                }
+                GameManager.Instance.PlayAfterCoroutine(() => {
+                    SetFieldColor();
+                }, 1f);
+            }
+            else 
+            {
+                SetFieldColor();
             }
         }
         else if ((activeTiming & ActiveTiming.ATTACK_TURN_END) == ActiveTiming.ATTACK_TURN_END)
@@ -510,6 +522,9 @@ public class UnitAction_Yohrn : UnitAction
         }
         else if ((activeTiming & ActiveTiming.MOVE_TURN_START) == ActiveTiming.MOVE_TURN_START)
         {
+            _isBattleMove = true;
+            _isEndAction = false;
+
             if (caster.Team == Team.Player)
             {
                 UnitMoveAction(caster);
