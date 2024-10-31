@@ -64,9 +64,9 @@ public class HarlotSceneController : MonoBehaviour, StigmaInterface
 
         int questLevel = Mathf.Min((int)(GameManager.OutGameData.Data.SacrificeCorruptValue / 20f), 4);
         questLevel = 0;
-        if (questLevel == 4 && GameManager.OutGameData.Data.SaviorClear && !GameManager.OutGameData.Data.IsBaptismCorrupt)
+        if (questLevel == 4 && GameManager.OutGameData.Data.SaviorClear && !GameManager.OutGameData.Data.IsSacrificeCorrupt)
         {
-            GameManager.OutGameData.Data.IsBaptismCorrupt = true;
+            GameManager.OutGameData.Data.IsSacrificeCorrupt = true;
             /*
             DeckUnit unit = new()
             {
@@ -82,7 +82,7 @@ public class HarlotSceneController : MonoBehaviour, StigmaInterface
             */
         }
 
-        if (GameManager.OutGameData.Data.IsBaptismCorrupt)
+        if (GameManager.OutGameData.Data.IsSacrificeCorrupt)
         {
             _normalBackground.SetActive(false);
             _corruptBackground.SetActive(true);
@@ -152,7 +152,7 @@ public class HarlotSceneController : MonoBehaviour, StigmaInterface
     //사도 연성 버튼 클릭
     public void OnApostleCreationButtonClick()
     {
-        string corruption = (GameManager.OutGameData.Data.IsBaptismCorrupt) ? "Corrupt" : "Normal";
+        string corruption = (GameManager.OutGameData.Data.IsSacrificeCorrupt) ? "Corrupt" : "Normal";
 
         GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
         GameManager.UI.ShowPopup<UI_SystemSelect>().Init($"ApostleCreation_{corruption}", YesApostleCreationButtonClick);

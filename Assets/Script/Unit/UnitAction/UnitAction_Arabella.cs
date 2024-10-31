@@ -132,8 +132,11 @@ public class UnitAction_Arabella : UnitAction
 
             foreach (Vector2 tile in tileList)
             {
-                BattleManager.Field.TileDict[tile].IsColored = true;
-                BattleManager.Field.TileDict[tile].SetColor(BattleManager.Field.ColorList(FieldColorType.Attack));
+                if (BattleManager.Field.IsInRange(tile))
+                {
+                    BattleManager.Field.TileDict[tile].IsColored = true;
+                    BattleManager.Field.TileDict[tile].SetColor(BattleManager.Field.ColorList(FieldColorType.Attack));
+                }
             }
         }
 

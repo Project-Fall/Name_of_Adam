@@ -204,7 +204,8 @@ public class Field : MonoBehaviour
     {
         foreach (Vector2 vec in vectorList)
         {
-            _tileDict[vec].SetEffect(effectType);
+            if (IsInRange(vec))
+                _tileDict[vec].SetEffect(effectType);
         }
     }
 
@@ -408,7 +409,8 @@ public class Field : MonoBehaviour
 
         foreach (Vector2 range in currentUnit.Action.GetSplashRangeForField(currentUnit, tile, currentUnit.Location))
         {
-            BattleManager.Field.TileDict[range].SetRangeHightlight(true);
+            if (BattleManager.Field.IsInRange(range))
+                BattleManager.Field.TileDict[range].SetRangeHightlight(true);
         }
     }
 

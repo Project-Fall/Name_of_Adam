@@ -147,6 +147,16 @@ MonoBehaviour:
     m_Key: NewUnitHallSaveConfirm
     m_Metadata:
       m_Items: []
+  - m_Id: 75748344421568512
+    m_Key: HallDeleteCannotSelectedTooltip
+    m_Metadata:
+      m_Items: []
+  - m_Id: 75748872299892736
+    m_Key: HallDeleteCannotOriginTooltip
+    m_Metadata:
+      m_Items: []
+  - m_Id: 75749561084301312
+    m_Key: HallDeleteCannotOnlyUnitTooltip
   - m_Id: 73743009414533120
     m_Key: DemoClear
     m_Metadata:

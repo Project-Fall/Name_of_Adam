@@ -162,7 +162,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 63829019011993600
-    m_Localized: 'Congratulations,incarnation of darkness.
+    m_Localized: 'Congratulations, incarnation of darkness.
 
 
       You have finally
@@ -180,7 +180,7 @@ MonoBehaviour:
   - m_Id: 69564355734294528
     m_Localized: "Within the Divine Hall, you can see the units you inducted throughout
       your journey. At the journey\u2019s end, you may induct one among the units
-      you earned into the Divine Hall. Inducted units can fo llow you in your journeys
+      you earned into the Divine Hall. Inducted units can follow you in your journeys
       to come."
     m_Metadata:
       m_Items: []
@@ -197,9 +197,9 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 69564838670651392
-    m_Localized: "These are the 'Souls' you collected during this jo urney. Souls
+    m_Localized: "These are the 'Souls' you collected during this journey. Souls
       can be earned by vanquishing foes or by fulfilling certain conditions. Souls
-      can be us ed in the \u2018Sanctum\u2019 at the main menu."
+      can be used in the \u2018Sanctum\u2019 at the main menu."
     m_Metadata:
       m_Items: []
   - m_Id: 72060608274817024
@@ -211,6 +211,16 @@ MonoBehaviour:
     m_Localized: "Would you like to register this unit at the Divine Hall?\r"
     m_Metadata:
       m_Items: []
+  - m_Id: 75748344421568512
+    m_Localized: This unit is selected for the journey.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 75748872299892736
+    m_Localized: This unit is default unit.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 75749561084301312
+    m_Localized: This unit can only get once.
   - m_Id: 73743009414533120
     m_Localized: "You are currently playing the <color=#FF9696>Demo version<color=white>.
       \n\nIn the full version, you can face more powerful Elite enemies and even

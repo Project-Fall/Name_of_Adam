@@ -4,9 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using Steamworks;
 
 public class UI_Option : UI_Popup
 {
+    [SerializeField] private TextMeshProUGUI _version;
+
     [SerializeField] private TMP_Dropdown _resolutionDropdown;
     [SerializeField] private TMP_Dropdown _languageDropdown;
     [SerializeField] private Toggle _windowToggle;
@@ -49,6 +52,8 @@ public class UI_Option : UI_Popup
 
     private void InitUI()
     {
+        _version.text = GameManager.OutGameData.Data.Version;
+
         // 저장된 데이터 불러오기
         _resolutions = GameManager.OutGameData.GetAllResolution();
         _currentLanguage = GameManager.OutGameData.Data.Language;

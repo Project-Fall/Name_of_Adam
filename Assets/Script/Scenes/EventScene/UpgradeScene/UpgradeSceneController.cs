@@ -52,7 +52,7 @@ public class UpgradeSceneController : MonoBehaviour
             {
                 Data = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/믿음을_저버린_자"),
                 IsMainDeck = false,
-                PrivateKey = "Origin_Betrayer_Of_Faith",
+                PrivateKey = "OnlyUnit_Betrayer_Of_Faith",
                 HallUnitID = -1
             };
 

@@ -23,7 +23,8 @@ public class SaveVersionController
         "1.0.2v",
         "1.0.3v",
         "1.0.4v",
-        "1.1.0v"
+        "1.1.0v",
+        "1.1.0.1v"
     };
 
     public bool IsValildVersion()
@@ -238,7 +239,24 @@ public class SaveVersionController
 
                         hallUnit.Upgrades = updateUpgrades;
                     }
+                    break;
 
+                case "1.1.0v":
+                    Debug.Log("Betrayer_Of_Faith Key Check");
+                    foreach (HallUnit unit in GameManager.OutGameData.FindHallUnitList())
+                        if (unit.UnitName == "믿음을_저버린_자")
+                            unit.PrivateKey = "OnlyUnit_Betrayer_Of_Faith";
+                    
+                    //SaveData saveData110 = GameManager.SaveManager.GetSaveData();
+                    //foreach (SaveUnit unit in saveData110.DeckUnitData)
+                    //    if (unit.UnitDataID == "믿음을_저버린_자")
+                    //        unit.PrivateKey = "OnlyUnit_Betrayer_Of_Faith";
+                    //
+                    //foreach (SaveUnit unit in saveData110.FallenUnitsData)
+                    //    if (unit.UnitDataID == "믿음을_저버린_자")
+                    //        unit.PrivateKey = "OnlyUnit_Betrayer_Of_Faith";
+                    //
+                    //GameManager.SaveManager.SaveData(saveData110);
                     break;
             }
 

@@ -292,8 +292,11 @@ public class UnitAction_Phanuel : UnitAction
         {
             foreach (Vector2 tile in _attackTile)
             {
-                BattleManager.Field.TileDict[tile].IsColored = true;
-                BattleManager.Field.TileDict[tile].SetColor(BattleManager.Field.ColorList(FieldColorType.Attack));
+                if (BattleManager.Field.IsInRange(tile))
+                {
+                    BattleManager.Field.TileDict[tile].IsColored = true;
+                    BattleManager.Field.TileDict[tile].SetColor(BattleManager.Field.ColorList(FieldColorType.Attack));
+                }
             }
         }
         else if ((activeTiming & ActiveTiming.ATTACK_TURN_END) == ActiveTiming.ATTACK_TURN_END)

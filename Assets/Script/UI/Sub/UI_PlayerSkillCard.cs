@@ -45,19 +45,26 @@ public class UI_PlayerSkillCard : UI_Base, IPointerEnterHandler, IPointerExitHan
         }
     }
 
+    private UI_PlayerSkillInfo _skillInfo;
+
     public void OnPointerEnter(PointerEventData eventData)
     {
         _skillCard.transform.localScale = new Vector3(1.15f, 1.15f, 1.15f);
-        GameManager.UI.ShowHover<UI_SkillHover>().SetSkillHover(_skill.GetName(), _skill.GetManaCost(), _skill.GetDarkEssenceCost(), _skill.GetDescription(), eventData.position);
-        //_highlight.SetActive(true);
+        //GameManager.UI.ShowHover<UI_SkillHover>().SetSkillHover(_skill.GetName(), _skill.GetManaCost(), _skill.GetDarkEssenceCost(), _skill.GetDescription(), eventData.position);
+
+        _skillInfo = GameManager.UI.ShowScene<UI_PlayerSkillInfo>();
+        _skillInfo.SetInfo(_skill);
+        _skillInfo.SetPosition(this.transform.position + new Vector3(-100f,700f,0));
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        GameManager.UI.CloseHover();
+        Destroy(_skillInfo.gameObject);
+        //GameManager.UI.CloseHover();
         if (IsSelected)
             return;
         _skillCard.transform.localScale = new Vector3(1f, 1f, 1f);
+
         //_highlight.SetActive(false);
     }
 

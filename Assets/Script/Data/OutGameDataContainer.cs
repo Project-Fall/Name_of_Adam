@@ -160,9 +160,36 @@ public class OutGameDataContainer : MonoBehaviour
 
     public void SaveData()
     {
+        DataIntegrityCheck();
+
         string json = JsonUtility.ToJson(Data, true);
         File.WriteAllText(_path, EncryptAndDecrypt(json));
         //File.WriteAllText(Path.Combine(Application.persistentDataPath, OutGameDataFileNameReadable), json);
+    }
+
+    public void DataIntegrityCheck()
+    {
+        List<HallUnit> mainDeckHallUnits = new();
+
+        foreach (HallUnit hallUnit in Data.HallUnit)
+        {
+            if (hallUnit.IsMainDeck)
+            {
+                mainDeckHallUnits.Add(hallUnit);
+            }
+        }
+
+        if (mainDeckHallUnits.Count > 4)
+        {
+            Debug.LogError("Main Deck Over 4 Error");
+            for (int i = 4; i < mainDeckHallUnits.Count; i++)
+            {
+                Debug.LogError("Error Unit:" + mainDeckHallUnits[i].PrivateKey);
+                Debug.LogError("Error Unit:" + mainDeckHallUnits[i].UnitName);
+                Debug.LogError("Error Unit:" + mainDeckHallUnits[i].ID);
+                mainDeckHallUnits[i].IsMainDeck = false;
+            }
+        }
     }
 
     public void LoadData()
@@ -178,6 +205,8 @@ public class OutGameDataContainer : MonoBehaviour
                 // 데이터 무결성 검사
                 _versionController.MigrateData();
             }
+
+            DataIntegrityCheck();
         }
         catch(FileNotFoundException e)
         {

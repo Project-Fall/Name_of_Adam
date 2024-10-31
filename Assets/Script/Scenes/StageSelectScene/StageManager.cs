@@ -313,8 +313,12 @@ public class StageManager : MonoBehaviour
 
     public void StageMouseEnter(Stage stage)
     {
+        if (stage.Datas.Name == StageName.none)
+            return;
+
         _isHover = true;
         _hoverStage = stage;
+
         PlayAfterCoroutine(() => {
             if (_isHover && !_isHoverMessegeOn && _hoverStage == stage)
             {

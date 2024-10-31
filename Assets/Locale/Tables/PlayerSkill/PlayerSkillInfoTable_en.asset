@@ -61,18 +61,18 @@ MonoBehaviour:
   - m_Id: 694547550208
     m_Localized: 'Inflicts <b>Curse</b> to an enemy unit.
 
-      (<b>Curse</b>:
-      When the cursed unit''s turn end, its faith decrease by 1.)'
+      (<b>Curse</b>: When
+      the cursed unit''s turn end, its faith decrease by 1.)'
     m_Metadata:
       m_Items: []
   - m_Id: 717616222208
-    m_Localized: 'Inflicts an enemy unit <b>Curse and <b>Attack Boost</b> for 3 times
+    m_Localized: 'Inflicts an enemy unit <b>Curse</b> and <b>Attack Boost</b> for
+      3 times
 
-      (<b>Curse</b>:
-      When the cursed unit''s turn end, its faith decrease by 1.
+      (<b>Curse</b>: When the cursed unit''s turn end, its faith decrease
+      by 1.
 
-      <b>Attack
-      Boost</b>: Attack power increase by 50%.)'
+      <b>Attack Boost</b>: Attack power increase by 50%.)'
     m_Metadata:
       m_Items: []
   - m_Id: 823568535552
@@ -83,8 +83,8 @@ MonoBehaviour:
     m_Localized: 'Bestows <b>Malevolence</b> for 4 times to an allied unit, but reduces
       its health by 10.
 
-      (<b>Malevolence</b>: Upon attacking, reduces the
-      enemy''s faith by 1)'
+      (<b>Malevolence</b>: Upon attacking, reduces the enemy''s
+      faith by 1)'
     m_Metadata:
       m_Items: []
   - m_Id: 953277386752
@@ -95,8 +95,8 @@ MonoBehaviour:
     m_Localized: 'Gives <b>Malevolence</b> for 6 times to an allied unit, but reduces
       its health by 10.
 
-      (<b>Malevolence</b>: Upon attacking, reduces the
-      enemy''s faith by 1)'
+      (<b>Malevolence</b>: Upon attacking, reduces the enemy''s
+      faith by 1)'
     m_Metadata:
       m_Items: []
   references:

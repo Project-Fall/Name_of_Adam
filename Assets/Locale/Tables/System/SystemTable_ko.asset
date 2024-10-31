@@ -208,6 +208,18 @@ MonoBehaviour:
     m_Localized: "\uD574\uB2F9 \uC720\uB2DB\uC744 \uC804\uB2F9\uC5D0 \uB4F1\uB85D\uD558\uC2DC\uACA0\uC2B5\uB2C8\uAE4C?"
     m_Metadata:
       m_Items: []
+  - m_Id: 75748344421568512
+    m_Localized: "\uC774 \uC720\uB2DB\uC740 \uC5EC\uC815\uC5D0 \uC120\uD0DD\uB41C
+      \uC0C1\uD0DC\uC785\uB2C8\uB2E4."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 75748872299892736
+    m_Localized: "\uC774 \uC720\uB2DB\uC740 \uAE30\uBCF8 \uC720\uB2DB\uC785\uB2C8\uB2E4."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 75749561084301312
+    m_Localized: "\uC774 \uC720\uB2DB\uC740 \uD55C \uBC88\uB9CC \uC5BB\uC744 \uC218
+      \uC788\uC2B5\uB2C8\uB2E4."
   - m_Id: 73743009414533120
     m_Localized: "\uD604\uC7AC \uD50C\uB808\uC774 \uC911\uC778 \uBC84\uC804\uC740
       <color=#FF9696>\uB370\uBAA8\uBC84\uC804</color>\uC785\uB2C8\uB2E4. \n\n\uC815\uC2DD

@@ -82,10 +82,25 @@ public class MainSceneController : MonoBehaviour
         myDeck.Init();
         myDeck.EventInit((DeckUnit) =>
         {
+            string infoTooltipKey = null;
+
             if (DeckUnit.PrivateKey.Contains("Origin"))
             {
+                infoTooltipKey = "HallDeleteCannotOriginTooltip";
+            }
+            else if (GameManager.OutGameData.Data.HallUnit.Find(unit => unit.PrivateKey == DeckUnit.PrivateKey).IsMainDeck)
+            {
+                infoTooltipKey = "HallDeleteCannotSelectedTooltip";
+            }
+            else if (DeckUnit.PrivateKey.Contains("OnlyUnit"))
+            {
+                infoTooltipKey = "HallDeleteCannotOnlyUnitTooltip";
+            }
+
+            if (infoTooltipKey != null)
+            {
                 UI_SystemInfo systemInfo = GameManager.UI.ShowPopup<UI_SystemInfo>();
-                systemInfo.Init("HallDeleteCannotInfo", "");
+                systemInfo.Init("HallDeleteCannotInfo", infoTooltipKey);
             }
             else
             {

@@ -121,6 +121,7 @@ public class DataManager : MonoBehaviour
     public void HallDeckSet()
     {
         GameDataMain.DeckUnits.Clear();
+        GameManager.OutGameData.DataIntegrityCheck();
         foreach (var hallUnit in GameManager.OutGameData.FindHallUnitList())
         {
             if (hallUnit.IsMainDeck)

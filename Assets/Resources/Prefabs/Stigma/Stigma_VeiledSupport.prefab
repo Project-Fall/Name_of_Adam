@@ -46,9 +46,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _stigmaEnum: 34
   _name: Veiled Support
-  _sprite_28: {fileID: 21300000, guid: 4ff69c7a1e49b894c8d84d8eb6357024, type: 3}
-  _sprite_88: {fileID: 21300000, guid: 6afc2e38f92ceb640969bb7ba5bbe03c, type: 3}
-  _sprite_164: {fileID: 21300000, guid: 90523647d7ad504419f83cbb2e1fb15a, type: 3}
+  _sprite_28: {fileID: 21300000, guid: 8792c80c6e8b6f94f8c2eacacb474c94, type: 3}
+  _sprite_88: {fileID: 21300000, guid: 832f332bbf6b1d84a90cd8170aaaebc9, type: 3}
+  _sprite_164: {fileID: 21300000, guid: 1d52072e51501074fbc8eb98f81a5420, type: 3}
   _description: Veiled Support Info
   _activeTiming: 2
   _tier: 0
