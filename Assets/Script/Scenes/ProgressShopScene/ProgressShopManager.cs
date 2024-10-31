@@ -91,6 +91,14 @@ public class ProgressShopManager : MonoBehaviour
                 active_info_cost.text = GameManager.OutGameData.GetProgressItem(id).Cost.ToString();
                 ItemInfoSoul.SetActive(true);
             }
+
+            #region Demo 전용
+            if (selectedID == 11 || selectedID == 53 || selectedID == 61 || selectedID == 71)
+            {
+                GameManager.UI.ShowPopup<UI_SystemInfo>().Init("DemoClear", "DemoClearToolTip");
+                return;
+            }
+            #endregion
         }
     }
 

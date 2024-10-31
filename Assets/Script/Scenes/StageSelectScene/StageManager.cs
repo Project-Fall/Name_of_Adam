@@ -290,6 +290,11 @@ public class StageManager : MonoBehaviour
 
     public void StageMouseClick(Stage stage)
     {
+        if (GameManager.Data.StageAct == 1)
+        {
+            return;
+        }
+
         GameManager.SaveManager.SaveGame();
         StageManager.Instance.StageMove(stage.Datas.ID);
 

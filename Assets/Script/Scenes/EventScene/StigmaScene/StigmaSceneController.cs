@@ -78,6 +78,7 @@ public class StigmaSceneController : MonoBehaviour, StigmaInterface
         Debug.Log($"횟수: {GameManager.OutGameData.Data.StigmataCorruptValue}");
 
         int questLevel = Mathf.Min((int)(GameManager.OutGameData.Data.StigmataCorruptValue / 10f), 4);
+        questLevel = 0;
         if (questLevel == 4 && !GameManager.OutGameData.Data.IsStigmataCorrupt && GameManager.OutGameData.Data.YohrnClear)
         {
             GameManager.OutGameData.Data.IsStigmataCorrupt = true;

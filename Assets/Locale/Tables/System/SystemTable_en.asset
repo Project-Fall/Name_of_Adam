@@ -221,6 +221,16 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 75749561084301312
     m_Localized: This unit can only get once.
+  - m_Id: 73743009414533120
+    m_Localized: "You are currently playing the <color=#FF9696>Demo version<color=white>.
+      \n\nIn the full version, you can face more powerful Elite enemies and even
+      challenge the Bosses. You will also be able to enhance your dark powers with
+      even more diverse Stigmata. Carve out your own path of darkness in the full
+      version."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 73743133356216320
+    m_Localized: "\u203B Thank you for playing our game!"
     m_Metadata:
       m_Items: []
   references:

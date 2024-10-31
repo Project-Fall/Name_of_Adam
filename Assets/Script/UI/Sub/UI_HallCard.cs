@@ -118,6 +118,13 @@ public class UI_HallCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     public void OnClick()
     {
         GameManager.Sound.Play("UI/UISFX/UISelectSFX");
+
+        if (_hallSlotID == 1 || _hallSlotID == 2)
+        {
+            GameManager.UI.ShowPopup<UI_SystemInfo>().Init("DemoClear", "DemoClearToolTip");
+            return;
+        }
+
         GameManager.UI.ShowPopup<UI_MyDeck>().HallDeckInit(_slotRank, OnSelect);
     }
 

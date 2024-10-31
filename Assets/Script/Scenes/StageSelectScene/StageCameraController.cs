@@ -89,5 +89,21 @@ public class StageCameraController : MonoBehaviour
 
         transform.position = _bottomPosition;
         yield return null;
+
+        if (GameManager.Data.StageAct == 1)
+        {
+            GameManager.UI.ShowPopup<UI_SystemInfo>().Init("DemoClear", "DemoClearToolTip", () =>
+            {
+                GameManager.OutGameData.Data.TutorialClear = false;
+                GameManager.OutGameData.SetCutSceneData(CutSceneType.Main, false);
+                GameManager.OutGameData.SetCutSceneData(CutSceneType.Tubalcain_Enter, false);
+                GameManager.OutGameData.SetCutSceneData(CutSceneType.RahelLea_Enter, false);
+                GameManager.OutGameData.SetCutSceneData(CutSceneType.Phanuel_Enter, false);
+                GameManager.OutGameData.SaveData();
+                GameManager.SaveManager.DeleteSaveData();
+                SceneChanger.SceneChange("MainScene");
+            });
+
+        }
     }
 }

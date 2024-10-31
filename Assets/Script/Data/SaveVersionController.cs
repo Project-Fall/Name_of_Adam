@@ -11,6 +11,10 @@ public class SaveVersionController
 
     private List<string> versionHistory = new List<string>
     {
+        "1.0.0-demo",
+        "1.0.1-demo",
+        "1.0.3-demo",
+        "1.1.0-demo",
         "1.0.0-release",
         "1.0.1-release",
         "1.0.2-release",
@@ -49,11 +53,34 @@ public class SaveVersionController
             return;
         }
 
+        if ("1.1.0-demo" != userVersion)
+        {
+            GameManager.SaveManager.DeleteSaveData();
+            GameManager.OutGameData.DeleteAllData();
+            GameManager.OutGameData.Init();
+        }
+
         // 버전은 순차적(Linearly)으로 업데이트 되어야 합니다.
         while (userVersion.Equals(Application.version) == false)
         {
             switch (userVersion)
             {
+                case "1.0.0-demo":
+                    GameManager.SaveManager.DeleteSaveData();
+                    GameManager.OutGameData.DeleteAllData();
+                    GameManager.OutGameData.CreateData();
+                    break;
+                case "1.0.1-demo":
+                    GameManager.SaveManager.DeleteSaveData();
+                    GameManager.OutGameData.DeleteAllData();
+                    GameManager.OutGameData.CreateData();
+                    break;
+                case "1.0.3-demo":
+                    GameManager.SaveManager.DeleteSaveData();
+                    GameManager.OutGameData.DeleteAllData();
+                    GameManager.OutGameData.CreateData();
+                    break;
+
                 // 이후 업데이트에서 구현 필요 시 추가
                 case "1.0.0-release":
                     GameManager.SaveManager.DeleteSaveData();

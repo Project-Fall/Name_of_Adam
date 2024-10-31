@@ -44,6 +44,7 @@ public class UpgradeSceneController : MonoBehaviour
         Debug.Log($"횟수: {GameManager.OutGameData.Data.BaptismCorruptValue}");
 
         int questLevel = Mathf.Min(GameManager.OutGameData.Data.BaptismCorruptValue / 30, 4);
+        questLevel = 0;
         if (questLevel == 4 && GameManager.OutGameData.Data.PhanuelClear && !GameManager.OutGameData.Data.IsBaptismCorrupt)
         {
             GameManager.OutGameData.Data.IsBaptismCorrupt = true;
